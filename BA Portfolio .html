@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BA Portfolio — Tejal Mugul</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@300;400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07090f;--bg2:#0d1018;--bg3:#111520;--bg4:#161b28;--bg5:#1c2235;
+  --violet:#7c3aed;--cyan:#06b6d4;--emerald:#10b981;--amber:#f59e0b;--rose:#f43f5e;
+  --grad:linear-gradient(135deg,#7c3aed,#06b6d4);
+  --grad-warm:linear-gradient(135deg,#f59e0b,#f43f5e);
+  --grad-cool:linear-gradient(135deg,#06b6d4,#10b981);
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#f0f2f8;--text2:#94a3b8;--text3:#4b5675;--white:#fff;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--violet);border-radius:2px;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;background:rgba(7,9,15,0.9);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;}
+.nb{font-family:'Sora',sans-serif;font-size:15px;font-weight:800;letter-spacing:-0.02em;color:var(--white);flex-shrink:0;}
+.nb span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nsep{width:1px;height:18px;background:var(--border2);margin:0 18px;flex-shrink:0;}
+.ntag{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan);flex-shrink:0;}
+.nmid{display:flex;align-items:center;list-style:none;margin-left:auto;gap:0;}
+.nmid a{font-size:12px;font-weight:500;color:var(--text2);padding:0 13px;height:58px;display:flex;align-items:center;transition:color .2s;letter-spacing:.02em;}
+.nmid a:hover{color:var(--cyan);}
+/* dropdown */
+.ndrop{position:relative;margin-left:10px;flex-shrink:0;}
+.ndbtn{display:flex;align-items:center;gap:8px;background:var(--bg4);border:1px solid var(--border2);padding:7px 16px;font-size:12px;font-weight:600;color:var(--text);cursor:pointer;transition:all .2s;border-radius:4px;white-space:nowrap;}
+.ndbtn:hover{border-color:var(--violet);color:var(--white);}
+.ndbtn .arr{font-size:9px;color:var(--text3);transition:transform .2s;}
+.ndrop.open .arr{transform:rotate(180deg);}
+.ndmenu{position:absolute;top:calc(100% + 8px);right:0;background:var(--bg3);border:1px solid var(--border2);min-width:230px;display:none;flex-direction:column;border-radius:6px;overflow:hidden;box-shadow:0 20px 48px rgba(0,0,0,.6);}
+.ndrop.open .ndmenu{display:flex;}
+.ndmenu a{padding:11px 18px;font-size:12.5px;font-weight:500;color:var(--text2);display:flex;align-items:center;gap:10px;transition:all .15s;border-bottom:1px solid var(--border);}
+.ndmenu a:last-child{border-bottom:none;}
+.ndmenu a:hover{background:var(--bg4);color:var(--white);padding-left:22px;}
+.ndmenu .ndsep{padding:7px 18px;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);background:var(--bg2);border-bottom:1px solid var(--border);}
+.ndmenu .ndhi{color:var(--cyan) !important;background:rgba(6,182,212,.04) !important;}
+.ndmenu .ndhi:hover{background:rgba(6,182,212,.1) !important;color:var(--white) !important;}
+
+/* ── LAYOUT ── */
+.W{max-width:1160px;margin:0 auto;padding:0 28px;}
+section{padding:80px 0;}
+.eye{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.eye::before{content:'';width:20px;height:1px;background:var(--cyan);}
+.h2{font-family:'Sora',sans-serif;font-size:clamp(26px,3.5vw,40px);font-weight:800;line-height:1.12;letter-spacing:-.02em;margin-bottom:10px;}
+.h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.sub{font-size:14.5px;color:var(--text2);max-width:620px;line-height:1.85;margin-bottom:44px;}
+.gt{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* badges */
+.b{display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:100px;}
+.bv{background:rgba(124,58,237,.14);color:#a78bfa;border:1px solid rgba(124,58,237,.3);}
+.bc{background:rgba(6,182,212,.12);color:#67e8f9;border:1px solid rgba(6,182,212,.3);}
+.ba{background:rgba(245,158,11,.12);color:#fcd34d;border:1px solid rgba(245,158,11,.3);}
+.br{background:rgba(244,63,94,.1);color:#fda4af;border:1px solid rgba(244,63,94,.3);}
+.bg{background:rgba(16,185,129,.1);color:#6ee7b7;border:1px solid rgba(16,185,129,.3);}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+.rv.in{opacity:1;transform:none;}
+
+/* ── HERO ── */
+.hero{min-height:100vh;padding-top:58px;display:flex;align-items:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 80% 45%,rgba(124,58,237,.12) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 15% 75%,rgba(6,182,212,.08) 0%,transparent 60%);pointer-events:none;}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black,transparent);opacity:.35;pointer-events:none;}
+.hero-in{display:grid;grid-template-columns:1fr 360px;gap:52px;align-items:center;width:100%;}
+.hpill{display:inline-flex;align-items:center;gap:8px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.3);padding:6px 16px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:#a78bfa;margin-bottom:24px;}
+.hpill-dot{width:6px;height:6px;background:#a78bfa;border-radius:50%;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.htitle{font-family:'Sora',sans-serif;font-size:clamp(38px,5.5vw,64px);font-weight:800;line-height:1.06;letter-spacing:-.025em;margin-bottom:18px;}
+.htitle .l2{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hdesc{font-size:15.5px;color:var(--text2);line-height:1.85;max-width:510px;margin-bottom:32px;}
+.hbtns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:44px;}
+.btnp{display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:var(--white);border:none;padding:12px 28px;font-size:13px;font-weight:600;letter-spacing:.03em;cursor:pointer;transition:opacity .2s;border-radius:3px;}
+.btnp:hover{opacity:.85;}
+.btng{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);border:1px solid var(--border2);padding:11px 28px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;border-radius:3px;}
+.btng:hover{border-color:var(--cyan);color:var(--cyan);}
+/* qs strip */
+.qs{border-top:1px solid var(--border);padding-top:26px;}
+.ql{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);margin-bottom:13px;}
+.qg{display:grid;grid-template-columns:1fr 1fr;gap:7px 22px;}
+.qi{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500;color:var(--text2);}
+.qc{width:16px;height:16px;flex-shrink:0;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.35);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;color:#a78bfa;}
+/* hero panel */
+.hpanel{background:var(--bg2);border:1px solid var(--border2);border-radius:6px;overflow:hidden;position:relative;}
+.hpanel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);}
+.hptop{padding:17px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.hptop-l{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);}
+.hpdot{width:7px;height:7px;background:var(--emerald);border-radius:50%;box-shadow:0 0 6px var(--emerald);}
+.hprow{padding:15px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.hprow:last-child{border-bottom:none;}
+.hprow-l{font-size:11.5px;color:var(--text3);font-weight:500;}
+.hprow-r{text-align:right;}
+.hprow-v{font-family:'Sora',sans-serif;font-size:21px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap;}
+.hprow-s{font-size:10px;color:var(--text3);}
+
+/* contact strip on hero */
+.hcontact{display:flex;flex-wrap:wrap;gap:16px;margin-top:18px;}
+.hci{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text3);}
+.hci a{color:var(--text2);transition:color .2s;}
+.hci a:hover{color:var(--cyan);}
+.hci-ico{font-size:13px;}
+
+/* ── POSITIONING BAND ── */
+.posband{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:52px 0;}
+.posin{display:grid;grid-template-columns:170px 1fr;gap:48px;align-items:start;}
+.poslbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);line-height:2.2;padding-top:4px;}
+.posq{font-family:'Sora',sans-serif;font-size:clamp(16px,2vw,20px);font-weight:400;line-height:1.8;color:var(--text2);}
+.posq strong{font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* ── LIFECYCLE ── */
+.lcgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+.lci{background:var(--bg2);padding:26px 18px;position:relative;cursor:default;transition:background .2s;}
+.lci:hover{background:var(--bg4);}
+.lci::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+.lci:hover::after{transform:scaleX(1);}
+.lcn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--text3);margin-bottom:13px;}
+.lcico{font-size:20px;display:block;margin-bottom:9px;}
+.lcname{font-size:11.5px;font-weight:700;color:var(--text);margin-bottom:5px;}
+.lcdesc{font-size:10.5px;color:var(--text3);line-height:1.6;}
+
+/* ── ALIGNMENT TABLE ── */
+.altsec{background:var(--bg2);}
+.at{border:1px solid var(--border);overflow:hidden;}
+.ath{display:grid;grid-template-columns:1fr 1.3fr 1fr;background:var(--bg3);border-bottom:1px solid var(--border);}
+.athc{padding:12px 22px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);border-right:1px solid var(--border);}
+.athc:last-child{border-right:none;}
+.atr{display:grid;grid-template-columns:1fr 1.3fr 1fr;border-bottom:1px solid var(--border);transition:background .15s;}
+.atr:last-child{border-bottom:none;}
+.atr:hover .atc{background:var(--bg4);}
+.atc{padding:15px 22px;border-right:1px solid var(--border);font-size:13px;}
+.atc:last-child{border-right:none;}
+.atc:first-child{font-weight:700;color:var(--text);}
+.atc:nth-child(2){color:var(--text2);font-size:12.5px;}
+.atc:last-child{display:flex;align-items:flex-start;gap:8px;color:#a78bfa;font-weight:600;font-size:12px;}
+.atc:last-child::before{content:'→';flex-shrink:0;color:var(--violet);}
+
+/* ── CASE STUDY CARD ── */
+.csc{border:1px solid var(--border);background:var(--bg2);margin-bottom:56px;position:relative;overflow:hidden;}
+.csc::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--grad);}
+/* header */
+.csh{padding:30px 36px 24px;border-bottom:1px solid var(--border);}
+.csnum{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;}
+.cstitle{font-family:'Sora',sans-serif;font-size:clamp(19px,2.5vw,26px);font-weight:800;letter-spacing:-.02em;margin-bottom:12px;}
+.cstags{display:flex;flex-wrap:wrap;gap:7px;}
+/* snapshot bar */
+.cssnap{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-bottom:1px solid var(--border);}
+.cssn{background:var(--bg3);padding:17px 22px;}
+.cssn-l{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:5px;}
+.cssn-v{font-size:12.5px;font-weight:500;color:var(--text);line-height:1.5;}
+/* body grid */
+.csbody{display:grid;grid-template-columns:1fr 295px;gap:1px;background:var(--border);}
+.csmain{padding:32px 36px;}
+.csside{background:var(--bg3);padding:26px 22px;}
+/* section header inside card */
+.sh{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);padding-bottom:9px;border-bottom:1px solid var(--border);margin-bottom:15px;}
+/* problem box */
+.pbox{background:rgba(244,63,94,.06);border:1px solid rgba(244,63,94,.2);border-left:3px solid var(--rose);padding:16px 20px;margin-bottom:24px;font-size:13.5px;color:var(--text2);line-height:1.78;}
+/* root cause */
+.rca{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.18);border-left:3px solid var(--amber);padding:14px 18px;margin-bottom:24px;}
+.rca-title{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:10px;}
+.rca-items{display:flex;flex-direction:column;gap:7px;}
+.rca-i{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;color:var(--text2);}
+.rca-i .rn{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--amber);flex-shrink:0;font-weight:700;min-width:28px;}
+/* process steps */
+.proc{display:flex;gap:0;flex-wrap:wrap;margin-bottom:24px;}
+.procs{flex:1;min-width:110px;background:var(--bg4);border:1px solid var(--border);border-right:none;padding:13px 14px;text-align:center;position:relative;}
+.procs:last-child{border-right:1px solid var(--border);}
+.procs-n{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--cyan);letter-spacing:.1em;margin-bottom:5px;}
+.procs-name{font-size:11px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.procs-desc{font-size:10px;color:var(--text3);}
+.parr{position:absolute;right:-7px;top:50%;transform:translateY(-50%);width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:7px solid var(--border2);z-index:2;}
+.procs:last-child .parr{display:none;}
+/* workflow compare */
+.wfc{display:grid;grid-template-columns:1fr 36px 1fr;align-items:start;margin-bottom:24px;}
+.wfcol{border:1px solid var(--border);overflow:hidden;}
+.wfhead{padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+.wfhead.as{color:var(--rose);background:rgba(244,63,94,.05);}
+.wfhead.tb{color:var(--emerald);background:rgba(16,185,129,.05);}
+.wfitems{padding:10px 14px;display:flex;flex-direction:column;gap:5px;}
+.wfi{font-size:11.5px;color:var(--text2);display:flex;align-items:flex-start;gap:7px;line-height:1.5;}
+.wfmid{display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--text3);padding-top:38px;}
+/* gap analysis */
+.gap-tbl{border:1px solid var(--border);overflow:hidden;margin-bottom:24px;}
+.gap-head{display:grid;grid-template-columns:2fr 1fr 2fr 1fr;background:var(--bg4);border-bottom:1px solid var(--border);}
+.gap-hc{padding:9px 14px;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);border-right:1px solid var(--border);}
+.gap-hc:last-child{border-right:none;}
+.gap-row{display:grid;grid-template-columns:2fr 1fr 2fr 1fr;border-bottom:1px solid var(--border);transition:background .15s;}
+.gap-row:last-child{border-bottom:none;}
+.gap-row:hover .gap-cell{background:var(--bg4);}
+.gap-cell{padding:10px 14px;font-size:12px;border-right:1px solid var(--border);}
+.gap-cell:last-child{border-right:none;}
+.gap-cell:first-child{font-weight:500;color:var(--text);}
+.gap-cell:nth-child(2){text-align:center;}
+.gap-cell:nth-child(3){color:var(--text2);}
+.prio-hi{color:#fda4af;font-weight:700;font-size:11px;}
+.prio-med{color:#fcd34d;font-weight:700;font-size:11px;}
+/* BA contributions */
+.balist{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.balist li{display:flex;gap:12px;background:var(--bg4);border:1px solid var(--border);padding:13px 16px;font-size:12.5px;color:var(--text2);align-items:flex-start;}
+.balist li::before{content:'→';color:var(--cyan);flex-shrink:0;margin-top:1px;}
+.balbl{font-weight:700;color:var(--text);display:block;font-size:12px;margin-bottom:3px;}
+/* user stories */
+.us{background:var(--bg4);border:1px solid var(--border);border-left:3px solid var(--amber);padding:18px 20px;margin-bottom:12px;}
+.us-role{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:9px;}
+.us-txt{font-style:italic;font-size:13.5px;color:var(--text2);line-height:1.75;margin-bottom:10px;}
+.us-ac{display:flex;flex-direction:column;gap:5px;}
+.usac-i{font-size:11.5px;color:var(--text3);display:flex;align-items:flex-start;gap:7px;}
+.usac-i::before{content:'✓';color:var(--amber);font-size:9px;flex-shrink:0;margin-top:2px;}
+/* benefit realization */
+.ben-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:24px;}
+.ben-i{display:flex;align-items:flex-start;gap:9px;padding:10px 14px;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);}
+.ben-i-ico{flex-shrink:0;font-size:14px;}
+.ben-i-text{font-size:12px;font-weight:500;color:var(--text);}
+.ben-i-sub{font-size:11px;color:var(--text3);}
+/* risks */
+.risk-list{display:flex;flex-direction:column;gap:8px;margin-bottom:24px;}
+.risk-i{display:flex;align-items:flex-start;gap:12px;background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.15);padding:11px 14px;}
+.risk-lbl{font-size:11px;font-weight:700;color:#a78bfa;flex-shrink:0;min-width:80px;}
+.risk-txt{font-size:12px;color:var(--text2);}
+/* sidebar */
+.sb-i{padding:11px 0;border-bottom:1px solid var(--border);}
+.sb-i:last-child{border-bottom:none;}
+.sb-n{font-size:11.5px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.sb-d{font-size:10.5px;color:var(--text3);}
+.sbt{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid var(--border);}
+.sbt:last-child{border-bottom:none;}
+.sbtd{width:5px;height:5px;background:var(--cyan);border-radius:50%;flex-shrink:0;}
+.sbtn{font-size:11.5px;font-weight:700;color:var(--text);}
+.sbtu{font-size:10.5px;color:var(--text3);}
+.mlist{display:flex;flex-direction:column;gap:7px;}
+.mli{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--text2);}
+.mli::before{content:'';width:3px;height:3px;background:var(--cyan);border-radius:50%;flex-shrink:0;}
+
+/* ── METRICS BAND ── */
+.metband{background:var(--bg3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.metrow{display:grid;grid-template-columns:repeat(5,1fr);}
+.metcell{padding:30px 18px;text-align:center;border-right:1px solid var(--border);transition:background .2s;}
+.metcell:last-child{border-right:none;}
+.metcell:hover{background:var(--bg4);}
+.metcell-ico{font-size:15px;display:block;margin-bottom:5px;}
+.metcell-v{font-family:'Sora',sans-serif;font-size:24px;font-weight:800;display:block;margin-bottom:3px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.metcell-l{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);}
+
+/* ── STAKEHOLDERS ── */
+.shsec{background:var(--bg2);}
+.shgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+.shcard{background:var(--bg2);padding:24px 22px;transition:background .2s;}
+.shcard:hover{background:var(--bg4);}
+.shico{font-size:22px;margin-bottom:10px;display:block;}
+.shname{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.shrole{font-size:11px;color:var(--cyan);margin-bottom:6px;font-family:'JetBrains Mono',monospace;}
+.shpain{font-size:11.5px;color:var(--text3);margin-bottom:10px;font-style:italic;}
+.shneeds{display:flex;flex-direction:column;gap:4px;}
+.shneed{font-size:11.5px;color:var(--text2);display:flex;align-items:flex-start;gap:6px;}
+.shneed::before{content:'•';color:var(--violet);flex-shrink:0;}
+
+/* ── TOOLS ── */
+.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+.tc{background:var(--bg2);padding:26px 22px;position:relative;overflow:hidden;transition:background .2s;}
+.tc:hover{background:var(--bg4);}
+.tc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--grad);transform:scaleX(0);transition:transform .25s;transform-origin:left;}
+.tc:hover::after{transform:scaleX(1);}
+.tccat{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;}
+.tcname{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;}
+.tcdesc{font-size:11.5px;color:var(--text3);line-height:1.65;}
+.ctags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+
+/* ── LEARNINGS ── */
+.klgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+.klcard{background:var(--bg2);padding:26px 22px;position:relative;overflow:hidden;transition:background .2s;}
+.klcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);}
+.klcard:hover{background:var(--bg4);}
+.klico{font-size:22px;margin-bottom:11px;display:block;}
+.klttl{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.kldesc{font-size:12px;color:var(--text2);line-height:1.7;}
+
+/* ── GOLDEN RULE ── */
+.golden{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 0;text-align:center;}
+.gpre{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--text3);margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:14px;}
+.gpre::before,.gpre::after{content:'';width:36px;height:1px;background:var(--border2);}
+.gq{font-family:'Sora',sans-serif;font-size:clamp(19px,2.5vw,30px);font-weight:700;font-style:italic;line-height:1.5;max-width:680px;margin:0 auto 16px;}
+.gsub{font-size:14px;color:var(--text3);max-width:480px;margin:0 auto;line-height:1.8;}
+
+/* ── EXPLORER ── */
+.explorer{background:var(--bg);padding:80px 0;position:relative;overflow:hidden;}
+.explorer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 100%,rgba(124,58,237,.1) 0%,transparent 60%),radial-gradient(ellipse 30% 40% at 80% 0%,rgba(6,182,212,.07) 0%,transparent 50%);pointer-events:none;}
+.exp-in{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.expeye{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.expeye::before{content:'';width:20px;height:1px;background:var(--cyan);}
+.exptitle{font-family:'Sora',sans-serif;font-size:clamp(24px,3vw,36px);font-weight:800;letter-spacing:-.02em;line-height:1.2;margin-bottom:18px;}
+.exppara{font-size:14.5px;color:var(--text2);line-height:1.9;margin-bottom:14px;}
+.exppara strong{font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+/* learning pillars */
+.lp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;}
+.lp-card{background:var(--bg2);border:1px solid var(--border);border-left:3px solid;padding:14px 16px;}
+.lp-card.violet{border-color:var(--violet);}
+.lp-card.cyan{border-color:var(--cyan);}
+.lp-card.amber{border-color:var(--amber);}
+.lp-card.emerald{border-color:var(--emerald);}
+.lp-icon{font-size:18px;margin-bottom:7px;display:block;}
+.lp-label{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:3px;}
+.lp-title{font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.lp-desc{font-size:11.5px;color:var(--text3);line-height:1.6;}
+/* exp connections */
+.exp-conns{display:flex;flex-direction:column;gap:11px;margin-top:24px;}
+.exp-conn{display:flex;align-items:flex-start;gap:14px;background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--violet);padding:13px 16px;}
+.ec-ico{font-size:17px;flex-shrink:0;}
+.ec-lbl{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:3px;}
+.ec-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.ec-desc{font-size:12px;color:var(--text3);line-height:1.6;}
+/* status card */
+.statcard{background:var(--bg2);border:1px solid var(--border2);border-radius:6px;overflow:hidden;position:sticky;top:78px;}
+.statcard::before{content:'';display:block;height:2px;background:var(--grad);}
+.sc-head{padding:17px 22px;border-bottom:1px solid var(--border);background:var(--bg3);display:flex;align-items:center;justify-content:space-between;}
+.sc-htitle{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);}
+.sc-badge{display:flex;align-items:center;gap:6px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);padding:4px 10px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#6ee7b7;}
+.sc-badge::before{content:'';width:5px;height:5px;background:var(--emerald);border-radius:50%;}
+.sc-rows{padding:4px 22px 0;}
+.sc-row{padding:11px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.sc-row:last-child{border-bottom:none;}
+.sc-rl{font-size:12px;color:var(--text3);}
+.sc-rv{font-size:12px;font-weight:700;color:var(--text);}
+.sc-rv.gr{color:var(--emerald);}
+.sc-rv.cy{color:var(--cyan);}
+.sc-rv.am{color:var(--amber);}
+/* contact info card */
+.contactcard{background:var(--bg4);border:1px solid var(--border);padding:18px 22px;margin:18px 22px 0;}
+.cc-title{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--text3);margin-bottom:12px;}
+.cc-items{display:flex;flex-direction:column;gap:9px;}
+.cc-item{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--text2);}
+.cc-item a{color:var(--cyan);transition:color .2s;}
+.cc-item a:hover{color:var(--white);}
+.cc-ico{font-size:13px;}
+/* skill bars */
+.skill-sec{padding:18px 22px 22px;}
+.skill-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--text3);margin-bottom:13px;}
+.skillrow{margin-bottom:11px;}
+.skilltop{display:flex;justify-content:space-between;font-size:11.5px;font-weight:600;color:var(--text);margin-bottom:5px;}
+.skillpct{font-size:10px;color:var(--text3);}
+.skillbar{height:3px;background:var(--border2);border-radius:2px;overflow:hidden;}
+.skillfill{height:100%;border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform 1.2s ease .3s;}
+.skillrow.in .skillfill{transform:scaleX(1);}
+.sf-vc{background:linear-gradient(90deg,var(--violet),var(--cyan));}
+.sf-ca{background:linear-gradient(90deg,var(--cyan),var(--amber));}
+.sf-ae{background:linear-gradient(90deg,var(--amber),var(--emerald));}
+.sc-cta{margin:0 22px 22px;padding:12px 18px;background:var(--grad);display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:700;color:var(--white);cursor:pointer;transition:opacity .2s;border-radius:3px;text-decoration:none;}
+.sc-cta:hover{opacity:.85;}
+
+/* ── DISCLAIMER ── */
+.disc{padding:20px 0;border-top:1px solid var(--border);}
+.disc-in{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.04em;color:var(--text3);display:flex;align-items:flex-start;gap:10px;line-height:1.8;}
+.disc-in span{color:var(--cyan);flex-shrink:0;}
+
+/* ── FOOTER ── */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
+.ft{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:24px;}
+.ft-brand{font-family:'Sora',sans-serif;font-size:18px;font-weight:800;letter-spacing:-.02em;}
+.ft-brand span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.ft-tag{font-size:12px;color:var(--text3);margin-top:3px;}
+.ft-contact{display:flex;flex-direction:column;gap:7px;margin-top:8px;}
+.ft-ci{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text3);}
+.ft-ci a{color:var(--text2);transition:color .2s;}
+.ft-ci a:hover{color:var(--cyan);}
+.ft-links{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.ft-links a{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);transition:color .2s;font-weight:600;}
+.ft-links a:hover{color:var(--cyan);}
+.ft-copy{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--text3);margin-top:24px;width:100%;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .hero-in{grid-template-columns:1fr;}.hpanel{display:none;}
+  .lcgrid{grid-template-columns:repeat(3,1fr);}
+  .ath,.atr{grid-template-columns:1fr;}
+  .athc:not(:first-child){display:none;}
+  .csbody{grid-template-columns:1fr;}.csside{border-top:1px solid var(--border);}
+  .cssnap{grid-template-columns:1fr 1fr;}
+  .tgrid{grid-template-columns:1fr 1fr;}
+  .metrow{grid-template-columns:repeat(3,1fr);}
+  .shgrid{grid-template-columns:1fr 1fr;}
+  .klgrid{grid-template-columns:1fr 1fr;}
+  .exp-in{grid-template-columns:1fr;}
+  .nmid{display:none;}
+  .gap-head,.gap-row{grid-template-columns:2fr 1fr 2fr 1fr;}
+}
+@media(max-width:640px){
+  nav{padding:0 16px;}.W{padding:0 16px;}
+  section{padding:56px 0;}
+  .lcgrid{grid-template-columns:1fr 1fr;}
+  .cssnap{grid-template-columns:1fr;}
+  .wfc{grid-template-columns:1fr;}.wfmid{display:none;}
+  .ben-grid{grid-template-columns:1fr;}
+  .metrow{grid-template-columns:1fr 1fr;}
+  .shgrid,.klgrid{grid-template-columns:1fr;}
+  .tgrid{grid-template-columns:1fr;}
+  .qg{grid-template-columns:1fr;}
+  .posin{grid-template-columns:1fr;}
+  .gap-head,.gap-row{grid-template-columns:1fr 1fr;}
+  .gap-hc:nth-child(3),.gap-cell:nth-child(3){display:none;}
+  .lp-grid{grid-template-columns:1fr;}
+  .ft{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════ NAV ════════════════════ -->
+<nav>
+  <div class="nb">Tejal<span>Mugul</span></div>
+  <div class="nsep"></div>
+  <span class="ntag">BA Portfolio</span>
+  <ul class="nmid">
+    <li><a href="#lifecycle">Lifecycle</a></li>
+    <li><a href="#experience">Alignment</a></li>
+    <li><a href="#case-studies">Case Studies</a></li>
+    <li><a href="#stakeholders">Stakeholders</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#explorer">My BA Journey</a></li>
+  </ul>
+  <div class="ndrop" id="ndrop">
+    <button class="ndbtn" onclick="toggleNav()">Quick Links <span class="arr">▾</span></button>
+    <div class="ndmenu">
+      <div class="ndsep">Portfolio</div>
+      <a href="https://tejal10mugul-gif.github.io/tejal-portfolio/" class="ndhi"><span>🏠</span> Main Portfolio</a>
+      <div class="ndsep">Connect</div>
+      <a href="https://www.linkedin.com/in/tejal10mugul" target="_blank"><span>💼</span> LinkedIn</a>
+      <a href="mailto:tejal10mugul@gmail.com"><span>✉️</span> tejal10mugul@gmail.com</a>
+      <a href="tel:+918698741555"><span>📞</span> +91 8698741555</a>
+      <div class="ndsep">Jump To</div>
+      <a href="#case-studies"><span>📂</span> Case Studies</a>
+      <a href="#experience"><span>🔗</span> BA Alignment</a>
+      <a href="#explorer"><span>🌱</span> My BA Journey</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════ HERO ════════════════════ -->
+<section class="hero" id="home">
+  <div class="hgrid"></div>
+  <div class="W">
+    <div class="hero-in">
+      <div>
+        <div class="hpill"><div class="hpill-dot"></div>Business Analysis Portfolio — Tejal Mugul</div>
+        <h1 class="htitle">Structured Thinking.<br><span class="l2">Measurable Impact.</span></h1>
+        <p class="hdesc">My consulting and market research background has equipped me with hands-on Business Analysis competencies — requirement elicitation, workflow design, KPI frameworks, and stakeholder alignment. This portfolio demonstrates how I applied these skills in practice, and where I am heading as a BA professional.</p>
+        <div class="hbtns">
+          <a href="#case-studies" class="btnp">View Case Studies →</a>
+          <a href="https://tejal10mugul-gif.github.io/tejal-portfolio/" class="btng">← Main Portfolio</a>
+        </div>
+        <div class="hcontact rv">
+          <div class="hci"><span class="hci-ico">💼</span><a href="https://www.linkedin.com/in/tejal10mugul" target="_blank">linkedin.com/in/tejal10mugul</a></div>
+          <div class="hci"><span class="hci-ico">✉️</span><a href="mailto:tejal10mugul@gmail.com">tejal10mugul@gmail.com</a></div>
+          <div class="hci"><span class="hci-ico">📞</span><a href="tel:+918698741555">+91 8698741555</a></div>
+        </div>
+        <div class="qs rv" style="margin-top:20px;">
+          <p class="ql">What This Portfolio Demonstrates</p>
+          <div class="qg">
+            <div class="qi"><div class="qc">✓</div>Structured Problem Solving</div>
+            <div class="qi"><div class="qc">✓</div>Workflow & Process Optimization</div>
+            <div class="qi"><div class="qc">✓</div>KPI-Driven Decision Support</div>
+            <div class="qi"><div class="qc">✓</div>Stakeholder Alignment & Elicitation</div>
+            <div class="qi"><div class="qc">✓</div>AS-IS / TO-BE Process Mapping</div>
+            <div class="qi"><div class="qc">✓</div>Agile BA Documentation & User Stories</div>
+          </div>
+        </div>
+      </div>
+      <div class="hpanel rv">
+        <div class="hptop"><span class="hptop-l">BA Scope at a Glance</span><div class="hpdot"></div></div>
+        <div class="hprow"><div class="hprow-l">Workflows Redesigned</div><div class="hprow-r"><div class="hprow-v">2+</div><div class="hprow-s">End-to-end</div></div></div>
+        <div class="hprow"><div class="hprow-l">KPI Frameworks Defined</div><div class="hprow-r"><div class="hprow-v">5+</div><div class="hprow-s">Dashboards built</div></div></div>
+        <div class="hprow"><div class="hprow-l">Stakeholder Groups</div><div class="hprow-r"><div class="hprow-v">6</div><div class="hprow-s">Aligned</div></div></div>
+        <div class="hprow"><div class="hprow-l">BA Lifecycle Coverage</div><div class="hprow-r"><div class="hprow-v">6/6</div><div class="hprow-s">Full lifecycle</div></div></div>
+        <div class="hprow"><div class="hprow-l">Projects Delivered</div><div class="hprow-r"><div class="hprow-v">1,087+</div><div class="hprow-s">In consulting</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ POSITIONING ════════════════════ -->
+<div class="posband">
+  <div class="W">
+    <div class="posin rv">
+      <div class="poslbl">Positioning<br>Statement</div>
+      <blockquote class="posq">My consulting experience required applying <strong>Business Analysis competencies</strong> — requirement gathering, workflow optimization, stakeholder coordination, and KPI-driven decision support. This portfolio demonstrates how these responsibilities <strong>align directly with Business Analysis practices</strong> across the full BABOK-aligned lifecycle. I am <strong>actively seeking BA opportunities</strong> and continuously learning to bridge this transition.</blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════ LIFECYCLE ════════════════════ -->
+<section id="lifecycle">
+  <div class="W">
+    <div class="eye rv">BA Framework</div>
+    <h2 class="h2 rv">Business Analysis <em>Lifecycle</em></h2>
+    <p class="sub rv">A BABOK-aligned approach applied across every engagement — from initial discovery through post-implementation performance measurement. Each phase represented in my consulting experience.</p>
+    <div class="lcgrid rv">
+      <div class="lci"><div class="lcn">01</div><span class="lcico">📥</span><div class="lcname">Requirement Gathering</div><div class="lcdesc">Stakeholder interviews, objective scoping & elicitation workshops to define true business needs vs. stated wants</div></div>
+      <div class="lci"><div class="lcn">02</div><span class="lcico">🔍</span><div class="lcname">Analysis & Problem Framing</div><div class="lcdesc">Root cause identification, gap analysis & opportunity mapping using 5-Why and fishbone decomposition</div></div>
+      <div class="lci"><div class="lcn">03</div><span class="lcico">🗺️</span><div class="lcname">Process & Solution Design</div><div class="lcdesc">AS-IS → TO-BE workflow mapping, solution blueprinting & MoSCoW prioritization of improvements</div></div>
+      <div class="lci"><div class="lcn">04</div><span class="lcico">📋</span><div class="lcname">Documentation & Prioritization</div><div class="lcdesc">BRD/FRD structuring, user story writing, acceptance criteria & backlog definition for implementation teams</div></div>
+      <div class="lci"><div class="lcn">05</div><span class="lcico">⚙️</span><div class="lcname">Implementation Support</div><div class="lcdesc">QC checkpoints, UAT coordination, adoption enablement & change management for smooth rollout</div></div>
+      <div class="lci"><div class="lcn">06</div><span class="lcico">📊</span><div class="lcname">Performance Tracking</div><div class="lcdesc">KPI definition, dashboard configuration, ongoing monitoring & benefit realization measurement</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ ALIGNMENT ════════════════════ -->
+<section class="altsec" id="experience">
+  <div class="W">
+    <div class="eye rv">Experience Mapping</div>
+    <h2 class="h2 rv">How My Consulting Experience <em>Aligns</em></h2>
+    <p class="sub rv">Each consulting responsibility maps directly to a recognized Business Analysis competency. This is not a career pivot — it is a natural, evidence-backed transition from applied BA thinking to a formal BA role.</p>
+    <div class="at rv">
+      <div class="ath">
+        <div class="athc">Consulting Competency</div>
+        <div class="athc">How I Applied It in Practice</div>
+        <div class="athc">BA Relevance</div>
+      </div>
+      <div class="atr"><div class="atc">Stakeholder Requirement Gathering</div><div class="atc">Clarified client needs, defined research scopes & aligned deliverables across 20+ RFP cycles — interviewing stakeholders to separate needs from wants</div><div class="atc">Requirement Elicitation & Management</div></div>
+      <div class="atr"><div class="atc">Workflow & Process Analysis</div><div class="atc">Managed 1,087 projects over 20 months — continuously identifying bottlenecks, redesigning handoffs & tracking delivery performance</div><div class="atc">Business Process Modeling & Optimization</div></div>
+      <div class="atr"><div class="atc">Business Requirement Structuring</div><div class="atc">Translated vague client queries into structured research briefs with scoped deliverables, quality criteria & timelines — every time, at volume</div><div class="atc">Scope Definition & BRD Thinking</div></div>
+      <div class="atr"><div class="atc">KPI & Dashboard Design</div><div class="atc">Defined performance metrics & built Power BI dashboards enabling executive-level visibility and data-driven decision support across functions</div><div class="atc">Data Analysis & Decision Support</div></div>
+      <div class="atr"><div class="atc">Cross-Functional Collaboration</div><div class="atc">Coordinated research, sales & consulting teams daily; led client calls for requirement clarification, alignment & progress reporting</div><div class="atc">Stakeholder Facilitation & Engagement</div></div>
+      <div class="atr"><div class="atc">RFP & Pre-Sales Ownership</div><div class="atc">Led 20+ RFPs for IKEA, ABB, IBM & others — scoping, structuring & mapping requirements to business value propositions</div><div class="atc">Solution Assessment & Use Case Definition</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ CASE STUDIES ════════════════════ -->
+<section id="case-studies">
+  <div class="W">
+    <div class="eye rv">Detailed Project Work</div>
+    <h2 class="h2 rv">Case <em>Studies</em></h2>
+    <p class="sub rv">Two in-depth case studies from consulting operations — each analyzed through a full Business Analyst lens: problem discovery, root cause analysis, AS-IS/TO-BE design, requirements documentation, user stories, risk assessment, and benefit realization.</p>
+
+    <!-- ═══ CASE STUDY 1 ═══ -->
+    <div class="csc rv">
+      <div class="csh">
+        <div class="csnum">Case Study 01 — Workflow Optimization</div>
+        <div class="cstitle">Market Intelligence Workflow Optimization</div>
+        <div class="cstags">
+          <span class="b br">Process Gap Identified</span>
+          <span class="b bc">AS-IS → TO-BE Mapped</span>
+          <span class="b ba">KPI Framework Defined</span>
+          <span class="b bv">Multi-Team Alignment</span>
+          <span class="b bg">Gap Analysis Performed</span>
+        </div>
+      </div>
+      <div class="cssnap">
+        <div class="cssn"><div class="cssn-l">Problem</div><div class="cssn-v">Fragmented tracking & manual coordination across teams causing delays</div></div>
+        <div class="cssn"><div class="cssn-l">Approach</div><div class="cssn-v">Stakeholder interviews → root cause analysis → workflow redesign</div></div>
+        <div class="cssn"><div class="cssn-l">Solution</div><div class="cssn-v">Centralized workflow tracker with automated alerts, QC gates & dashboards</div></div>
+        <div class="cssn"><div class="cssn-l">Outcome</div><div class="cssn-v">Improved delivery visibility, reduced rework, faster turnaround time</div></div>
+      </div>
+      <div class="csbody">
+        <div class="csmain">
+
+          <div class="sh">Business Context & Problem Statement</div>
+          <div class="pbox">
+            Research Nester Analytics operated a high-volume research consulting model — delivering 12–13 projects per week across multiple analysts, clients, and verticals. As the team scaled, the absence of a structured workflow management system became a critical operational liability. Projects were tracked through a combination of email threads, WhatsApp messages, individual spreadsheets, and verbal status updates.<br><br>
+            The result: project managers had no reliable picture of where any given project stood at any time. Deadlines were missed reactively rather than prevented proactively. Workload was distributed informally — some analysts were overloaded while others had spare capacity. There was no quality control checkpoint before delivery, and no performance data to learn from. The entire system depended on individual memory and goodwill, which broke down under volume.
+          </div>
+
+          <div class="sh">Root Cause Analysis — 5-Why Framework</div>
+          <div class="rca">
+            <div class="rca-title">Why were delivery timelines being missed?</div>
+            <div class="rca-items">
+              <div class="rca-i"><span class="rn">Why 1</span>Project managers didn't know which projects were at risk until it was too late.</div>
+              <div class="rca-i"><span class="rn">Why 2</span>There was no real-time tracking system — status relied on analysts proactively updating scattered spreadsheets.</div>
+              <div class="rca-i"><span class="rn">Why 3</span>There was no standardized intake process, so projects entered the system inconsistently with missing information.</div>
+              <div class="rca-i"><span class="rn">Why 4</span>No centralized request intake meant each project had a different paper trail across different communication channels.</div>
+              <div class="rca-i"><span class="rn">Why 5 (Root Cause)</span>The workflow was never formally designed — it evolved organically as the team grew, without structured documentation, ownership, or tooling.</div>
+            </div>
+          </div>
+
+          <div class="sh">Proposed TO-BE Workflow — 5-Stage Process</div>
+          <div class="proc">
+            <div class="procs"><div class="procs-n">Stage 1</div><div class="procs-name">Centralized Intake</div><div class="procs-desc">Standard form, scope fields</div><div class="parr"></div></div>
+            <div class="procs"><div class="procs-n">Stage 2</div><div class="procs-name">Brief & Assignment</div><div class="procs-desc">Scope confirmed, analyst assigned</div><div class="parr"></div></div>
+            <div class="procs"><div class="procs-n">Stage 3</div><div class="procs-name">In-Progress Tracking</div><div class="procs-desc">Real-time status, alerts</div><div class="parr"></div></div>
+            <div class="procs"><div class="procs-n">Stage 4</div><div class="procs-name">QC Checkpoint</div><div class="procs-desc">Structured quality review</div><div class="parr"></div></div>
+            <div class="procs"><div class="procs-n">Stage 5</div><div class="procs-name">Delivery & Closure</div><div class="procs-desc">Client dispatch, KPI logged</div></div>
+          </div>
+
+          <div class="sh">AS-IS vs. TO-BE Comparison</div>
+          <div class="wfc">
+            <div class="wfcol">
+              <div class="wfhead as">⚠ AS-IS — Current State</div>
+              <div class="wfitems">
+                <div class="wfi"><span>✗</span>Requests received via scattered emails & chats — no single intake point</div>
+                <div class="wfi"><span>✗</span>No standardized intake form — scope often ambiguous or incomplete</div>
+                <div class="wfi"><span>✗</span>Project tracking via individual spreadsheets — no single source of truth</div>
+                <div class="wfi"><span>✗</span>Project manager has no real-time visibility into work-in-progress</div>
+                <div class="wfi"><span>✗</span>Workload assigned informally — no data on analyst capacity or balance</div>
+                <div class="wfi"><span>✗</span>QC performed informally before delivery — no structured checkpoints</div>
+                <div class="wfi"><span>✗</span>Deadline misses discovered reactively — no overdue alert system</div>
+                <div class="wfi"><span>✗</span>No performance tracking — no data on TAT, accuracy, or rework rates</div>
+              </div>
+            </div>
+            <div class="wfmid">→</div>
+            <div class="wfcol">
+              <div class="wfhead tb">✓ TO-BE — Proposed State</div>
+              <div class="wfitems">
+                <div class="wfi"><span>✓</span>Centralized intake form — all requests enter a single system with required fields</div>
+                <div class="wfi"><span>✓</span>Standardized project brief template — scope, deliverables, deadline locked before assignment</div>
+                <div class="wfi"><span>✓</span>Single tracking dashboard — all projects visible by stage, analyst, and due date</div>
+                <div class="wfi"><span>✓</span>Manager dashboard shows WIP by stage — updated in real-time without chasing analysts</div>
+                <div class="wfi"><span>✓</span>Workload view shows per-analyst capacity — enables balanced assignment decisions</div>
+                <div class="wfi"><span>✓</span>Formal QC checklist at Stage 4 — every deliverable reviewed against quality criteria before dispatch</div>
+                <div class="wfi"><span>✓</span>Automated overdue alerts 24hrs before deadline — enables proactive intervention</div>
+                <div class="wfi"><span>✓</span>Power BI dashboard tracks TAT, accuracy, volume, rework rate per analyst/project type</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sh">Gap Analysis — Prioritized by Business Impact</div>
+          <div class="gap-tbl">
+            <div class="gap-head">
+              <div class="gap-hc">Gap Identified</div>
+              <div class="gap-hc">Priority</div>
+              <div class="gap-hc">Proposed Resolution</div>
+              <div class="gap-hc">BA Activity</div>
+            </div>
+            <div class="gap-row"><div class="gap-cell">No centralized project intake</div><div class="gap-cell"><span class="prio-hi">HIGH</span></div><div class="gap-cell">Standard intake form in shared system (JIRA/Airtable)</div><div class="gap-cell">Process Design</div></div>
+            <div class="gap-row"><div class="gap-cell">No real-time WIP visibility</div><div class="gap-cell"><span class="prio-hi">HIGH</span></div><div class="gap-cell">Live project tracker dashboard in Power BI</div><div class="gap-cell">Requirements + KPI</div></div>
+            <div class="gap-row"><div class="gap-cell">No workload balancing data</div><div class="gap-cell"><span class="prio-hi">HIGH</span></div><div class="gap-cell">Capacity view by analyst — integrated into tracker</div><div class="gap-cell">Data Modeling</div></div>
+            <div class="gap-row"><div class="gap-cell">No QC checkpoint before delivery</div><div class="gap-cell"><span class="prio-med">MED</span></div><div class="gap-cell">Structured QC checklist — mandatory before Stage 5</div><div class="gap-cell">Process Standards</div></div>
+            <div class="gap-row"><div class="gap-cell">No performance measurement</div><div class="gap-cell"><span class="prio-med">MED</span></div><div class="gap-cell">KPI framework: TAT, accuracy, rework rate, volume</div><div class="gap-cell">KPI Framework</div></div>
+          </div>
+
+          <div class="sh">BA Contributions — What I Did</div>
+          <ul class="balist">
+            <li><div><span class="balbl">Stakeholder Requirement Gathering</span>Conducted structured discussions with project managers, research analysts, and leadership to elicit current pain points, desired outcomes, and success criteria. Mapped each stakeholder's "need vs. want" to separate core requirements from nice-to-haves.</div></li>
+            <li><div><span class="balbl">AS-IS Process Documentation</span>Mapped the current state workflow end-to-end — capturing all touchpoints, communication channels, handoffs, and failure modes. Used this map to visualize where and why delays and rework were occurring.</div></li>
+            <li><div><span class="balbl">Root Cause Analysis (5-Why)</span>Applied 5-Why analysis to identify that deadline misses were not a motivation problem — they were a visibility and structure problem. Root cause: no formal workflow was ever designed. This insight shaped the entire solution direction.</div></li>
+            <li><div><span class="balbl">Gap Analysis & MoSCoW Prioritization</span>Produced a gap analysis matrix comparing current state to desired state across 8 dimensions. Used MoSCoW to prioritize which gaps to close first based on business impact and implementation effort.</div></li>
+            <li><div><span class="balbl">TO-BE Solution Design</span>Designed a 5-stage workflow with a centralized intake system, real-time tracking, capacity management, QC gate, and automated alerting — specifying functional requirements for each stage.</div></li>
+            <li><div><span class="balbl">KPI Framework & Dashboard Requirements</span>Defined 5 KPIs with clear calculation logic, data sources, and target thresholds. Wrote Power BI dashboard requirements specifying what each stakeholder tier needed to see and why.</div></li>
+          </ul>
+
+          <div class="sh">User Stories with Acceptance Criteria</div>
+          <div class="us">
+            <div class="us-role">User Story 1 — Project Manager</div>
+            <div class="us-txt">"As a Project Manager, I want to see real-time status of all active projects in one dashboard so that I can proactively manage delivery timelines and prevent escalations before they happen."</div>
+            <div class="us-ac">
+              <div class="usac-i">Dashboard displays project ID, client name, assigned analyst, current stage, due date, and % completion</div>
+              <div class="usac-i">Status updates automatically when analyst moves a project between stages — no manual reporting required</div>
+              <div class="usac-i">Automated alert triggers to manager's email when a project is within 24 hours of deadline and not at Stage 4+</div>
+              <div class="usac-i">Dashboard is accessible without login friction and loads in under 3 seconds</div>
+            </div>
+          </div>
+          <div class="us">
+            <div class="us-role">User Story 2 — Research Analyst</div>
+            <div class="us-txt">"As a Research Analyst, I want a standardized project brief at assignment so that I understand exactly what is expected before I begin work — reducing back-and-forth and rework."</div>
+            <div class="us-ac">
+              <div class="usac-i">Every project brief includes: client name, research objective, deliverable format, scope boundaries, and deadline</div>
+              <div class="usac-i">Brief is auto-populated from intake form — analyst never has to chase for missing information</div>
+              <div class="usac-i">Analyst can flag an incomplete brief within the system — escalation goes to PM automatically</div>
+            </div>
+          </div>
+          <div class="us">
+            <div class="us-role">User Story 3 — Leadership</div>
+            <div class="us-txt">"As a Leadership Team Member, I want a weekly performance summary of delivery metrics so that I can track team efficiency and identify recurring operational issues."</div>
+            <div class="us-ac">
+              <div class="usac-i">Weekly report auto-generates every Monday at 9am covering prior week's TAT, completion rate, and rework rate</div>
+              <div class="usac-i">Highlights any analyst or project type with performance below defined thresholds</div>
+              <div class="usac-i">Trend line shows performance direction over the past 4 weeks</div>
+            </div>
+          </div>
+
+          <div class="sh">Risk Assessment & Mitigation</div>
+          <div class="risk-list">
+            <div class="risk-i"><span class="risk-lbl">Adoption Risk</span><span class="risk-txt">Analysts may revert to old habits if the new system adds friction. Mitigation: design the intake form to take under 2 minutes; run onboarding sessions; make system access mandatory for project assignment.</span></div>
+            <div class="risk-i"><span class="risk-lbl">Data Quality</span><span class="risk-txt">If intake forms are filled inconsistently, dashboard data will be unreliable. Mitigation: mandatory fields; dropdown menus for key values; weekly data audit in first 4 weeks.</span></div>
+            <div class="risk-i"><span class="risk-lbl">Over-Engineering</span><span class="risk-txt">Building too complex a system initially could slow adoption. Mitigation: Phase 1 focuses on intake + tracker only — QC module added in Phase 2 after initial adoption is stable.</span></div>
+          </div>
+
+          <div class="sh">Benefit Realization — Expected Business Impact</div>
+          <div class="ben-grid">
+            <div class="ben-i"><span class="ben-i-ico">⏱️</span><div><div class="ben-i-text">Reduced Turnaround Time</div><div class="ben-i-sub">Faster assignment due to structured intake & capacity visibility</div></div></div>
+            <div class="ben-i"><span class="ben-i-ico">👁️</span><div><div class="ben-i-text">Delivery Transparency</div><div class="ben-i-sub">Management has real-time project status without chasing analysts</div></div></div>
+            <div class="ben-i"><span class="ben-i-ico">⚖️</span><div><div class="ben-i-text">Balanced Workload</div><div class="ben-i-sub">Data-driven assignment prevents burnout and uneven distribution</div></div></div>
+            <div class="ben-i"><span class="ben-i-ico">🔔</span><div><div class="ben-i-text">Proactive Escalation</div><div class="ben-i-sub">Automated alerts enable intervention before deadlines are missed</div></div></div>
+            <div class="ben-i"><span class="ben-i-ico">✅</span><div><div class="ben-i-text">Improved QC Rate</div><div class="ben-i-sub">Structured QC checkpoint reduces client-reported delivery errors</div></div></div>
+            <div class="ben-i"><span class="ben-i-ico">📈</span><div><div class="ben-i-text">Performance Culture</div><div class="ben-i-sub">KPI tracking enables continuous improvement conversations with data</div></div></div>
+          </div>
+
+        </div>
+        <div class="csside">
+          <div class="sh">KPIs Defined</div>
+          <div class="sb-i"><div class="sb-n">Turnaround Time (TAT)</div><div class="sb-d">Avg. hours from intake form submission to final delivery — segmented by project type and complexity tier</div></div>
+          <div class="sb-i"><div class="sb-n">On-Time Completion Rate</div><div class="sb-d">% of projects delivered by agreed deadline without extension requests</div></div>
+          <div class="sb-i"><div class="sb-n">Workload Distribution Index</div><div class="sb-d">Variance in project count across analysts vs. capacity benchmark — flags imbalance</div></div>
+          <div class="sb-i"><div class="sb-n">Rework Rate</div><div class="sb-d">% of deliverables returned for revision post-QC or post client delivery</div></div>
+          <div class="sb-i"><div class="sb-n">Intake-to-Assignment Time</div><div class="sb-d">Hours between request received and analyst confirmed + brief sent</div></div>
+
+          <div class="sh" style="margin-top:22px;">Tools & Stack</div>
+          <div class="sbt"><div class="sbtd"></div><div><div class="sbtn">Power BI</div><div class="sbtu">KPI dashboards, live tracking views</div></div></div>
+          <div class="sbt"><div class="sbtd"></div><div><div class="sbtn">Excel / Airtable</div><div class="sbtu">Intake form, project tracker modeling</div></div></div>
+          <div class="sbt"><div class="sbtd"></div><div><div class="sbtn">Lucidchart</div><div class="sbtu">AS-IS & TO-BE process maps</div></div></div>
+          <div class="sbt"><div class="sbtd"></div><div><div class="sbtn">JIRA / Confluence</div><div class="sbtu">Requirement docs, user stories, BRD</div></div></div>
+
+          <div class="sh" style="margin-top:22px;">BA Methodology Used</div>
+          <div class="mlist">
+            <div class="mli">Stakeholder interviews (elicitation)</div>
+            <div class="mli">5-Why root cause analysis</div>
+            <div class="mli">AS-IS workflow documentation</div>
+            <div class="mli">Gap analysis matrix</div>
+            <div class="mli">MoSCoW prioritization</div>
+            <div class="mli">TO-BE process design</div>
+            <div class="mli">User story writing (3 stories)</div>
+            <div class="mli">Acceptance criteria definition</div>
+            <div class="mli">Risk assessment & mitigation</div>
+            <div class="mli">KPI framework design</div>
+          </div>
+        </div>
+      </div>
+    </div><!-- end CS1 -->
+
+    <!-- ═══ CASE STUDY 2 ═══ -->
+    <div class="csc rv">
+      <div class="csh">
+        <div class="csnum">Case Study 02 — Reporting & Dashboard Optimization</div>
+        <div class="cstitle">Reporting Standardization & Executive Dashboard Design</div>
+        <div class="cstags">
+          <span class="b br">Manual Process Eliminated</span>
+          <span class="b bc">KPI Framework Designed</span>
+          <span class="b ba">Templates Standardized</span>
+          <span class="b bg">Executive Visibility Enabled</span>
+          <span class="b bv">Self-Service Dashboards</span>
+        </div>
+      </div>
+      <div class="cssnap">
+        <div class="cssn"><div class="cssn-l">Problem</div><div class="cssn-v">Manual reporting delays, inconsistent KPI definitions & no single source of truth</div></div>
+        <div class="cssn"><div class="cssn-l">Approach</div><div class="cssn-v">Reporting audit → KPI elicitation → dashboard requirements → template standardization</div></div>
+        <div class="cssn"><div class="cssn-l">Solution</div><div class="cssn-v">Tiered reporting framework: daily operational → weekly summary → monthly executive</div></div>
+        <div class="cssn"><div class="cssn-l">Outcome</div><div class="cssn-v">Faster decisions, eliminated manual effort, consistent KPIs across all stakeholder tiers</div></div>
+      </div>
+      <div class="csbody">
+        <div class="csmain">
+
+          <div class="sh">Business Context & Problem Statement</div>
+          <div class="pbox">
+            As Research Nester Analytics scaled, leadership required consistent, reliable performance reporting to make resourcing, pricing, and strategic decisions. The reality was far from this: reporting was entirely manual. Analysts spent 3–5 hours each week pulling data from multiple spreadsheets, reformatting it into decks, and sending individual summaries to different managers — each of whom had slightly different versions of the same metrics.<br><br>
+            Critically, there was no agreed-upon KPI definition. "Turnaround time" meant different things in different reports. "Project completion" was counted differently by different teams. Leadership was making decisions based on inconsistent, potentially contradictory data. There was no dashboard they could trust, no single view they could point to, and no way to track trends over time. The organisation was data-rich but insight-poor.
+          </div>
+
+          <div class="sh">Root Cause Analysis — Reporting Failure Tree</div>
+          <div class="rca">
+            <div class="rca-title">Why was leadership lacking reliable decision-support data?</div>
+            <div class="rca-items">
+              <div class="rca-i"><span class="rn">Why 1</span>Reports presented to leadership were inconsistent and often contradicted each other.</div>
+              <div class="rca-i"><span class="rn">Why 2</span>Different teams defined the same KPIs differently — no unified data dictionary or metric definitions.</div>
+              <div class="rca-i"><span class="rn">Why 3</span>There was no standardized reporting template — each person built their own format from scratch each week.</div>
+              <div class="rca-i"><span class="rn">Why 4</span>Reporting was a manual, ad-hoc task — no automation, no shared data source, no refresh schedule.</div>
+              <div class="rca-i"><span class="rn">Why 5 (Root Cause)</span>No one had ever formally owned "reporting" as a business process. It grew as an afterthought of operations, never as a designed system with owners, standards, or tooling.</div>
+            </div>
+          </div>
+
+          <div class="sh">AS-IS vs. TO-BE Reporting Architecture</div>
+          <div class="wfc">
+            <div class="wfcol">
+              <div class="wfhead as">⚠ AS-IS — Current State</div>
+              <div class="wfitems">
+                <div class="wfi"><span>✗</span>Manual data extraction from 4–6 different spreadsheets each week</div>
+                <div class="wfi"><span>✗</span>No standardized template — every analyst formats differently</div>
+                <div class="wfi"><span>✗</span>KPIs defined inconsistently — same metric means different things per team</div>
+                <div class="wfi"><span>✗</span>Reports created ad-hoc per manager request — reactive, not proactive</div>
+                <div class="wfi"><span>✗</span>3–5 hours of analyst time spent per week on report compilation</div>
+                <div class="wfi"><span>✗</span>Data delivered 2–3 days after the period ends — insights always lag</div>
+                <div class="wfi"><span>✗</span>Leadership cannot compare performance across weeks — no trend view</div>
+                <div class="wfi"><span>✗</span>Version conflicts in shared reports — unclear which file is authoritative</div>
+              </div>
+            </div>
+            <div class="wfmid">→</div>
+            <div class="wfcol">
+              <div class="wfhead tb">✓ TO-BE — Proposed State</div>
+              <div class="wfitems">
+                <div class="wfi"><span>✓</span>Single data source feeds all reports — no manual extraction required</div>
+                <div class="wfi"><span>✓</span>Standardized templates with locked formats for each stakeholder tier</div>
+                <div class="wfi"><span>✓</span>Unified KPI data dictionary — one agreed definition per metric, documented</div>
+                <div class="wfi"><span>✓</span>Tiered reporting: daily (ops) → weekly (managers) → monthly (exec)</div>
+                <div class="wfi"><span>✓</span>Reporting effort reduced to &lt;30 minutes/week per analyst</div>
+                <div class="wfi"><span>✓</span>Near real-time dashboard — leadership sees yesterday's data, not last week's</div>
+                <div class="wfi"><span>✓</span>Rolling 12-week trend view — leadership tracks performance trajectory</div>
+                <div class="wfi"><span>✓</span>Single authoritative Power BI file with controlled access — no version conflicts</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sh">Stakeholder Requirement Elicitation — What Each Tier Needed</div>
+          <div class="gap-tbl">
+            <div class="gap-head">
+              <div class="gap-hc">Stakeholder</div>
+              <div class="gap-hc">Frequency</div>
+              <div class="gap-hc">Key Information Needs</div>
+              <div class="gap-hc">Format</div>
+            </div>
+            <div class="gap-row"><div class="gap-cell">Research Analysts</div><div class="gap-cell">Daily</div><div class="gap-cell">My active projects, upcoming deadlines, overdue alerts, brief status</div><div class="gap-cell">Personal tracker view</div></div>
+            <div class="gap-row"><div class="gap-cell">Team Leads</div><div class="gap-cell">Weekly</div><div class="gap-cell">Team TAT, completion rate, rework rate, analyst-level performance vs. targets</div><div class="gap-cell">Power BI team report</div></div>
+            <div class="gap-row"><div class="gap-cell">Project Managers</div><div class="gap-cell">Daily/Weekly</div><div class="gap-cell">WIP status, capacity utilization, overdue projects, client-level delivery health</div><div class="gap-cell">Live dashboard</div></div>
+            <div class="gap-row"><div class="gap-cell">Sales / Pre-Sales</div><div class="gap-cell">Weekly</div><div class="gap-cell">RFP pipeline, conversion rates, capacity for new commitments, client satisfaction scores</div><div class="gap-cell">Sales dashboard</div></div>
+            <div class="gap-row"><div class="gap-cell">Leadership / C-Suite</div><div class="gap-cell">Monthly</div><div class="gap-cell">Revenue contribution, efficiency trends, strategic KPIs, 12-week performance trajectory</div><div class="gap-cell">Executive scorecard</div></div>
+          </div>
+
+          <div class="sh">BA Contributions — What I Did</div>
+          <ul class="balist">
+            <li><div><span class="balbl">Reporting Inefficiency Audit</span>Systematically mapped all existing reporting activities — who was producing what, for whom, how often, from which data sources. Quantified time spent: ~25 analyst-hours per week across the team on reporting that was partially duplicated and inconsistently formatted.</div></li>
+            <li><div><span class="balbl">KPI Elicitation Workshops</span>Facilitated structured sessions with each stakeholder tier to define the metrics that actually drove decisions. Challenged stakeholders to articulate "what action would you take if this number changed?" — to filter out vanity metrics and retain decision-driving KPIs.</div></li>
+            <li><div><span class="balbl">Unified KPI Data Dictionary</span>Documented agreed definitions for every metric — calculation logic, data source, refresh frequency, owner, and acceptable threshold. This single document became the reference standard to eliminate metric inconsistency across the organization.</div></li>
+            <li><div><span class="balbl">Dashboard Requirements Documentation</span>Wrote formal dashboard requirements for each stakeholder tier — specifying data fields, visualization types, filter options, refresh schedules, and access permissions. Translated business questions ("are we on track?") into data requirements ("show rolling 4-week TAT vs. 8-hour target").</div></li>
+            <li><div><span class="balbl">Tiered Template Standardization</span>Designed three standardized reporting templates (daily operational, weekly management, monthly executive) with fixed structure, agreed KPIs, and color-coded threshold indicators. Eliminated the version conflict problem entirely.</div></li>
+            <li><div><span class="balbl">Power BI Dashboard Design & Specification</span>Produced detailed wireframes and functional specifications for each Power BI dashboard — specifying page layout, chart types, interactivity, drill-through logic, and conditional formatting rules for threshold alerts.</div></li>
+          </ul>
+
+          <div class="sh">User Stories with Acceptance Criteria</div>
+          <div class="us">
+            <div class="us-role">User Story 1 — Research Lead</div>
+            <div class="us-txt">"As a Research Lead, I want a weekly team performance dashboard that refreshes automatically so that I can identify underperforming areas and take corrective action before the week ends — without spending hours compiling data."</div>
+            <div class="us-ac">
+              <div class="usac-i">Dashboard auto-refreshes every Monday 8am with prior week's complete data — no manual refresh needed</div>
+              <div class="usac-i">Shows completion rate, TAT, rework rate, and quality score per analyst — with target benchmarks for context</div>
+              <div class="usac-i">Any metric below target threshold displays a red flag indicator — no need to interpret raw numbers</div>
+              <div class="usac-i">Lead can drill down to see individual project-level data behind any analyst's score</div>
+            </div>
+          </div>
+          <div class="us">
+            <div class="us-role">User Story 2 — C-Suite / Leadership</div>
+            <div class="us-txt">"As a member of the leadership team, I want a monthly executive scorecard that shows business performance trends over 12 weeks so that I can make informed decisions about resourcing, pricing, and growth strategy."</div>
+            <div class="us-ac">
+              <div class="usac-i">Scorecard shows 5 strategic KPIs with 12-week trend lines and current month vs. prior month comparison</div>
+              <div class="usac-i">Revenue per project type, efficiency metrics, and client satisfaction score all visible on a single page</div>
+              <div class="usac-i">Exported as a locked PDF on the 1st of each month — automatically distributed to leadership group email</div>
+            </div>
+          </div>
+          <div class="us">
+            <div class="us-role">User Story 3 — Sales Team</div>
+            <div class="us-txt">"As a Sales team member, I want to see current team capacity and RFP pipeline data so that I can make accurate delivery commitments when responding to prospective clients."</div>
+            <div class="us-ac">
+              <div class="usac-i">Real-time capacity view shows available analyst hours for the next 2 weeks by project type</div>
+              <div class="usac-i">RFP pipeline tracker shows active proposals, stage, and expected close date</div>
+              <div class="usac-i">Historical conversion rate by client type and project category available for proposal benchmarking</div>
+            </div>
+          </div>
+
+          <div class="sh">Risk Assessment & Mitigation</div>
+          <div class="risk-list">
+            <div class="risk-i"><span class="risk-lbl">Data Consistency</span><span class="risk-txt">If source data is not maintained correctly, all downstream dashboards will be inaccurate. Mitigation: appoint one "data owner" per data source; run weekly data quality audit for first 8 weeks post-launch.</span></div>
+            <div class="risk-i"><span class="risk-lbl">Stakeholder Alignment</span><span class="risk-txt">Different teams may resist having their KPI definitions changed. Mitigation: run KPI workshops collaboratively — stakeholders agree on definitions before they are documented, building ownership not resistance.</span></div>
+            <div class="risk-i"><span class="risk-lbl">Over-Reliance on Dashboards</span><span class="risk-txt">Dashboards can create false confidence if the underlying data has gaps. Mitigation: document known data limitations in the KPI data dictionary; include data quality indicator on dashboard.</span></div>
+          </div>
+
+          <div class="sh">Benefit Realization — Expected Business Impact</div>
+          <div class="ben-grid">
+            <div class="ben-i"><span class="ben-i-ico">⏱️</span><div><div class="ben-i-text">~25 hrs/week saved</div><div class="ben-i-sub">Manual reporting effort eliminated across analyst team</div></div></div>
+            <div class="ben-i"><span class="ben-i-ico">🎯</span><div><div class="ben-i-text">Consistent KPI Definitions</div><div class="ben-i-sub">One data dictionary ends metric confusion across all teams</div></div></div>
+            <div class="ben-i"><span class="ben-i-ico">⚡</span><div><div class="ben-i-text">Near Real-Time Insights</div><div class="ben-i-sub">Leadership sees today's data, not last week's — decisions faster</div></div></div>
+            <div class="ben-i"><span class="ben-i-ico">📊</span><div><div class="ben-i-text">Trend Visibility</div><div class="ben-i-sub">12-week rolling view enables strategic performance management</div></div></div>
+            <div class="ben-i"><span class="ben-i-ico">🤝</span><div><div class="ben-i-text">Sales Accuracy Improved</div><div class="ben-i-sub">Capacity data enables accurate delivery promises to clients</div></div></div>
+            <div class="ben-i"><span class="ben-i-ico">🔒</span><div><div class="ben-i-text">Single Source of Truth</div><div class="ben-i-sub">No more version conflicts — one authoritative dashboard per tier</div></div></div>
+          </div>
+
+        </div>
+        <div class="csside">
+          <div class="sh">KPIs Defined</div>
+          <div class="sb-i"><div class="sb-n">Delivery Accuracy Rate</div><div class="sb-d">% of reports delivered without client-reported errors or revision requests on first submission</div></div>
+          <div class="sb-i"><div class="sb-n">Reporting Cycle Time</div><div class="sb-d">Hours from period end (Sunday midnight) to completed report available to stakeholders</div></div>
+          <div class="sb-i"><div class="sb-n">Dashboard Adoption Rate</div><div class="sb-d">% of target stakeholders actively using self-service dashboards weekly (vs. requesting manual reports)</div></div>
+          <div class="sb-i"><div class="sb-n">Analyst Reporting Effort</div><div class="sb-d">Hours per analyst per week spent on reporting activities — target: &lt;30 min after implementation</div></div>
+          <div class="sb-i"><div class="sb-n">KPI Definition Consistency</div><div class="sb-d">% of metrics with agreed, documented definitions in the unified data dictionary</div></div>
+
+          <div class="sh" style="margin-top:22px;">Tools & Stack</div>
+          <div class="sbt"><div class="sbtd"></div><div><div class="sbtn">Power BI</div><div class="sbtu">Dashboard design, all 3 tiers</div></div></div>
+          <div class="sbt"><div class="sbtd"></div><div><div class="sbtn">Excel</div><div class="sbtu">Template design, KPI data dictionary</div></div></div>
+          <div class="sbt"><div class="sbtd"></div><div><div class="sbtn">JIRA</div><div class="sbtu">Requirements backlog tracking</div></div></div>
+          <div class="sbt"><div class="sbtd"></div><div><div class="sbtn">Confluence</div><div class="sbtu">KPI documentation, BRD</div></div></div>
+
+          <div class="sh" style="margin-top:22px;">BA Methodology Used</div>
+          <div class="mlist">
+            <div class="mli">Reporting inefficiency audit</div>
+            <div class="mli">Stakeholder elicitation sessions</div>
+            <div class="mli">KPI data dictionary creation</div>
+            <div class="mli">Requirements documentation (BRD)</div>
+            <div class="mli">Dashboard wireframing</div>
+            <div class="mli">User story writing (3 stories)</div>
+            <div class="mli">Acceptance criteria definition</div>
+            <div class="mli">Risk assessment</div>
+            <div class="mli">Tiered template design</div>
+            <div class="mli">Change management planning</div>
+          </div>
+        </div>
+      </div>
+    </div><!-- end CS2 -->
+  </div>
+</section>
+
+<!-- ════════════════════ METRICS ════════════════════ -->
+<div class="metband">
+  <div class="W">
+    <div class="metrow">
+      <div class="metcell rv"><span class="metcell-ico">⏱</span><span class="metcell-v">TAT↓</span><span class="metcell-l">Turnaround Reduced</span></div>
+      <div class="metcell rv"><span class="metcell-ico">✅</span><span class="metcell-v">6/6</span><span class="metcell-l">BA Lifecycle Covered</span></div>
+      <div class="metcell rv"><span class="metcell-ico">👥</span><span class="metcell-v">6</span><span class="metcell-l">Stakeholder Groups</span></div>
+      <div class="metcell rv"><span class="metcell-ico">📊</span><span class="metcell-v">10+</span><span class="metcell-l">KPIs Defined</span></div>
+      <div class="metcell rv"><span class="metcell-ico">📝</span><span class="metcell-v">6</span><span class="metcell-l">User Stories Written</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════ STAKEHOLDERS ════════════════════ -->
+<section class="shsec" id="stakeholders">
+  <div class="W">
+    <div class="eye rv">Coordination Map</div>
+    <h2 class="h2 rv">Stakeholder <em>Ecosystem</em></h2>
+    <p class="sub rv">Business Analysis is fundamentally about people and their needs. Each stakeholder group below was formally identified, their pain points documented, and their requirements elicited separately — because different roles need different things from the same system.</p>
+    <div class="shgrid rv">
+      <div class="shcard"><span class="shico">🔬</span><div class="shname">Research Analysts</div><div class="shrole">Operational — direct system users</div><div class="shpain">Pain: unclear briefs, no visibility into own backlog, hours lost to manual reporting</div><div class="shneeds"><div class="shneed">Clear project brief at assignment — no ambiguity</div><div class="shneed">Personal workload view — know what's coming</div><div class="shneed">Minimal reporting overhead — focus on research</div></div></div>
+      <div class="shcard"><span class="shico">📋</span><div class="shname">Project Managers</div><div class="shrole">Operational — oversight & escalation</div><div class="shpain">Pain: no real-time WIP view, reactive escalation management, no workload data</div><div class="shneeds"><div class="shneed">Real-time delivery status across all projects</div><div class="shneed">Automated overdue alerts — proactive not reactive</div><div class="shneed">Workload balancing view per analyst</div></div></div>
+      <div class="shcard"><span class="shico">💼</span><div class="shname">Consulting Team</div><div class="shrole">Strategic — quality & standards</div><div class="shpain">Pain: inconsistent output quality, no QC checkpoint, methodology not documented</div><div class="shneeds"><div class="shneed">Structured QC gate before every delivery</div><div class="shneed">Documented methodology and output standards</div><div class="shneed">Quality metrics to track and improve</div></div></div>
+      <div class="shcard"><span class="shico">📈</span><div class="shname">Sales / Pre-Sales</div><div class="shrole">Commercial — pipeline & commitments</div><div class="shpain">Pain: no capacity data when making delivery commitments, RFP conversion not tracked</div><div class="shneeds"><div class="shneed">Real-time analyst capacity for new proposals</div><div class="shneed">RFP pipeline and conversion rate data</div><div class="shneed">Client satisfaction trend for retention pitches</div></div></div>
+      <div class="shcard"><span class="shico">🏆</span><div class="shname">Leadership Team</div><div class="shrole">Executive — performance & strategy</div><div class="shpain">Pain: inconsistent reports, lagged data, no trend visibility, unable to benchmark</div><div class="shneeds"><div class="shneed">Monthly executive scorecard with 12-week trends</div><div class="shneed">Revenue, efficiency & quality KPIs on one page</div><div class="shneed">Data they can trust — one source of truth</div></div></div>
+      <div class="shcard"><span class="shico">🌐</span><div class="shname">Clients</div><div class="shrole">External — outcomes & satisfaction</div><div class="shpain">Pain: inconsistent delivery timelines, format surprises, unclear escalation path</div><div class="shneeds"><div class="shneed">On-time delivery without follow-up chasing</div><div class="shneed">Consistent quality and format every time</div><div class="shneed">Proactive communication if issues arise</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ TOOLS ════════════════════ -->
+<section id="tools">
+  <div class="W">
+    <div class="eye rv">Toolkit</div>
+    <h2 class="h2 rv">Tools <em>in Action</em></h2>
+    <p class="sub rv">Not a list of tools I have heard of — tools I used in the context of real BA activities, mapped to specific deliverables and business problems they helped solve.</p>
+    <div class="tgrid rv">
+      <div class="tc"><div class="tccat">Decision Support</div><div class="tcname">Power BI</div><div class="tcdesc">Built KPI dashboards for executive-level performance tracking across both case studies. Defined dashboard requirements, data relationships, visualization types, and threshold-based conditional formatting for three stakeholder tiers.</div></div>
+      <div class="tc"><div class="tccat">Analysis & Modeling</div><div class="tcname">Excel / Airtable</div><div class="tcdesc">Used for workflow modeling, gap analysis matrices, workload distribution analysis, KPI data dictionary creation, template standardization, and structured data aggregation before dashboard migration.</div></div>
+      <div class="tc"><div class="tccat">Agile Documentation</div><div class="tcname">JIRA / Confluence</div><div class="tcdesc">Tracked requirement backlogs, documented user stories with acceptance criteria, maintained BRD and FRD artifacts, and created structured process documentation accessible to cross-functional teams.</div></div>
+      <div class="tc"><div class="tccat">Process Visualization</div><div class="tcname">Lucidchart / Draw.io</div><div class="tcdesc">Created AS-IS and TO-BE process flow diagrams, stakeholder ecosystem maps, data flow diagrams, and 5-stage workflow visualizations for communicating solutions to non-technical stakeholders.</div></div>
+    </div>
+    <div style="margin-top:36px;" class="rv">
+      <div class="eye" style="margin-bottom:12px;">Competency Quick Scan</div>
+      <div class="ctags">
+        <span class="b bv">📋 Requirements Analysis</span><span class="b bc">⚙️ Process Optimization</span><span class="b bc">🔄 AS-IS / TO-BE Mapping</span><span class="b ba">📊 KPI Framework Design</span><span class="b ba">👥 Stakeholder Alignment</span><span class="b bg">📈 Decision Support</span><span class="b bv">🧩 Gap Analysis</span><span class="b bg">🛠️ Process Standardization</span><span class="b br">📝 BRD / User Stories</span><span class="b br">🔍 Root Cause Analysis</span><span class="b bc">🎯 Acceptance Criteria</span><span class="b bv">📊 Data Dictionary</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ LEARNINGS ════════════════════ -->
+<section style="background:var(--bg2);">
+  <div class="W">
+    <div class="eye rv">Reflection</div>
+    <h2 class="h2 rv">Key <em>Learnings</em></h2>
+    <p class="sub rv">What these engagements taught me about effective Business Analysis — lessons that go beyond methodology and into the mindset of good BA practice.</p>
+    <div class="klgrid rv">
+      <div class="klcard"><span class="klico">💡</span><div class="klttl">Visibility Reduces Friction</div><div class="kldesc">When teams can see project status in real-time, communication shifts from reactive to proactive. Transparency is a product feature — designing it in intentionally saves dozens of status-check conversations every week.</div></div>
+      <div class="klcard"><span class="klico">🎯</span><div class="klttl">Standardization Creates Shared Language</div><div class="kldesc">Inconsistent definitions are not just inefficient — they erode trust. A unified KPI data dictionary doesn't just save time on reporting; it eliminates the low-level organizational conflict that comes from different teams "winning" their interpretation of a metric.</div></div>
+      <div class="klcard"><span class="klico">📊</span><div class="klttl">KPIs Must Drive Actions</div><div class="kldesc">The right question to ask when defining a KPI: "what decision would you make if this number changed?" If there's no clear answer, it's a vanity metric. Good BA means being willing to push back on the metrics stakeholders think they want.</div></div>
+      <div class="klcard"><span class="klico">👥</span><div class="klttl">Alignment Early Saves Rework Late</div><div class="kldesc">Stakeholder misalignment is the #1 cause of delivery failure. Running a proper elicitation session in week 1 — even when it feels slow — prevents the far more expensive experience of rebuilding a solution that solves the wrong problem.</div></div>
+      <div class="klcard"><span class="klico">🚀</span><div class="klttl">Adoption Is the Real Success Metric</div><div class="kldesc">A technically excellent solution that nobody uses is a failed BA engagement. Designing for adoption — keeping intake forms under 2 minutes, making dashboards load fast, building for how people actually work — separates good analysis from great analysis.</div></div>
+      <div class="klcard"><span class="klico">🔍</span><div class="klttl">Root Causes Over Symptoms</div><div class="kldesc">5-Why analysis revealed that "deadline misses" were not a motivation problem — they were a visibility and structure problem. Treating the symptom (reminders, pressure) would have failed. Treating the root cause (no designed workflow) created lasting change.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ GOLDEN RULE ════════════════════ -->
+<div class="golden">
+  <div class="W">
+    <div class="gpre rv">Guiding Principle</div>
+    <blockquote class="gq rv"><span class="gt">"Focus on solving business problems —</span> not just documenting requirements."</blockquote>
+    <p class="gsub rv">Documentation is an output of good analysis — not the goal itself. Every requirement, every user story, every process map exists in service of a business outcome that matters to a real person.</p>
+  </div>
+</div>
+
+<!-- ════════════════════ EXPLORER / LEARNING ════════════════════ -->
+<section class="explorer" id="explorer">
+  <div class="W">
+    <div class="exp-in">
+      <div class="exp-left">
+        <div class="expeye rv">My BA Journey</div>
+        <h2 class="exptitle rv">Still Learning.<br><span class="gt">Actively Exploring.</span><br>Rooted in Real Experience.</h2>
+        <p class="exppara rv">I am <strong>actively seeking Business Analyst roles</strong> and want to be honest about where I am in this journey. I don't yet have a formal BA title — but I have been doing BA work throughout my consulting and market research career. This distinction matters.</p>
+        <p class="exppara rv">Requirement elicitation, stakeholder alignment, process analysis, KPI definition, documentation clarity — these were not adjacent to my consulting work. <strong>They were the core of it.</strong> Every research engagement demanded structured thinking about what the business actually needed, not just what was stated on the brief.</p>
+        <p class="exppara rv">I am <strong>continuously learning</strong> — deepening my understanding of BABOK, Agile BA practices, and formal requirement management. I am also actively learning <strong>AI tools and how they apply to BA work</strong> — from AI-assisted process discovery to using LLMs for requirement analysis and documentation. I see AI literacy as a competitive edge for the next generation of BAs.</p>
+
+        <div class="lp-grid rv">
+          <div class="lp-card violet"><span class="lp-icon">📚</span><div class="lp-label">Learning Now</div><div class="lp-title">BABOK & ECBA Framework</div><div class="lp-desc">Deepening formal knowledge of BABOK v3 — knowledge areas, competencies & ECBA certification preparation</div></div>
+          <div class="lp-card cyan"><span class="lp-icon">⚡</span><div class="lp-label">Learning Now</div><div class="lp-title">Agile BA Practices</div><div class="lp-desc">Sprint ceremonies, backlog refinement, story mapping, definition of done — BA's role in an Agile team</div></div>
+          <div class="lp-card amber"><span class="lp-icon">🤖</span><div class="lp-label">Exploring Actively</div><div class="lp-title">AI in Business Analysis</div><div class="lp-desc">Using AI tools for process discovery, automated requirement extraction, user story generation & decision support — understanding how AI reshapes the BA toolkit</div></div>
+          <div class="lp-card emerald"><span class="lp-icon">🛠️</span><div class="lp-label">Practicing Daily</div><div class="lp-title">BA Tools Depth</div><div class="lp-desc">Going deeper on JIRA, Confluence, SQL basics, advanced Power BI, and process modeling with BPMN notation</div></div>
+        </div>
+
+        <div class="exp-conns rv">
+          <div class="exp-conn"><span class="ec-ico">🔍</span><div><div class="ec-lbl">Market Research → BA</div><div class="ec-title">Requirement Elicitation at Scale</div><div class="ec-desc">Every RFP response I wrote required translating a vague client query into a structured, scoped, deliverable-specific brief. That is requirement elicitation. I did it 20+ times across IKEA, ABB, IBM, and others.</div></div></div>
+          <div class="exp-conn"><span class="ec-ico">⚙️</span><div><div class="ec-lbl">Consulting Ops → BA</div><div class="ec-title">Process Optimization Under Real Pressure</div><div class="ec-desc">Managing 1,087 projects over 20 months required constant workflow thinking — identifying bottlenecks, redesigning handoffs, tracking KPIs, coordinating across 6 stakeholder groups. BA work in everything but title.</div></div></div>
+          <div class="exp-conn"><span class="ec-ico">🤖</span><div><div class="ec-lbl">AI Learning → BA Edge</div><div class="ec-title">Applying AI to BA Practice</div><div class="ec-desc">I am exploring how AI tools — including large language models and automation platforms — can accelerate requirement documentation, process analysis, and decision support. Prompt engineering experience from consulting directly transfers.</div></div></div>
+        </div>
+      </div>
+
+      <div class="exp-right">
+        <div class="statcard rv">
+          <div class="sc-head">
+            <span class="sc-htitle">Professional Status</span>
+            <div class="sc-badge">Open to Opportunities</div>
+          </div>
+          <div class="sc-rows">
+            <div class="sc-row"><div class="sc-rl">Target Role</div><div class="sc-rv cy">Business Analyst</div></div>
+            <div class="sc-row"><div class="sc-rl">Domain Strength</div><div class="sc-rv">Market Research & Consulting</div></div>
+            <div class="sc-row"><div class="sc-rl">BA Certification</div><div class="sc-rv am">ECBA Trained</div></div>
+            <div class="sc-row"><div class="sc-rl">Consulting Experience</div><div class="sc-rv gr">2+ Years</div></div>
+            <div class="sc-row"><div class="sc-rl">Projects Delivered</div><div class="sc-rv">1,087+</div></div>
+            <div class="sc-row"><div class="sc-rl">AI Tools Learning</div><div class="sc-rv cy">Actively Exploring</div></div>
+          </div>
+          <div class="contactcard">
+            <div class="cc-title">Get in Touch</div>
+            <div class="cc-items">
+              <div class="cc-item"><span class="cc-ico">💼</span><a href="https://www.linkedin.com/in/tejal10mugul" target="_blank">linkedin.com/in/tejal10mugul</a></div>
+              <div class="cc-item"><span class="cc-ico">✉️</span><a href="mailto:tejal10mugul@gmail.com">tejal10mugul@gmail.com</a></div>
+              <div class="cc-item"><span class="cc-ico">📞</span><a href="tel:+918698741555">+91 8698741555</a></div>
+            </div>
+          </div>
+          <div class="skill-sec">
+            <div class="skill-lbl">BA Competency Self-Assessment</div>
+            <div class="skillrow"><div class="skilltop"><span>Stakeholder Management</span><span class="skillpct">Strong</span></div><div class="skillbar"><div class="skillfill sf-vc" style="width:88%"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>Process Analysis & Design</span><span class="skillpct">Strong</span></div><div class="skillbar"><div class="skillfill sf-ca" style="width:84%"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>KPI & Dashboard Design</span><span class="skillpct">Strong</span></div><div class="skillbar"><div class="skillfill sf-vc" style="width:85%"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>Requirements Documentation</span><span class="skillpct">Growing</span></div><div class="skillbar"><div class="skillfill sf-ca" style="width:70%"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>Agile / SCRUM Practices</span><span class="skillpct">Growing</span></div><div class="skillbar"><div class="skillfill sf-ae" style="width:62%"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>AI Tools for BA</span><span class="skillpct">Exploring</span></div><div class="skillbar"><div class="skillfill sf-ca" style="width:55%"></div></div></div>
+          </div>
+          <a href="https://www.linkedin.com/in/tejal10mugul" target="_blank" class="sc-cta">Connect on LinkedIn <span>💼 →</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ DISCLAIMER ════════════════════ -->
+<div class="disc">
+  <div class="W">
+    <div class="disc-in rv"><span>📌</span>These case studies are based on real workflow challenges observed during consulting operations at Research Nester Analytics and represent a structured BA solution framework. Specific client names, internal figures, and revenue metrics have been generalized to protect confidentiality. The problem analysis, process design, and documentation artifacts reflect applied BA thinking in a live professional environment.</div>
+  </div>
+</div>
+
+<!-- ════════════════════ FOOTER ════════════════════ -->
+<footer>
+  <div class="W">
+    <div class="ft rv">
+      <div>
+        <div class="ft-brand">Tejal <span>Mugul</span></div>
+        <div class="ft-tag">Business Analyst · Market Research · KPI-Driven Decision Support · Actively Learning AI</div>
+        <div class="ft-contact">
+          <div class="ft-ci"><span>💼</span><a href="https://www.linkedin.com/in/tejal10mugul" target="_blank">linkedin.com/in/tejal10mugul</a></div>
+          <div class="ft-ci"><span>✉️</span><a href="mailto:tejal10mugul@gmail.com">tejal10mugul@gmail.com</a></div>
+          <div class="ft-ci"><span>📞</span><a href="tel:+918698741555">+91 8698741555</a></div>
+        </div>
+      </div>
+      <div class="ft-links">
+        <a href="https://tejal10mugul-gif.github.io/tejal-portfolio/">Main Portfolio</a>
+        <a href="https://www.linkedin.com/in/tejal10mugul" target="_blank">LinkedIn</a>
+        <a href="mailto:tejal10mugul@gmail.com">Email</a>
+        <a href="#home">↑ Top</a>
+      </div>
+    </div>
+    <div class="ft-copy rv">© 2025 Tejal Mugul · Business Analysis Portfolio · Insights are generalized for confidentiality · Actively seeking BA opportunities</div>
+  </div>
+</footer>
+
+<script>
+function toggleNav(){document.getElementById('ndrop').classList.toggle('open');}
+document.addEventListener('click',function(e){const d=document.getElementById('ndrop');if(!d.contains(e.target))d.classList.remove('open');});
+
+const rvEls=document.querySelectorAll('.rv');
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const parent=entry.target.parentElement;
+      const sibs=parent?Array.from(parent.querySelectorAll(':scope > .rv')):[];
+      const i=sibs.indexOf(entry.target);
+      setTimeout(()=>{
+        entry.target.classList.add('in');
+        entry.target.querySelectorAll('.skillrow').forEach((s,j)=>{setTimeout(()=>s.classList.add('in'),j*140+200);});
+      },Math.min(i*80,360));
+      obs.unobserve(entry.target);
+    }
+  });
+},{threshold:0.06,rootMargin:'0px 0px -24px 0px'});
+rvEls.forEach(el=>obs.observe(el));
+
+const skillObs=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.querySelectorAll('.skillrow').forEach((s,i)=>{setTimeout(()=>s.classList.add('in'),i*130+200);});
+      skillObs.unobserve(entry.target);
+    }
+  });
+},{threshold:0.2});
+document.querySelectorAll('.statcard').forEach(el=>skillObs.observe(el));
+</script>
+</body>
+</html>
