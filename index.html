@@ -3,7 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BA Portfolio — Tejal Mugul</title>
+<title>BA Portfolio — Tejal Mugul | Business Analyst</title>
+<meta name="description" content="BA Portfolio of Tejal Mugul — Market Research Consultant with 2+ years and 1,087+ projects, targeting Business Analyst roles. 8 case studies across Banking, InsurTech, Retail, HR Tech and FMCG.">
+<meta name="keywords" content="Business Analyst, BA Portfolio, Tejal Mugul, BABOK, Stakeholder Management, Process Analysis, KPI Framework, Power BI, Requirements Elicitation">
+<meta name="author" content="Tejal Mugul">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BA Portfolio — Tejal Mugul | Business Analyst">
+<meta property="og:description" content="Market Research Consultant with 2+ years at Research Nester Analytics — 1,087+ projects delivered. 8 structured BA case studies across Banking, InsurTech, Retail, HR Tech and FMCG. Actively targeting Business Analyst roles.">
+<meta property="og:site_name" content="Tejal Mugul — BA Portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BA Portfolio — Tejal Mugul">
+<meta name="twitter:description" content="8 BA case studies. 35+ KPIs. Full BABOK lifecycle. Actively seeking Business Analyst roles.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%237c3aed'/><text y='.9em' font-size='72' x='12' fill='white' font-family='Arial'>B</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@300;400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -418,9 +429,72 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
   .lp-grid{grid-template-columns:1fr;}
   .ft{flex-direction:column;}
 }
+
+@media print {
+  nav, #progress-bar, #back-top { display:none !important; }
+  .rv { opacity:1 !important; transform:none !important; }
+  .skillfill { transform:scaleX(1) !important; }
+  body { background:#fff !important; color:#000 !important; }
+  .hero { min-height:auto; page-break-after:always; }
+  section { page-break-inside:avoid; }
+  .csc { page-break-inside:avoid; border:1px solid #ccc !important; }
+  a { color:inherit !important; }
+  .btng, .btnp { display:none; }
+}
+
+/* ── INTERACTIVE LIFECYCLE ── */
+.lci-int{transition:background .2s,box-shadow .25s,transform .15s;}
+.lci-int:hover{background:var(--bg5);transform:translateY(-2px);}
+.lc-expand{animation:fadeIn .25s ease;}
+
+/* ── TIMELINE ── */
+.tl-node .tl-card{transition:transform .2s,box-shadow .2s;}
+.tl-node:hover > div:last-child{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.3);}
+
+/* ── CASE STUDY CARD HOVER ── */
+.csc{transition:box-shadow .25s,transform .15s;}
+.csc:hover{transform:translateY(-2px);}
+
+/* ── METRICS ACTIVE STATE ── */
+.metcell.mcactive{background:var(--bg5);}
+.metcell{transition:background .2s;}
+
+/* ── SKILL BARS ── */
+.skillrow /* ── ANIMATIONS ── */
+@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes countUp{from{opacity:0}to{opacity:1}}
+
+/* ── DONUT HOVER ── */
+.donut-seg{transition:opacity .2s,filter .2s;}
+
+/* ── ACTIVE NAV ── */
+.nmid a{transition:color .2s;}
+
+/* ── HERO ENTRANCE ── */
+.htitle{animation:heroIn .8s ease .1s both;}
+.hdesc{animation:heroIn .8s ease .3s both;}
+.hbtns{animation:heroIn .8s ease .5s both;}
+@keyframes heroIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+/* ── GLOW PILL ON HERO ── */
+.hpill{animation:pillGlow 3s ease-in-out infinite;}
+@keyframes pillGlow{0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,.0)}50%{box-shadow:0 0 20px rgba(124,58,237,.25)}}
+
+/* ── METRICS BAND COUNTER ── */
+.metcell-v{transition:color .3s;}
+
+/* ── STICKY PROGRESS BAR ── */
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#7c3aed,#06b6d4,#10b981);z-index:9999;width:0%;transition:width .1s linear;}
+
+/* ── BACK TO TOP BUTTON ── */
+#back-top{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:var(--grad);color:white;font-size:18px;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:999;box-shadow:0 4px 16px rgba(124,58,237,.4);transition:transform .2s,opacity .2s;border:none;}
+#back-top:hover{transform:translateY(-3px);}
+#back-top.visible{display:flex;}
 </style>
 </head>
 <body>
+<div id="progress-bar"></div>
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <!-- ════════════════════ NAV ════════════════════ -->
 <nav>
@@ -444,11 +518,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
       <a href="https://tejal10mugul-gif.github.io/tejal-portfolio/resume.html" target="_blank" class="ndhi"><span>📄</span> Resume</a>
       <div class="ndsep">Connect</div>
       <a href="https://www.linkedin.com/in/tejal10mugul/" target="_blank"><span>💼</span> LinkedIn</a>
-      <a href="/cdn-cgi/l/email-protection#03776669626f32336e7664766f43646e626a6f2d606c6e">✉️ <span class="__cf_email__" data-cfemail="1763727d767b26277a6270627b57707a767e7b3974787a">[email&#160;protected]</span></a>
+      <a href="mailto:tejalmugul10@gmail.com">✉️ tejalmugul10@gmail.com</a>
       <a href="tel:+918698741555"><span>📞</span> +91 8698741555</a>
       <div class="ndsep">Jump To</div>
-      <a href="#case-studies"><span>📂</span> Case Studies</a>
-      <a href="#bank-case"><span>🏦</span> Banking Process Improvement</a>
+      <a href="#case-studies"><span>📂</span> CS01 · Workflow Optimization</a>
+      <a href="#cs02-anchor"><span>📊</span> CS02 · Reporting &amp; Dashboard</a>
+      <a href="#bank-case"><span>🏦</span> CS03 · Banking Process Improvement</a>
       <a href="#kyc-case"><span>🪪</span> KYC Digitization — CS04</a>
       <a href="#ikea-case"><span>🛋️</span> IKEA Market Entry — CS05</a>
       <a href="#agile-case"><span>⚡</span> Agile BA InsurTech — CS06</a>
@@ -469,6 +544,15 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
         <div class="hpill"><div class="hpill-dot"></div>Business Analysis Portfolio — Tejal Mugul</div>
         <h1 class="htitle">Market Research Consultant.<br><span class="l2">Targeting Business Analysis.</span></h1>
         <p class="hdesc">Market Research Consultant with 2+ years at Research Nester Analytics — 1,087+ projects delivered across requirement elicitation, scope definition, process analysis, KPI design, and stakeholder alignment. This portfolio documents that work through structured BA artifacts and extends it across Banking, InsurTech, Retail, and HR Tech domains. Currently targeting Business Analyst roles.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);padding:4px 0;margin-right:4px;">Domains:</span>
+          <span class="b bv">Consulting Ops</span>
+          <span class="b bc">Banking &amp; KYC</span>
+          <span class="b bg">Retail Strategy</span>
+          <span class="b ba">InsurTech Agile</span>
+          <span class="b br">HR Tech</span>
+          <span class="b bv">FMCG Analytics</span>
+        </div>
         <div class="hbtns">
           <a href="#case-studies" class="btnp">View Case Studies →</a>
           <a href="https://tejal10mugul-gif.github.io/tejal-portfolio/" class="btng">← Main Portfolio</a>
@@ -476,7 +560,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
         </div>
         <div class="hcontact rv">
           <div class="hci"><span class="hci-ico">💼</span><a href="https://www.linkedin.com/in/tejal10mugul/" target="_blank">linkedin.com/in/tejal10mugul</a></div>
-          <div class="hci"><span class="hci-ico">✉️</span><a href="/cdn-cgi/l/email-protection#5b2f3e313a376a6b362e3c2e371b3c363a323775383436"><span class="__cf_email__" data-cfemail="c1b5a4aba0adf0f1acb4a6b4ad81a6aca0a8adefa2aeac">[email&#160;protected]</span></a></div>
+          <div class="hci"><span class="hci-ico">✉️</span><a href="mailto:tejalmugul10@gmail.com">tejalmugul10@gmail.com</a></div>
           <div class="hci"><span class="hci-ico">📞</span><a href="tel:+918698741555">+91 8698741555</a></div>
         </div>
         <div class="qs rv" style="margin-top:20px;">
@@ -516,24 +600,159 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
 </div>
 
 <!-- ════════════════════ LIFECYCLE ════════════════════ -->
-<section id="lifecycle">
+<section id="lifecycle" style="scroll-margin-top:72px;" style="overflow:hidden;">
   <div class="W">
     <div class="eye rv">BA Framework</div>
     <h2 class="h2 rv">Business Analysis <em>Lifecycle</em></h2>
-    <p class="sub rv">A BABOK-aligned approach applied consistently across all 8 case studies. Each phase below is not aspirational — it is demonstrated in the case study work.</p>
-    <div class="lcgrid rv">
-      <div class="lci"><div class="lcn">01</div><span class="lcico">📥</span><div class="lcname">Requirement Gathering</div><div class="lcdesc">Stakeholder interviews, objective scoping &amp; elicitation workshops to define true business needs vs. stated wants</div></div>
-      <div class="lci"><div class="lcn">02</div><span class="lcico">🔍</span><div class="lcname">Analysis &amp; Problem Framing</div><div class="lcdesc">Root cause identification, gap analysis &amp; opportunity mapping using 5-Why and fishbone decomposition</div></div>
-      <div class="lci"><div class="lcn">03</div><span class="lcico">🗺️</span><div class="lcname">Process &amp; Solution Design</div><div class="lcdesc">AS-IS → TO-BE workflow mapping, solution blueprinting &amp; MoSCoW prioritization of improvements</div></div>
-      <div class="lci"><div class="lcn">04</div><span class="lcico">📋</span><div class="lcname">Documentation &amp; Prioritization</div><div class="lcdesc">BRD/FRD structuring, user story writing, acceptance criteria &amp; backlog definition for implementation teams</div></div>
-      <div class="lci"><div class="lcn">05</div><span class="lcico">⚙️</span><div class="lcname">Implementation Support</div><div class="lcdesc">QC checkpoints, UAT coordination, adoption enablement &amp; change management for smooth rollout</div></div>
-      <div class="lci"><div class="lcn">06</div><span class="lcico">📊</span><div class="lcname">Performance Tracking</div><div class="lcdesc">KPI definition, dashboard configuration, ongoing monitoring &amp; benefit realization measurement</div></div>
+    <p class="sub rv">A BABOK-aligned approach applied consistently across all 8 case studies. Click any phase to see the artifacts produced.</p>
+
+    <!-- Interactive flow diagram -->
+    <div class="rv" style="position:relative;margin-bottom:32px;">
+      <!-- SVG connecting arrows -->
+      <svg style="position:absolute;top:50px;left:0;width:100%;height:40px;pointer-events:none;z-index:0;" viewBox="0 0 1100 40" preserveAspectRatio="none">
+        <defs>
+          <marker id="arr" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+            <polygon points="0 0, 7 3.5, 0 7" fill="rgba(124,58,237,.5)"/>
+          </marker>
+          <linearGradient id="flowg" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:.4"/>
+            <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:.6"/>
+          </linearGradient>
+        </defs>
+        <line x1="190" y1="20" x2="210" y2="20" stroke="url(#flowg)" stroke-width="2" marker-end="url(#arr)"/>
+        <line x1="380" y1="20" x2="400" y2="20" stroke="url(#flowg)" stroke-width="2" marker-end="url(#arr)"/>
+        <line x1="570" y1="20" x2="590" y2="20" stroke="url(#flowg)" stroke-width="2" marker-end="url(#arr)"/>
+        <line x1="760" y1="20" x2="780" y2="20" stroke="url(#flowg)" stroke-width="2" marker-end="url(#arr)"/>
+        <line x1="950" y1="20" x2="970" y2="20" stroke="url(#flowg)" stroke-width="2" marker-end="url(#arr)"/>
+      </svg>
+
+      <div class="lcgrid" style="position:relative;z-index:1;">
+        <div class="lci lci-int" data-phase="1" onclick="togglePhase(1)" style="cursor:pointer;border-top:3px solid #7c3aed;">
+          <div class="lcn" style="color:#a78bfa;">01</div>
+          <span class="lcico">📥</span>
+          <div class="lcname">Requirement Gathering</div>
+          <div class="lcdesc">Stakeholder interviews, objective scoping &amp; elicitation workshops</div>
+          <div class="lc-expand" id="lce1" style="display:none;margin-top:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:10px;">
+            <div style="font-size:9px;font-family:'JetBrains Mono',monospace;color:#a78bfa;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;">Artifacts in this portfolio</div>
+            <div style="font-size:10.5px;color:var(--text2);line-height:1.7;">Stakeholder register · Elicitation log (CS08) · RFP scoping doc (CS05) · BRD inputs · Interview notes</div>
+          </div>
+        </div>
+        <div class="lci lci-int" data-phase="2" onclick="togglePhase(2)" style="cursor:pointer;border-top:3px solid #8b3aed;">
+          <div class="lcn" style="color:#a78bfa;">02</div>
+          <span class="lcico">🔍</span>
+          <div class="lcname">Analysis &amp; Problem Framing</div>
+          <div class="lcdesc">Root cause identification, gap analysis &amp; opportunity mapping</div>
+          <div class="lc-expand" id="lce2" style="display:none;margin-top:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:10px;">
+            <div style="font-size:9px;font-family:'JetBrains Mono',monospace;color:#a78bfa;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;">Artifacts in this portfolio</div>
+            <div style="font-size:10.5px;color:var(--text2);line-height:1.7;">5-Why RCA (all 8 CS) · Gap analysis matrices · AS-IS pain point mapping · Fishbone inputs</div>
+          </div>
+        </div>
+        <div class="lci lci-int" data-phase="3" onclick="togglePhase(3)" style="cursor:pointer;border-top:3px solid #6b4ad0;">
+          <div class="lcn" style="color:#67e8f9;">03</div>
+          <span class="lcico">🗺️</span>
+          <div class="lcname">Process &amp; Solution Design</div>
+          <div class="lcdesc">AS-IS → TO-BE workflow mapping &amp; MoSCoW prioritization</div>
+          <div class="lc-expand" id="lce3" style="display:none;margin-top:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:10px;">
+            <div style="font-size:9px;font-family:'JetBrains Mono',monospace;color:#67e8f9;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;">Artifacts in this portfolio</div>
+            <div style="font-size:10.5px;color:var(--text2);line-height:1.7;">AS-IS/TO-BE flows (all CS) · IKEA go/no-go framework · KYC digital onboarding flow · FMCG data architecture</div>
+          </div>
+        </div>
+        <div class="lci lci-int" data-phase="4" onclick="togglePhase(4)" style="cursor:pointer;border-top:3px solid #0ea5e9;">
+          <div class="lcn" style="color:#67e8f9;">04</div>
+          <span class="lcico">📋</span>
+          <div class="lcname">Documentation &amp; Prioritization</div>
+          <div class="lcdesc">BRD/FRD structuring, user stories, acceptance criteria</div>
+          <div class="lc-expand" id="lce4" style="display:none;margin-top:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:10px;">
+            <div style="font-size:9px;font-family:'JetBrains Mono',monospace;color:#67e8f9;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;">Artifacts in this portfolio</div>
+            <div style="font-size:10.5px;color:var(--text2);line-height:1.7;">18+ User Stories with AC · MoSCoW backlogs (CS06) · BRD structures · Regulatory constraint matrix (CS04)</div>
+          </div>
+        </div>
+        <div class="lci lci-int" data-phase="5" onclick="togglePhase(5)" style="cursor:pointer;border-top:3px solid #06b6d4;">
+          <div class="lcn" style="color:#6ee7b7;">05</div>
+          <span class="lcico">⚙️</span>
+          <div class="lcname">Implementation Support</div>
+          <div class="lcdesc">QC checkpoints, UAT coordination &amp; change management</div>
+          <div class="lc-expand" id="lce5" style="display:none;margin-top:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:10px;">
+            <div style="font-size:9px;font-family:'JetBrains Mono',monospace;color:#6ee7b7;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;">Artifacts in this portfolio</div>
+            <div style="font-size:10.5px;color:var(--text2);line-height:1.7;">Sprint plans × 3 (CS06) · DoR/DoD criteria · Risk registers (all CS) · Stakeholder comms plan (CS08)</div>
+          </div>
+        </div>
+        <div class="lci lci-int" data-phase="6" onclick="togglePhase(6)" style="cursor:pointer;border-top:3px solid #10b981;">
+          <div class="lcn" style="color:#6ee7b7;">06</div>
+          <span class="lcico">📊</span>
+          <div class="lcname">Performance Tracking</div>
+          <div class="lcdesc">KPI definition, dashboard design &amp; benefit realization</div>
+          <div class="lc-expand" id="lce6" style="display:none;margin-top:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:10px;">
+            <div style="font-size:9px;font-family:'JetBrains Mono',monospace;color:#6ee7b7;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;">Artifacts in this portfolio</div>
+            <div style="font-size:10.5px;color:var(--text2);line-height:1.7;">35+ KPIs defined · Power BI wireframes (CS08) · KPI data dictionary · Benefit realization summaries (all CS)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Domain coverage donut chart -->
+    <div class="rv" style="margin-top:48px;">
+      <div class="eye" style="margin-bottom:20px;justify-content:center;">Domain Coverage — 7 Industries</div>
+      <div style="display:grid;grid-template-columns:220px 1fr;gap:40px;align-items:center;max-width:800px;margin:0 auto;">
+        <div style="position:relative;">
+          <svg id="donut-svg" viewBox="0 0 180 180" style="width:100%;max-width:220px;display:block;">
+            <circle cx="90" cy="90" r="68" fill="none" stroke="var(--bg4)" stroke-width="24"/>
+            <!-- Segments: total circumference = 2*pi*68 ≈ 427.3 -->
+            <!-- Consulting 2/8 = 25% = 106.8 -->
+            <circle cx="90" cy="90" r="68" fill="none" stroke="#7c3aed" stroke-width="24" stroke-dasharray="106.8 320.5" stroke-dashoffset="0" class="donut-seg" data-label="Consulting" data-pct="25"/>
+            <!-- Banking 2/8 = 25% = 106.8 -->
+            <circle cx="90" cy="90" r="68" fill="none" stroke="#06b6d4" stroke-width="24" stroke-dasharray="106.8 320.5" stroke-dashoffset="-106.8" class="donut-seg" data-label="Banking" data-pct="25"/>
+            <!-- Retail 1/8 = 12.5% = 53.4 -->
+            <circle cx="90" cy="90" r="68" fill="none" stroke="#10b981" stroke-width="24" stroke-dasharray="53.4 373.9" stroke-dashoffset="-213.6" class="donut-seg" data-label="Retail" data-pct="12.5"/>
+            <!-- InsurTech 1/8 = 12.5% = 53.4 -->
+            <circle cx="90" cy="90" r="68" fill="none" stroke="#f59e0b" stroke-width="24" stroke-dasharray="53.4 373.9" stroke-dashoffset="-267" class="donut-seg" data-label="InsurTech" data-pct="12.5"/>
+            <!-- HR Tech 1/8 = 12.5% = 53.4 -->
+            <circle cx="90" cy="90" r="68" fill="none" stroke="#f43f5e" stroke-width="24" stroke-dasharray="53.4 373.9" stroke-dashoffset="-320.4" class="donut-seg" data-label="HR Tech" data-pct="12.5"/>
+            <!-- FMCG 1/8 = 12.5% = 53.4 -->
+            <circle cx="90" cy="90" r="68" fill="none" stroke="#a78bfa" stroke-width="24" stroke-dasharray="53.4 373.9" stroke-dashoffset="-373.8" class="donut-seg" data-label="FMCG" data-pct="12.5"/>
+            <text x="90" y="84" text-anchor="middle" font-family="Sora,sans-serif" font-size="22" font-weight="800" fill="white" id="donut-center-n">8</text>
+            <text x="90" y="102" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#4b5675" id="donut-center-l">CASE STUDIES</text>
+          </svg>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="donut-leg" data-color="#7c3aed" onmouseenter="highlightDonut('Consulting')" onmouseleave="resetDonut()" style="display:flex;align-items:center;gap:10px;padding:7px 12px;border:1px solid var(--border);cursor:pointer;transition:background .15s;" onmouseover="this.style.background='var(--bg4)'" onmouseout="this.style.background=''">
+            <span style="width:10px;height:10px;border-radius:50%;background:#7c3aed;flex-shrink:0;"></span>
+            <span style="font-size:12px;font-weight:600;color:var(--text);flex:1;">Consulting Operations</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#a78bfa;">CS01 · CS02</span>
+          </div>
+          <div class="donut-leg" data-color="#06b6d4" onmouseenter="highlightDonut('Banking')" onmouseleave="resetDonut()" style="display:flex;align-items:center;gap:10px;padding:7px 12px;border:1px solid var(--border);cursor:pointer;transition:background .15s;" onmouseover="this.style.background='var(--bg4)'" onmouseout="this.style.background=''">
+            <span style="width:10px;height:10px;border-radius:50%;background:#06b6d4;flex-shrink:0;"></span>
+            <span style="font-size:12px;font-weight:600;color:var(--text);flex:1;">Banking &amp; Compliance</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#67e8f9;">CS03 · CS04</span>
+          </div>
+          <div class="donut-leg" style="display:flex;align-items:center;gap:10px;padding:7px 12px;border:1px solid var(--border);" onmouseover="this.style.background='var(--bg4)'" onmouseout="this.style.background=''">
+            <span style="width:10px;height:10px;border-radius:50%;background:#10b981;flex-shrink:0;"></span>
+            <span style="font-size:12px;font-weight:600;color:var(--text);flex:1;">Retail Strategy</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#6ee7b7;">CS05</span>
+          </div>
+          <div class="donut-leg" style="display:flex;align-items:center;gap:10px;padding:7px 12px;border:1px solid var(--border);" onmouseover="this.style.background='var(--bg4)'" onmouseout="this.style.background=''">
+            <span style="width:10px;height:10px;border-radius:50%;background:#f59e0b;flex-shrink:0;"></span>
+            <span style="font-size:12px;font-weight:600;color:var(--text);flex:1;">InsurTech / Agile BA</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#fcd34d;">CS06</span>
+          </div>
+          <div class="donut-leg" style="display:flex;align-items:center;gap:10px;padding:7px 12px;border:1px solid var(--border);" onmouseover="this.style.background='var(--bg4)'" onmouseout="this.style.background=''">
+            <span style="width:10px;height:10px;border-radius:50%;background:#f43f5e;flex-shrink:0;"></span>
+            <span style="font-size:12px;font-weight:600;color:var(--text);flex:1;">HR Tech / People Analytics</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#fda4af;">CS07</span>
+          </div>
+          <div class="donut-leg" style="display:flex;align-items:center;gap:10px;padding:7px 12px;border:1px solid var(--border);" onmouseover="this.style.background='var(--bg4)'" onmouseout="this.style.background=''">
+            <span style="width:10px;height:10px;border-radius:50%;background:#a78bfa;flex-shrink:0;"></span>
+            <span style="font-size:12px;font-weight:600;color:var(--text);flex:1;">FMCG / Category Analytics</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c4b5fd;">CS08</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ════════════════════ ALIGNMENT ════════════════════ -->
-<section class="altsec" id="experience">
+<section class="altsec" id="experience" style="scroll-margin-top:72px;">
   <div class="W">
     <div class="eye rv">Experience Mapping</div>
     <h2 class="h2 rv">Consulting Experience <em>Mapped to BA</em></h2>
@@ -555,11 +774,43 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
 </section>
 
 <!-- ════════════════════ CASE STUDIES ════════════════════ -->
-<section id="case-studies">
+<section id="case-studies" style="scroll-margin-top:72px;">
   <div class="W">
     <div class="eye rv">Detailed Project Work</div>
     <h2 class="h2 rv">Case <em>Studies</em></h2>
     <p class="sub rv">Eight structured case studies across Consulting Operations (CS01, CS02), Banking Process Improvement (CS03), KYC &amp; Compliance Digitization (CS04), Retail Market Entry Analysis — IKEA India (CS05), Agile BA — InsurTech Claims Portal (CS06), HR Tech People Analytics (CS07), and FMCG Category Expansion Analytics — Adani Wilmar Angle (CS08). Each built end-to-end with full BA artifacts.</p>
+
+    <!-- Portfolio guide strip -->
+    <div class="rv" style="display:flex;gap:0;border:1px solid var(--border);margin-bottom:36px;overflow-x:auto;">
+      <div style="padding:12px 18px;border-right:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;gap:8px;">
+        <span style="font-size:14px;">🔍</span>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:2px;">Each case study contains</div>
+          <div style="font-size:11px;color:var(--text2);">Problem → RCA → AS-IS/TO-BE → Requirements → KPIs → Risk Register</div>
+        </div>
+      </div>
+      <div style="padding:12px 18px;border-right:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;gap:8px;">
+        <span style="font-size:14px;">📌</span>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#a78bfa;margin-bottom:2px;">CS01–02</div>
+          <div style="font-size:11px;color:var(--text2);">Based on real work at Research Nester</div>
+        </div>
+      </div>
+      <div style="padding:12px 18px;border-right:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;gap:8px;">
+        <span style="font-size:14px;">🏗️</span>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#fcd34d;margin-bottom:2px;">CS03–08</div>
+          <div style="font-size:11px;color:var(--text2);">Domain-applied BA methodology</div>
+        </div>
+      </div>
+      <div style="padding:12px 18px;flex-shrink:0;display:flex;align-items:center;gap:8px;">
+        <span style="font-size:14px;">⭐</span>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#6ee7b7;margin-bottom:2px;">Best showcase</div>
+          <div style="font-size:11px;color:var(--text2);">CS08 FMCG — most complete artifact set</div>
+        </div>
+      </div>
+    </div>
 
     <!-- CS01 -->
     <div class="csc rv">
@@ -687,6 +938,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
     </div><!-- end CS1 -->
 
     <!-- CS02 -->
+    <div id="cs02-anchor" style="scroll-margin-top:72px;"></div>
     <div class="csc rv">
       <div class="csh">
         <div class="csnum">Case Study 02 — Reporting &amp; Dashboard Optimization</div>
@@ -792,20 +1044,75 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
 </section>
 
 <!-- ════════════════════ METRICS ════════════════════ -->
-<div class="metband">
+<div class="metband" id="metrics-band">
   <div class="W">
     <div class="metrow">
-      <div class="metcell rv"><span class="metcell-ico">📁</span><span class="metcell-v">8</span><span class="metcell-l">Case Studies</span></div>
-      <div class="metcell rv"><span class="metcell-ico">✅</span><span class="metcell-v">6/6</span><span class="metcell-l">BA Lifecycle Covered</span></div>
-      <div class="metcell rv"><span class="metcell-ico">📊</span><span class="metcell-v">35+</span><span class="metcell-l">KPIs Defined</span></div>
-      <div class="metcell rv"><span class="metcell-ico">📝</span><span class="metcell-v">18+</span><span class="metcell-l">User Stories Written</span></div>
-      <div class="metcell rv"><span class="metcell-ico">🏢</span><span class="metcell-v">1,087+</span><span class="metcell-l">Consulting Projects</span></div>
+      <div class="metcell rv" onclick="this.classList.toggle('mcactive')" style="cursor:pointer;position:relative;">
+        <span class="metcell-ico">📁</span>
+        <span class="metcell-v" data-count="8" data-suffix="">0</span>
+        <span class="metcell-l">Case Studies</span>
+        <!-- Mini sparkline bars -->
+        <div style="display:flex;align-items:flex-end;gap:2px;height:20px;justify-content:center;margin-top:6px;">
+          <div style="width:5px;background:rgba(124,58,237,.4);height:40%;border-radius:1px;"></div>
+          <div style="width:5px;background:rgba(124,58,237,.5);height:55%;border-radius:1px;"></div>
+          <div style="width:5px;background:rgba(124,58,237,.6);height:65%;border-radius:1px;"></div>
+          <div style="width:5px;background:rgba(124,58,237,.7);height:80%;border-radius:1px;"></div>
+          <div style="width:5px;background:rgba(124,58,237,.85);height:90%;border-radius:1px;"></div>
+          <div style="width:5px;background:rgba(124,58,237,1);height:100%;border-radius:1px;"></div>
+          <div style="width:5px;background:#7c3aed;height:100%;border-radius:1px;box-shadow:0 0 6px #7c3aed;"></div>
+          <div style="width:5px;background:#06b6d4;height:100%;border-radius:1px;box-shadow:0 0 6px #06b6d4;"></div>
+        </div>
+      </div>
+      <div class="metcell rv" style="cursor:default;position:relative;">
+        <span class="metcell-ico">✅</span>
+        <span class="metcell-v" style="font-size:20px;">6/6</span>
+        <span class="metcell-l">BA Lifecycle Covered</span>
+        <!-- Mini radar chart placeholder -->
+        <svg width="60" height="30" viewBox="0 0 60 30" style="margin:6px auto 0;display:block;">
+          <polygon points="30,2 55,14 45,28 15,28 5,14" fill="none" stroke="rgba(6,182,212,.2)" stroke-width="1"/>
+          <polygon points="30,6 49,16 41,26 19,26 11,16" fill="rgba(6,182,212,.15)" stroke="#06b6d4" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="metcell rv" style="cursor:default;">
+        <span class="metcell-ico">📊</span>
+        <span class="metcell-v" data-count="35" data-suffix="+">0</span>
+        <span class="metcell-l">KPIs Defined</span>
+        <svg width="70" height="22" viewBox="0 0 70 22" style="margin:6px auto 0;display:block;">
+          <polyline points="2,18 10,14 18,16 26,10 34,12 42,6 50,8 58,4 66,2" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="66" cy="2" r="2.5" fill="#10b981"/>
+        </svg>
+      </div>
+      <div class="metcell rv" style="cursor:default;">
+        <span class="metcell-ico">📝</span>
+        <span class="metcell-v" data-count="18" data-suffix="+">0</span>
+        <span class="metcell-l">User Stories Written</span>
+        <div style="display:flex;gap:3px;justify-content:center;margin-top:6px;">
+          <div style="width:7px;height:7px;border-radius:50%;background:#f59e0b;"></div>
+          <div style="width:7px;height:7px;border-radius:50%;background:#f59e0b;"></div>
+          <div style="width:7px;height:7px;border-radius:50%;background:#f59e0b;"></div>
+          <div style="width:7px;height:7px;border-radius:50%;background:rgba(245,158,11,.4);"></div>
+          <div style="width:7px;height:7px;border-radius:50%;background:rgba(245,158,11,.3);"></div>
+        </div>
+      </div>
+      <div class="metcell rv" style="cursor:default;">
+        <span class="metcell-ico">🏢</span>
+        <span class="metcell-v" data-count="1087" data-suffix="+">0</span>
+        <span class="metcell-l">Consulting Projects</span>
+        <svg width="70" height="22" viewBox="0 0 70 22" style="margin:6px auto 0;display:block;">
+          <rect x="2" y="16" width="8" height="5" fill="rgba(124,58,237,.4)" rx="1"/>
+          <rect x="13" y="12" width="8" height="9" fill="rgba(124,58,237,.5)" rx="1"/>
+          <rect x="24" y="9" width="8" height="12" fill="rgba(124,58,237,.6)" rx="1"/>
+          <rect x="35" y="6" width="8" height="15" fill="rgba(124,58,237,.7)" rx="1"/>
+          <rect x="46" y="3" width="8" height="18" fill="rgba(124,58,237,.85)" rx="1"/>
+          <rect x="57" y="1" width="8" height="20" fill="#7c3aed" rx="1" style="filter:drop-shadow(0 0 4px #7c3aed)"/>
+        </svg>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- ════════════════════ STAKEHOLDERS ════════════════════ -->
-<section class="shsec" id="stakeholders">
+<section class="shsec" id="stakeholders" style="scroll-margin-top:72px;">
   <div class="W">
     <div class="eye rv">Coordination Map</div>
     <h2 class="h2 rv">Stakeholder <em>Ecosystem</em></h2>
@@ -830,7 +1137,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
   </div>
 </div>
 
-<section style="padding-top:20px;padding-bottom:80px;" id="bank-case">
+<section style="padding-top:20px;padding-bottom:80px;" id="bank-case" style="scroll-margin-top:72px;">
   <div class="W">
     <div class="csc rv">
       <div class="csh">
@@ -953,7 +1260,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
   </div>
 </div>
 
-<section style="padding-top:20px;padding-bottom:80px;" id="kyc-case">
+<section style="padding-top:20px;padding-bottom:80px;" id="kyc-case" style="scroll-margin-top:72px;">
   <div class="W">
     <div class="csc rv">
       <div class="csh">
@@ -1058,7 +1365,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
   </div>
 </div>
 
-<section style="padding-top:20px;padding-bottom:80px;" id="ikea-case">
+<section style="padding-top:20px;padding-bottom:80px;" id="ikea-case" style="scroll-margin-top:72px;">
   <div class="W">
     <div class="csc rv">
       <div class="csh">
@@ -1145,7 +1452,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
   </div>
 </div>
 
-<section style="padding-top:20px;padding-bottom:80px;" id="agile-case">
+<section style="padding-top:20px;padding-bottom:80px;" id="agile-case" style="scroll-margin-top:72px;">
   <div class="W">
     <div class="csc rv">
       <div class="csh">
@@ -1249,7 +1556,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
   </div>
 </div>
 
-<section style="padding-top:20px;padding-bottom:80px;" id="hrtech-case">
+<section style="padding-top:20px;padding-bottom:80px;" id="hrtech-case" style="scroll-margin-top:72px;">
   <div class="W">
     <div class="csc rv">
       <div class="csh">
@@ -1411,7 +1718,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
   </div>
 </div>
 
-<section style="padding-top:20px;padding-bottom:80px;" id="fmcg-case">
+<section style="padding-top:20px;padding-bottom:80px;" id="fmcg-case" style="scroll-margin-top:72px;">
   <div class="W">
 
     <!-- Resume Connection Bridge -->
@@ -2378,7 +2685,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
 
 
 <!-- ════════════════════ TOOLS ════════════════════ -->
-<section id="tools">
+<section id="tools" style="scroll-margin-top:72px;">
   <div class="W">
     <div class="eye rv">Toolkit</div>
     <h2 class="h2 rv">Tools <em>in Action</em></h2>
@@ -2389,10 +2696,86 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
       <div class="tc"><div class="tccat">Agile Documentation</div><div class="tcname">JIRA / Confluence</div><div class="tcdesc">Tracked requirement backlogs, documented user stories with acceptance criteria, maintained BRD and FRD artifacts, and created structured process documentation accessible to cross-functional teams.</div></div>
       <div class="tc"><div class="tccat">Process Visualization</div><div class="tcname">Lucidchart / Draw.io</div><div class="tcdesc">Created AS-IS and TO-BE process flow diagrams, stakeholder ecosystem maps, data flow diagrams, and workflow visualizations for communicating solutions to non-technical stakeholders.</div></div>
     </div>
-    <div style="margin-top:36px;" class="rv">
-      <div class="eye" style="margin-bottom:12px;">Competency Quick Scan</div>
-      <div class="ctags">
-        <span class="b bv">📋 Requirements Analysis</span><span class="b bc">⚙️ Process Optimization</span><span class="b bc">🔄 AS-IS / TO-BE Mapping</span><span class="b ba">📊 KPI Framework Design</span><span class="b ba">👥 Stakeholder Alignment</span><span class="b bg">📈 Decision Support</span><span class="b bv">🧩 Gap Analysis</span><span class="b bg">🛠️ Process Standardization</span><span class="b br">📝 BRD / User Stories</span><span class="b br">🔍 Root Cause Analysis</span><span class="b bc">🎯 Acceptance Criteria</span><span class="b bv">📊 Data Dictionary</span>
+    <!-- Radar chart + skill breakdown -->
+    <div style="margin-top:48px;" class="rv">
+      <div class="eye" style="margin-bottom:20px;">BA Competency Radar</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
+
+        <!-- Radar SVG -->
+        <div style="text-align:center;">
+          <svg id="radar-svg" viewBox="0 0 380 340" style="width:100%;max-width:380px;display:block;margin:0 auto;">
+            <defs>
+              <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#7c3aed"/>
+                <stop offset="100%" style="stop-color:#06b6d4"/>
+              </linearGradient>
+            </defs>
+            <!-- Grid rings (25/50/75/100%) -->
+            <g fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1">
+              <polygon points="190.0,40.0 287.7,87.1 311.9,192.8 244.2,277.6 135.8,277.6 68.1,192.8 92.3,87.1"/>
+              <polygon points="190.0,71.2 263.3,106.5 281.4,185.9 230.7,249.5 149.3,249.5 98.6,185.9 116.7,106.5"/>
+              <polygon points="190.0,102.5 238.9,126.0 250.9,178.9 217.1,221.3 162.9,221.3 129.1,178.9 141.1,126.0"/>
+              <polygon points="190.0,133.8 214.4,145.5 220.5,172.0 203.6,193.2 176.4,193.2 159.5,172.0 165.6,145.5"/>
+            </g>
+            <!-- Axis lines -->
+            <g stroke="rgba(255,255,255,.1)" stroke-width="1">
+              <line x1="190" y1="165" x2="190.0" y2="40.0"/>
+              <line x1="190" y1="165" x2="287.7" y2="87.1"/>
+              <line x1="190" y1="165" x2="311.9" y2="192.8"/>
+              <line x1="190" y1="165" x2="244.2" y2="277.6"/>
+              <line x1="190" y1="165" x2="135.8" y2="277.6"/>
+              <line x1="190" y1="165" x2="68.1" y2="192.8"/>
+              <line x1="190" y1="165" x2="92.3" y2="87.1"/>
+            </g>
+            <!-- Score polygon: Requirements 90%, Stakeholder 88%, KPI/Data 85%, Agile 62%, Docs 70%, Domain 92%, Process 85% -->
+            <polygon id="radar-poly"
+              points="190.0,52.5 276.0,96.4 293.6,188.6 223.6,234.8 152.0,243.8 77.9,190.6 106.9,98.8"
+              fill="rgba(124,58,237,.2)" stroke="url(#rg)" stroke-width="2.5"
+              style="filter:drop-shadow(0 0 8px rgba(124,58,237,.4));">
+              <animate attributeName="opacity" from="0" to="1" dur=".8s" fill="freeze"/>
+            </polygon>
+            <!-- Data point circles -->
+            <circle cx="190.0" cy="52.5" r="4.5" fill="#a78bfa" stroke="var(--bg)" stroke-width="1.5"/>
+            <circle cx="276.0" cy="96.4" r="4.5" fill="#67e8f9" stroke="var(--bg)" stroke-width="1.5"/>
+            <circle cx="293.6" cy="188.6" r="4.5" fill="#6ee7b7" stroke="var(--bg)" stroke-width="1.5"/>
+            <circle cx="223.6" cy="234.8" r="4.5" fill="#fcd34d" stroke="var(--bg)" stroke-width="1.5"/>
+            <circle cx="152.0" cy="243.8" r="4.5" fill="#fda4af" stroke="var(--bg)" stroke-width="1.5"/>
+            <circle cx="77.9" cy="190.6" r="4.5" fill="#c4b5fd" stroke="var(--bg)" stroke-width="1.5"/>
+            <circle cx="106.9" cy="98.8" r="4.5" fill="#67e8f9" stroke="var(--bg)" stroke-width="1.5"/>
+            <!-- Labels — all safely within viewBox (0 0 380 340) -->
+            <text x="190" y="10" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#a78bfa" font-weight="500">Requirements 90%</text>
+            <text x="314" y="60" text-anchor="start" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#67e8f9" font-weight="500">Stakeholder 88%</text>
+            <text x="318" y="200" text-anchor="start" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#6ee7b7" font-weight="500">KPI/Data 85%</text>
+            <text x="256" y="320" text-anchor="start" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#fcd34d" font-weight="500">Agile 62%</text>
+            <text x="124" y="320" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#fda4af" font-weight="500">Docs 70%</text>
+            <text x="62" y="200" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#c4b5fd" font-weight="500">Domain 92%</text>
+            <text x="60" y="60" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#67e8f9" font-weight="500">Process 85%</text>
+          </svg>
+          <div style="font-size:10px;color:var(--text3);font-family:'JetBrains Mono',monospace;letter-spacing:.08em;">Self-assessment · honest reflection · growing every week</div>
+        </div>
+
+        <!-- Skill breakdown bars with category labels -->
+        <div>
+          <div style="margin-bottom:20px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:#a78bfa;margin-bottom:10px;">Core BA Skills</div>
+            <div class="skillrow"><div class="skilltop"><span>Requirements Elicitation &amp; Analysis</span><span class="skillpct">90%</span></div><div class="skillbar"><div class="skillfill" style="background:linear-gradient(90deg,#7c3aed,#a78bfa);width:90%;"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>Stakeholder Management &amp; Facilitation</span><span class="skillpct">88%</span></div><div class="skillbar"><div class="skillfill" style="background:linear-gradient(90deg,#7c3aed,#06b6d4);width:88%;"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>Process Analysis &amp; AS-IS/TO-BE Design</span><span class="skillpct">85%</span></div><div class="skillbar"><div class="skillfill" style="background:linear-gradient(90deg,#06b6d4,#10b981);width:85%;"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>KPI Framework &amp; Data Dictionary</span><span class="skillpct">85%</span></div><div class="skillbar"><div class="skillfill" style="background:linear-gradient(90deg,#06b6d4,#10b981);width:85%;"></div></div></div>
+          </div>
+          <div style="margin-bottom:20px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:#67e8f9;margin-bottom:10px;">Domain &amp; Technical</div>
+            <div class="skillrow"><div class="skilltop"><span>Multi-Domain Research &amp; Analysis</span><span class="skillpct">92%</span></div><div class="skillbar"><div class="skillfill" style="background:linear-gradient(90deg,#10b981,#06b6d4);width:92%;"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>SQL for Data Auditing</span><span class="skillpct">72%</span></div><div class="skillbar"><div class="skillfill" style="background:linear-gradient(90deg,#06b6d4,#a78bfa);width:72%;"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>Power BI Dashboard Design</span><span class="skillpct">80%</span></div><div class="skillbar"><div class="skillfill" style="background:linear-gradient(90deg,#f59e0b,#f43f5e);width:80%;"></div></div></div>
+          </div>
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:#fcd34d;margin-bottom:10px;">Growing Fast</div>
+            <div class="skillrow"><div class="skilltop"><span>BRD / FRD Documentation</span><span class="skillpct">70%</span></div><div class="skillbar"><div class="skillfill" style="background:linear-gradient(90deg,#f59e0b,#fcd34d);width:70%;"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>Agile / SCRUM Ceremonies</span><span class="skillpct">62%</span></div><div class="skillbar"><div class="skillfill" style="background:linear-gradient(90deg,#f43f5e,#f59e0b);width:62%;"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>BPMN Process Notation</span><span class="skillpct">58%</span></div><div class="skillbar"><div class="skillfill" style="background:linear-gradient(90deg,#f43f5e,#a78bfa);width:58%;"></div></div></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -2424,8 +2807,104 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
   </div>
 </div>
 
+<!-- ════════════════════ BA JOURNEY TIMELINE ════════════════════ -->
+<section style="background:var(--bg3);padding:72px 0;overflow:hidden;">
+  <div class="W">
+    <div class="eye rv" style="justify-content:center;">Growth Story</div>
+    <h2 class="h2 rv" style="text-align:center;">The BA Journey — <em>Month by Month</em></h2>
+    <p class="sub rv" style="text-align:center;margin:0 auto 48px;">From first research project to full BA portfolio — a transparent view of the path.</p>
+
+    <!-- Horizontal scrollable timeline -->
+    <div class="rv" style="position:relative;overflow-x:auto;padding-bottom:16px;">
+      <div style="min-width:900px;position:relative;padding:20px 0 60px;">
+        <!-- Central line -->
+        <div style="position:absolute;top:44px;left:60px;right:60px;height:3px;background:linear-gradient(90deg,#7c3aed,#06b6d4,#10b981);border-radius:2px;z-index:0;"></div>
+
+        <!-- Timeline nodes -->
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1;">
+
+          <!-- Node 1 -->
+          <div style="text-align:center;width:130px;flex-shrink:0;" class="tl-node">
+            <div style="width:22px;height:22px;border-radius:50%;background:#7c3aed;border:3px solid var(--bg3);margin:33px auto 0;box-shadow:0 0 12px #7c3aed;position:relative;z-index:2;"></div>
+            <div style="margin-top:14px;padding:10px 8px;background:var(--bg2);border:1px solid rgba(124,58,237,.3);border-top:2px solid #7c3aed;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.1em;color:#a78bfa;margin-bottom:4px;">JAN 2023</div>
+              <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:3px;">Joined Research Nester</div>
+              <div style="font-size:9.5px;color:var(--text3);">First RFP. First stakeholder requirement session. 0 → 1.</div>
+            </div>
+          </div>
+
+          <!-- Node 2 -->
+          <div style="text-align:center;width:130px;flex-shrink:0;" class="tl-node">
+            <div style="width:22px;height:22px;border-radius:50%;background:#6a3aed;border:3px solid var(--bg3);margin:33px auto 0;box-shadow:0 0 10px #6a3aed;position:relative;z-index:2;"></div>
+            <div style="margin-top:14px;padding:10px 8px;background:var(--bg2);border:1px solid rgba(106,58,237,.3);border-top:2px solid #6a3aed;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.1em;color:#a78bfa;margin-bottom:4px;">Q2 2023</div>
+              <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:3px;">250+ Projects Delivered</div>
+              <div style="font-size:9.5px;color:var(--text3);">Power BI dashboards. KPI frameworks. Process redesigns.</div>
+            </div>
+          </div>
+
+          <!-- Node 3 -->
+          <div style="text-align:center;width:130px;flex-shrink:0;" class="tl-node">
+            <div style="width:22px;height:22px;border-radius:50%;background:#2496d4;border:3px solid var(--bg3);margin:33px auto 0;box-shadow:0 0 10px #2496d4;position:relative;z-index:2;"></div>
+            <div style="margin-top:14px;padding:10px 8px;background:var(--bg2);border:1px solid rgba(36,150,212,.3);border-top:2px solid #2496d4;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.1em;color:#67e8f9;margin-bottom:4px;">Q4 2023</div>
+              <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:3px;">IKEA, ABB, IBM RFPs</div>
+              <div style="font-size:9.5px;color:var(--text3);">Leading enterprise RFP responses. Market sizing. Competitive analysis.</div>
+            </div>
+          </div>
+
+          <!-- Node 4 -->
+          <div style="text-align:center;width:130px;flex-shrink:0;" class="tl-node">
+            <div style="width:22px;height:22px;border-radius:50%;background:#06b6d4;border:3px solid var(--bg3);margin:33px auto 0;box-shadow:0 0 10px #06b6d4;position:relative;z-index:2;"></div>
+            <div style="margin-top:14px;padding:10px 8px;background:var(--bg2);border:1px solid rgba(6,182,212,.3);border-top:2px solid #06b6d4;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.1em;color:#67e8f9;margin-bottom:4px;">Q2 2024</div>
+              <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:3px;">1,000+ Projects</div>
+              <div style="font-size:9.5px;color:var(--text3);">Full cycle ownership. Recognized as process design lead.</div>
+            </div>
+          </div>
+
+          <!-- Node 5 -->
+          <div style="text-align:center;width:130px;flex-shrink:0;" class="tl-node">
+            <div style="width:22px;height:22px;border-radius:50%;background:#10b981;border:3px solid var(--bg3);margin:33px auto 0;box-shadow:0 0 10px #10b981;position:relative;z-index:2;"></div>
+            <div style="margin-top:14px;padding:10px 8px;background:var(--bg2);border:1px solid rgba(16,185,129,.3);border-top:2px solid #10b981;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.1em;color:#6ee7b7;margin-bottom:4px;">Q4 2024</div>
+              <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:3px;">BA Pivot Decision</div>
+              <div style="font-size:9.5px;color:var(--text3);">Discovered BABOK. Realized the work I did IS Business Analysis.</div>
+            </div>
+          </div>
+
+          <!-- Node 6 -->
+          <div style="text-align:center;width:130px;flex-shrink:0;" class="tl-node">
+            <div style="width:22px;height:22px;border-radius:50%;background:#f59e0b;border:3px solid var(--bg3);margin:33px auto 0;box-shadow:0 0 10px #f59e0b;position:relative;z-index:2;"></div>
+            <div style="margin-top:14px;padding:10px 8px;background:var(--bg2);border:1px solid rgba(245,158,11,.3);border-top:2px solid #f59e0b;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.1em;color:#fcd34d;margin-bottom:4px;">Q1 2025</div>
+              <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:3px;">CS01–CS05 Built</div>
+              <div style="font-size:9.5px;color:var(--text3);">First 5 case studies structured. BABOK aligned. Portfolio taking shape.</div>
+            </div>
+          </div>
+
+          <!-- Node 7 — NOW -->
+          <div style="text-align:center;width:130px;flex-shrink:0;" class="tl-node">
+            <div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#06b6d4);border:3px solid var(--bg3);margin:31px auto 0;box-shadow:0 0 16px rgba(124,58,237,.8);position:relative;z-index:2;animation:tl-pulse 2s infinite;"></div>
+            <div style="margin-top:12px;padding:10px 8px;background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(6,182,212,.08));border:1px solid rgba(124,58,237,.4);border-top:2px solid #7c3aed;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.1em;color:#a78bfa;margin-bottom:4px;">NOW · 2025–26</div>
+              <div style="font-size:11px;font-weight:700;background:linear-gradient(90deg,#a78bfa,#67e8f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:3px;">8 CS · Targeting BA Roles</div>
+              <div style="font-size:9.5px;color:var(--text3);">Full portfolio complete. Ready for Business Analyst opportunities.</div>
+              <div style="margin-top:6px;display:inline-flex;align-items:center;gap:4px;background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);padding:2px 7px;font-size:8px;font-family:'JetBrains Mono',monospace;color:#6ee7b7;">
+                <span style="width:5px;height:5px;border-radius:50%;background:#10b981;animation:blink 1.5s infinite;display:inline-block;"></span>OPEN TO WORK
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>@keyframes tl-pulse{0%,100%{box-shadow:0 0 16px rgba(124,58,237,.8)}50%{box-shadow:0 0 28px rgba(6,182,212,.9),0 0 8px rgba(124,58,237,.4)}}</style>
+
 <!-- ════════════════════ EXPLORER / LEARNING ════════════════════ -->
-<section class="explorer" id="explorer">
+<section class="explorer" id="explorer" style="scroll-margin-top:72px;">
   <div class="W">
     <div class="exp-in">
       <div class="exp-left">
@@ -2464,23 +2943,181 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
             <div class="cc-title">Get in Touch</div>
             <div class="cc-items">
               <div class="cc-item"><span class="cc-ico">💼</span><a href="https://www.linkedin.com/in/tejal10mugul/" target="_blank">linkedin.com/in/tejal10mugul</a></div>
-              <div class="cc-item"><span class="cc-ico">✉️</span><a href="/cdn-cgi/l/email-protection#95e1f0fff4f9a4a5f8e0f2e0f9d5f2f8f4fcf9bbf6faf8"><span class="__cf_email__" data-cfemail="12667778737e23227f6775677e52757f737b7e3c717d7f">[email&#160;protected]</span></a></div>
+              <div class="cc-item"><span class="cc-ico">✉️</span><a href="mailto:tejalmugul10@gmail.com">tejalmugul10@gmail.com</a></div>
               <div class="cc-item"><span class="cc-ico">📞</span><a href="tel:+918698741555">+91 8698741555</a></div>
             </div>
           </div>
           <div class="skill-sec">
             <div class="skill-lbl">BA Competency Self-Assessment</div>
-            <div class="skillrow"><div class="skilltop"><span>Stakeholder Management</span><span class="skillpct">Strong</span></div><div class="skillbar"><div class="skillfill sf-vc" style="width:88%"></div></div></div>
-            <div class="skillrow"><div class="skilltop"><span>Process Analysis &amp; Design</span><span class="skillpct">Strong</span></div><div class="skillbar"><div class="skillfill sf-ca" style="width:84%"></div></div></div>
-            <div class="skillrow"><div class="skilltop"><span>KPI &amp; Dashboard Design</span><span class="skillpct">Strong</span></div><div class="skillbar"><div class="skillfill sf-vc" style="width:85%"></div></div></div>
-            <div class="skillrow"><div class="skilltop"><span>Requirements Documentation</span><span class="skillpct">Growing</span></div><div class="skillbar"><div class="skillfill sf-ca" style="width:70%"></div></div></div>
-            <div class="skillrow"><div class="skilltop"><span>Agile / SCRUM Practices</span><span class="skillpct">Growing</span></div><div class="skillbar"><div class="skillfill sf-ae" style="width:62%"></div></div></div>
-            <div class="skillrow"><div class="skilltop"><span>AI Tools for BA</span><span class="skillpct">Exploring</span></div><div class="skillbar"><div class="skillfill sf-ca" style="width:55%"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>Stakeholder Management</span><span class="skillpct" style="color:#6ee7b7;">88%</span></div><div class="skillbar"><div class="skillfill" style="background:linear-gradient(90deg,#7c3aed,#06b6d4);width:88%;"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>Process Analysis &amp; Design</span><span class="skillpct" style="color:#6ee7b7;">84%</span></div><div class="skillbar"><div class="skillfill" style="background:linear-gradient(90deg,#06b6d4,#10b981);width:84%;"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>KPI &amp; Dashboard Design</span><span class="skillpct" style="color:#6ee7b7;">85%</span></div><div class="skillbar"><div class="skillfill" style="background:linear-gradient(90deg,#7c3aed,#06b6d4);width:85%;"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>Requirements Documentation</span><span class="skillpct" style="color:#fcd34d;">70%</span></div><div class="skillbar"><div class="skillfill" style="background:linear-gradient(90deg,#f59e0b,#fcd34d);width:70%;"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>Agile / SCRUM Practices</span><span class="skillpct" style="color:#fcd34d;">62%</span></div><div class="skillbar"><div class="skillfill" style="background:linear-gradient(90deg,#f43f5e,#f59e0b);width:62%;"></div></div></div>
+            <div class="skillrow"><div class="skilltop"><span>AI Tools for BA</span><span class="skillpct" style="color:#a78bfa;">55%</span></div><div class="skillbar"><div class="skillfill" style="background:linear-gradient(90deg,#a78bfa,#67e8f9);width:55%;"></div></div></div>
           </div>
           <a href="https://www.linkedin.com/in/tejal10mugul/" target="_blank" class="sc-cta">Connect on LinkedIn <span>💼 →</span></a>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ════════════════════ WHY HIRE ME ════════════════════ -->
+<section style="background:var(--bg);padding:72px 0;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(124,58,237,.07) 0%,transparent 65%);pointer-events:none;"></div>
+  <div class="W">
+    <div class="eye rv" style="justify-content:center;">The Case For Hiring Me</div>
+    <h2 class="h2 rv" style="text-align:center;">Why a Recruiter Should <em>Call Tejal</em></h2>
+    <p style="font-size:14px;color:var(--text2);text-align:center;max-width:580px;margin:0 auto 48px;line-height:1.9;" class="rv">Every BA candidate says they can elicit requirements. Here is what I have actually done — documented, numbered, and verifiable.</p>
+
+    <!-- Impact Grid -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:48px;" class="rv">
+      <div style="background:var(--bg2);padding:28px 24px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#7c3aed,#06b6d4);"></div>
+        <div style="font-size:36px;font-family:'Sora',sans-serif;font-weight:800;background:linear-gradient(135deg,#a78bfa,#67e8f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;" data-count="1087" data-suffix="+">0+</div>
+        <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">Projects Personally Owned</div>
+        <div style="font-size:11.5px;color:var(--text3);line-height:1.7;">Not assisted. Not shadowed. Full ownership — from requirement intake to quality-checked delivery.</div>
+      </div>
+      <div style="background:var(--bg2);padding:28px 24px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#06b6d4,#10b981);"></div>
+        <div style="font-size:36px;font-family:'Sora',sans-serif;font-weight:800;color:#6ee7b7;margin-bottom:6px;" data-count="20" data-suffix="+">0+</div>
+        <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">Enterprise RFPs Led</div>
+        <div style="font-size:11.5px;color:var(--text3);line-height:1.7;">IKEA, ABB, IBM, and others. Scoping, structuring, and delivering research that drives investment decisions.</div>
+      </div>
+      <div style="background:var(--bg2);padding:28px 24px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#10b981,#f59e0b);"></div>
+        <div style="font-size:36px;font-family:'Sora',sans-serif;font-weight:800;color:#fcd34d;margin-bottom:6px;" data-count="8" data-suffix=" Domains">0 Domains</div>
+        <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">Full BA Artifacts Produced</div>
+        <div style="font-size:11.5px;color:var(--text3);line-height:1.7;">Not summaries. Full end-to-end case studies: RCA, AS-IS/TO-BE, user stories, KPIs, risk registers, dashboards.</div>
+      </div>
+    </div>
+
+    <!-- SVG process swim-lane: What a BA does vs. what I have evidence for -->
+    <div class="rv">
+      <div class="eye" style="margin-bottom:16px;">Competency Evidence Map</div>
+      <div style="overflow-x:auto;">
+        <div style="min-width:760px;">
+          <svg viewBox="0 0 900 280" style="width:100%;display:block;font-family:'Inter',sans-serif;">
+            <!-- Lane backgrounds -->
+            <rect x="0" y="0" width="900" height="90" fill="rgba(124,58,237,.05)" rx="0"/>
+            <rect x="0" y="90" width="900" height="90" fill="rgba(6,182,212,.04)" rx="0"/>
+            <rect x="0" y="180" width="900" height="100" fill="rgba(16,185,129,.04)" rx="0"/>
+            <!-- Lane labels -->
+            <text x="8" y="30" font-size="8" fill="#a78bfa" font-family="JetBrains Mono,monospace" letter-spacing="1">BABOK</text>
+            <text x="8" y="42" font-size="8" fill="#a78bfa" font-family="JetBrains Mono,monospace" letter-spacing="1">PHASE</text>
+            <text x="8" y="125" font-size="8" fill="#67e8f9" font-family="JetBrains Mono,monospace" letter-spacing="1">ARTIFACT</text>
+            <text x="8" y="137" font-size="8" fill="#67e8f9" font-family="JetBrains Mono,monospace" letter-spacing="1">PRODUCED</text>
+            <text x="8" y="210" font-size="8" fill="#6ee7b7" font-family="JetBrains Mono,monospace" letter-spacing="1">EVIDENCE</text>
+            <text x="8" y="222" font-size="8" fill="#6ee7b7" font-family="JetBrains Mono,monospace" letter-spacing="1">IN PORTFOLIO</text>
+            <!-- Lane dividers -->
+            <line x1="75" y1="0" x2="75" y2="280" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+            <line x1="0" y1="90" x2="900" y2="90" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+            <line x1="0" y1="180" x2="900" y2="180" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+
+            <!-- Column 1: Elicitation -->
+            <rect x="90" y="10" width="120" height="65" rx="4" fill="rgba(124,58,237,.2)" stroke="#7c3aed" stroke-width="1.5"/>
+            <text x="150" y="35" text-anchor="middle" font-size="10" font-weight="700" fill="#c4b5fd">Requirement</text>
+            <text x="150" y="49" text-anchor="middle" font-size="10" font-weight="700" fill="#c4b5fd">Elicitation</text>
+            <text x="150" y="65" text-anchor="middle" font-size="8" fill="#a78bfa">BABOK KA 1</text>
+            <rect x="90" y="100" width="120" height="65" rx="4" fill="rgba(124,58,237,.12)" stroke="rgba(124,58,237,.4)" stroke-width="1"/>
+            <text x="150" y="118" text-anchor="middle" font-size="9" fill="#e2e8f0">Stakeholder Register</text>
+            <text x="150" y="132" text-anchor="middle" font-size="9" fill="#e2e8f0">Elicitation Log</text>
+            <text x="150" y="146" text-anchor="middle" font-size="9" fill="#e2e8f0">Interview Notes</text>
+            <rect x="90" y="190" width="120" height="75" rx="4" fill="rgba(16,185,129,.1)" stroke="#10b981" stroke-width="1.5"/>
+            <text x="150" y="210" text-anchor="middle" font-size="9" fill="#6ee7b7">CS05 IKEA Scoping</text>
+            <text x="150" y="225" text-anchor="middle" font-size="9" fill="#6ee7b7">CS08 Elicitation Log</text>
+            <text x="150" y="240" text-anchor="middle" font-size="9" fill="#6ee7b7">(5 stakeholders)</text>
+
+            <!-- Arrow -->
+            <path d="M210 45 L230 45" stroke="#4b5675" stroke-width="1.5" marker-end="url(#sarr)"/>
+            <path d="M210 132 L230 132" stroke="#4b5675" stroke-width="1.5" marker-end="url(#sarr)"/>
+            <path d="M210 226 L230 226" stroke="#4b5675" stroke-width="1.5" marker-end="url(#sarr)"/>
+
+            <!-- Column 2: Analysis -->
+            <rect x="232" y="10" width="120" height="65" rx="4" fill="rgba(6,182,212,.2)" stroke="#06b6d4" stroke-width="1.5"/>
+            <text x="292" y="35" text-anchor="middle" font-size="10" font-weight="700" fill="#7dd3fc">Requirements</text>
+            <text x="292" y="49" text-anchor="middle" font-size="10" font-weight="700" fill="#7dd3fc">Analysis</text>
+            <text x="292" y="65" text-anchor="middle" font-size="8" fill="#67e8f9">BABOK KA 2</text>
+            <rect x="232" y="100" width="120" height="65" rx="4" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.3)" stroke-width="1"/>
+            <text x="292" y="118" text-anchor="middle" font-size="9" fill="#e2e8f0">5-Why RCA</text>
+            <text x="292" y="132" text-anchor="middle" font-size="9" fill="#e2e8f0">Gap Analysis Matrix</text>
+            <text x="292" y="146" text-anchor="middle" font-size="9" fill="#e2e8f0">MoSCoW Prioritization</text>
+            <rect x="232" y="190" width="120" height="75" rx="4" fill="rgba(16,185,129,.1)" stroke="#10b981" stroke-width="1.5"/>
+            <text x="292" y="210" text-anchor="middle" font-size="9" fill="#6ee7b7">All 8 CS — 5-Why</text>
+            <text x="292" y="225" text-anchor="middle" font-size="9" fill="#6ee7b7">Gap matrices in</text>
+            <text x="292" y="240" text-anchor="middle" font-size="9" fill="#6ee7b7">CS01, CS07, CS08</text>
+
+            <path d="M352 45 L372 45" stroke="#4b5675" stroke-width="1.5" marker-end="url(#sarr)"/>
+            <path d="M352 132 L372 132" stroke="#4b5675" stroke-width="1.5" marker-end="url(#sarr)"/>
+            <path d="M352 226 L372 226" stroke="#4b5675" stroke-width="1.5" marker-end="url(#sarr)"/>
+
+            <!-- Column 3: Solution Design -->
+            <rect x="374" y="10" width="120" height="65" rx="4" fill="rgba(16,185,129,.2)" stroke="#10b981" stroke-width="1.5"/>
+            <text x="434" y="35" text-anchor="middle" font-size="10" font-weight="700" fill="#a7f3d0">Solution</text>
+            <text x="434" y="49" text-anchor="middle" font-size="10" font-weight="700" fill="#a7f3d0">Assessment</text>
+            <text x="434" y="65" text-anchor="middle" font-size="8" fill="#6ee7b7">BABOK KA 4</text>
+            <rect x="374" y="100" width="120" height="65" rx="4" fill="rgba(16,185,129,.1)" stroke="rgba(16,185,129,.3)" stroke-width="1"/>
+            <text x="434" y="118" text-anchor="middle" font-size="9" fill="#e2e8f0">AS-IS / TO-BE Flows</text>
+            <text x="434" y="132" text-anchor="middle" font-size="9" fill="#e2e8f0">Process Diagrams</text>
+            <text x="434" y="146" text-anchor="middle" font-size="9" fill="#e2e8f0">BPMN Notation</text>
+            <rect x="374" y="190" width="120" height="75" rx="4" fill="rgba(16,185,129,.1)" stroke="#10b981" stroke-width="1.5"/>
+            <text x="434" y="210" text-anchor="middle" font-size="9" fill="#6ee7b7">All 8 CS have</text>
+            <text x="434" y="225" text-anchor="middle" font-size="9" fill="#6ee7b7">AS-IS → TO-BE</text>
+            <text x="434" y="240" text-anchor="middle" font-size="9" fill="#6ee7b7">comparison</text>
+
+            <path d="M494 45 L514 45" stroke="#4b5675" stroke-width="1.5" marker-end="url(#sarr)"/>
+            <path d="M494 132 L514 132" stroke="#4b5675" stroke-width="1.5" marker-end="url(#sarr)"/>
+            <path d="M494 226 L514 226" stroke="#4b5675" stroke-width="1.5" marker-end="url(#sarr)"/>
+
+            <!-- Column 4: Stakeholder Engagement -->
+            <rect x="516" y="10" width="120" height="65" rx="4" fill="rgba(245,158,11,.18)" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="576" y="35" text-anchor="middle" font-size="10" font-weight="700" fill="#fde68a">Stakeholder</text>
+            <text x="576" y="49" text-anchor="middle" font-size="10" font-weight="700" fill="#fde68a">Engagement</text>
+            <text x="576" y="65" text-anchor="middle" font-size="8" fill="#fcd34d">BABOK KA 5</text>
+            <rect x="516" y="100" width="120" height="65" rx="4" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.3)" stroke-width="1"/>
+            <text x="576" y="118" text-anchor="middle" font-size="9" fill="#e2e8f0">Comms Plans</text>
+            <text x="576" y="132" text-anchor="middle" font-size="9" fill="#e2e8f0">RACI Matrix</text>
+            <text x="576" y="146" text-anchor="middle" font-size="9" fill="#e2e8f0">Influence Maps</text>
+            <rect x="516" y="190" width="120" height="75" rx="4" fill="rgba(16,185,129,.1)" stroke="#10b981" stroke-width="1.5"/>
+            <text x="576" y="210" text-anchor="middle" font-size="9" fill="#6ee7b7">CS08 5-stakeholder</text>
+            <text x="576" y="225" text-anchor="middle" font-size="9" fill="#6ee7b7">comms plan. CS06</text>
+            <text x="576" y="240" text-anchor="middle" font-size="9" fill="#6ee7b7">sprint ceremonies</text>
+
+            <path d="M636 45 L656 45" stroke="#4b5675" stroke-width="1.5" marker-end="url(#sarr)"/>
+            <path d="M636 132 L656 132" stroke="#4b5675" stroke-width="1.5" marker-end="url(#sarr)"/>
+            <path d="M636 226 L656 226" stroke="#4b5675" stroke-width="1.5" marker-end="url(#sarr)"/>
+
+            <!-- Column 5: Performance -->
+            <rect x="658" y="10" width="120" height="65" rx="4" fill="rgba(244,63,94,.18)" stroke="#f43f5e" stroke-width="1.5"/>
+            <text x="718" y="35" text-anchor="middle" font-size="10" font-weight="700" fill="#fecdd3">Performance</text>
+            <text x="718" y="49" text-anchor="middle" font-size="10" font-weight="700" fill="#fecdd3">Measurement</text>
+            <text x="718" y="65" text-anchor="middle" font-size="8" fill="#fda4af">BABOK KA 6</text>
+            <rect x="658" y="100" width="120" height="65" rx="4" fill="rgba(244,63,94,.08)" stroke="rgba(244,63,94,.3)" stroke-width="1"/>
+            <text x="718" y="118" text-anchor="middle" font-size="9" fill="#e2e8f0">KPI Frameworks</text>
+            <text x="718" y="132" text-anchor="middle" font-size="9" fill="#e2e8f0">Dashboard Specs</text>
+            <text x="718" y="146" text-anchor="middle" font-size="9" fill="#e2e8f0">Benefit Realization</text>
+            <rect x="658" y="190" width="120" height="75" rx="4" fill="rgba(16,185,129,.1)" stroke="#10b981" stroke-width="1.5"/>
+            <text x="718" y="210" text-anchor="middle" font-size="9" fill="#6ee7b7">35+ KPIs defined.</text>
+            <text x="718" y="225" text-anchor="middle" font-size="9" fill="#6ee7b7">4-page Power BI</text>
+            <text x="718" y="240" text-anchor="middle" font-size="9" fill="#6ee7b7">wireframes (CS08)</text>
+
+            <!-- Arrow marker def -->
+            <defs>
+              <marker id="sarr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <polygon points="0 0, 6 3, 0 6" fill="#4b5675"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+      <div style="display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:7px;font-size:11px;color:var(--text3);"><span style="width:10px;height:10px;background:rgba(16,185,129,.3);border:1px solid #10b981;display:inline-block;"></span>Evidence in this portfolio</div>
+        <div style="display:flex;align-items:center;gap:7px;font-size:11px;color:var(--text3);"><span style="width:10px;height:10px;background:rgba(124,58,237,.2);border:1px solid #7c3aed;display:inline-block;"></span>BABOK knowledge area</div>
+        <div style="display:flex;align-items:center;gap:7px;font-size:11px;color:var(--text3);"><span style="width:10px;height:10px;background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.4);display:inline-block;"></span>Artifact type</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -2500,7 +3137,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
         <div class="ft-tag">Business Analyst · Market Research · KPI-Driven Decision Support · Actively Learning AI</div>
         <div class="ft-contact">
           <div class="ft-ci"><span>💼</span><a href="https://www.linkedin.com/in/tejal10mugul/" target="_blank">linkedin.com/in/tejal10mugul</a></div>
-          <div class="ft-ci"><span>✉️</span><a href="/cdn-cgi/l/email-protection#81f5e4ebe0edb0b1ecf4e6f4edc1e6ece0e8edafe2eeec"><span class="__cf_email__" data-cfemail="6115040b000d50510c1406140d21060c00080d4f020e0c">[email&#160;protected]</span></a></div>
+          <div class="ft-ci"><span>✉️</span><a href="mailto:tejalmugul10@gmail.com">tejalmugul10@gmail.com</a></div>
           <div class="ft-ci"><span>📞</span><a href="tel:+918698741555">+91 8698741555</a></div>
         </div>
       </div>
@@ -2508,7 +3145,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
         <a href="https://tejal10mugul-gif.github.io/tejal-portfolio/">Main Portfolio</a>
         <a href="https://tejal10mugul-gif.github.io/tejal-portfolio/resume.html" target="_blank">Resume</a>
         <a href="https://www.linkedin.com/in/tejal10mugul/" target="_blank">LinkedIn</a>
-        <a href="/cdn-cgi/l/email-protection#dbafbeb1bab7eaebb6aebcaeb79bbcb6bab2b7f5b8b4b6">Email</a>
+        <a href="mailto:tejalmugul10@gmail.com">Email</a>
         <a href="#home">↑ Top</a>
       </div>
     </div>
@@ -2516,7 +3153,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:44px 0;}
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+// ── NAV ──
 function toggleNav(){document.getElementById('ndrop').classList.toggle('open');}
 function toggleTheme(){
   var isLight=document.body.classList.toggle('light');
@@ -2531,19 +3169,156 @@ function toggleTheme(){
   }
 })();
 document.addEventListener('click',function(e){var d=document.getElementById('ndrop');if(d&&!d.contains(e.target))d.classList.remove('open');});
-// Reveal on scroll — robust version
+
+// ── SCROLL REVEAL ──
 (function(){
   var els=document.querySelectorAll('.rv');
   function showAll(){els.forEach(function(el){el.classList.add('visible');});}
-  // If IntersectionObserver not supported, show everything
   if(!window.IntersectionObserver){showAll();return;}
   var obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        // Trigger skill bar animations when they come into view
+        var bars=e.target.querySelectorAll('.skillrow');
+        bars.forEach(function(b){b.classList.add('in');});
+        obs.unobserve(e.target);
+      }
+    });
   },{threshold:0,rootMargin:'0px 0px 0px 0px'});
   els.forEach(function(el){obs.observe(el);});
-  // Fallback: force-show everything after 1s in case observer misses
   setTimeout(showAll,1000);
 })();
+
+// ── ANIMATED COUNTERS ──
+(function(){
+  function animateCounter(el){
+    var target=parseInt(el.getAttribute('data-count'));
+    var suffix=el.getAttribute('data-suffix')||'';
+    var duration=1400;
+    var start=null;
+    function step(ts){
+      if(!start)start=ts;
+      var p=Math.min((ts-start)/duration,1);
+      var ease=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
+      el.textContent=Math.floor(ease*target)+suffix;
+      if(p<1)requestAnimationFrame(step);
+      else el.textContent=target+suffix;
+    }
+    requestAnimationFrame(step);
+  }
+  var counters=document.querySelectorAll('[data-count]');
+  if(!counters.length)return;
+  if(!window.IntersectionObserver){
+    counters.forEach(function(el){animateCounter(el);});return;
+  }
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){animateCounter(e.target);obs.unobserve(e.target);}
+    });
+  },{threshold:.3});
+  counters.forEach(function(el){obs.observe(el);});
+})();
+
+// ── LIFECYCLE PHASE TOGGLE ──
+function togglePhase(n){
+  var el=document.getElementById('lce'+n);
+  var parent=el.closest('.lci');
+  if(!el)return;
+  var open=el.style.display!=='none';
+  // Close all others first
+  for(var i=1;i<=6;i++){
+    var e=document.getElementById('lce'+i);
+    if(e){e.style.display='none';}
+    var p=document.querySelector('[data-phase="'+i+'"]');
+    if(p)p.style.boxShadow='';
+  }
+  if(!open){
+    el.style.display='block';
+    if(parent)parent.style.boxShadow='0 0 0 2px rgba(6,182,212,.4),0 8px 24px rgba(0,0,0,.3)';
+  }
+}
+
+// ── DONUT CHART INTERACTION ──
+function highlightDonut(label){
+  var segs=document.querySelectorAll('.donut-seg');
+  segs.forEach(function(s){
+    if(s.getAttribute('data-label')===label){
+      s.style.filter='drop-shadow(0 0 8px '+s.getAttribute('stroke')+')';
+      s.style.opacity='1';
+      document.getElementById('donut-center-n').textContent=s.getAttribute('data-pct')+'%';
+      document.getElementById('donut-center-l').textContent=label.toUpperCase();
+    } else {
+      s.style.opacity='.25';
+    }
+  });
+}
+function resetDonut(){
+  var segs=document.querySelectorAll('.donut-seg');
+  segs.forEach(function(s){s.style.opacity='1';s.style.filter='';});
+  document.getElementById('donut-center-n').textContent='8';
+  document.getElementById('donut-center-l').textContent='CASE STUDIES';
+}
+
+// ── ACTIVE NAV HIGHLIGHT on scroll ──
+(function(){
+  var sections=document.querySelectorAll('section[id],div[id]');
+  var navLinks=document.querySelectorAll('.nmid a');
+  window.addEventListener('scroll',function(){
+    var scroll=window.scrollY+120;
+    sections.forEach(function(sec){
+      if(sec.offsetTop<=scroll&&sec.offsetTop+sec.offsetHeight>scroll){
+        navLinks.forEach(function(a){
+          a.style.color=a.getAttribute('href')==='#'+sec.id?'var(--cyan)':'';
+        });
+      }
+    });
+  },{passive:true});
+})();
+
+// ── CASE STUDY CARD HOVER GLOW ──
+document.querySelectorAll('.csc').forEach(function(c){
+  c.addEventListener('mouseenter',function(){
+    this.style.boxShadow='0 0 0 1px rgba(124,58,237,.3),0 16px 48px rgba(124,58,237,.12)';
+  });
+  c.addEventListener('mouseleave',function(){
+    this.style.boxShadow='';
+  });
+});
+
+// ── PROGRESS BAR ──
+(function(){
+  var bar=document.getElementById('progress-bar');
+  var btn=document.getElementById('back-top');
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(window.scrollY/(h.scrollHeight-h.clientHeight))*100;
+    if(bar)bar.style.width=pct+'%';
+    if(btn){btn.classList.toggle('visible',window.scrollY>400);}
+  },{passive:true});
+})();
+
+// ── SKILL BAR TRIGGER — fire for any visible on load ──
+(function(){
+  setTimeout(function(){
+    document.querySelectorAll('.skillrow').forEach(function(r){
+      var rect=r.getBoundingClientRect();
+      if(rect.top<window.innerHeight)r.classList.add('in');
+    });
+  },800);
+})();
+
+// ── DASHBOARD TAB (already defined inline — safety wrapper) ──
+if(typeof showDash==='undefined'){
+  window.showDash=function(n,btn){
+    for(var i=1;i<=4;i++){
+      var d=document.getElementById('dash'+i);
+      var t=document.getElementById('dtab'+i);
+      if(d)d.style.display=(i===n)?'block':'none';
+      if(t){t.style.background=i===n?'rgba(124,58,237,.18)':'var(--bg4)';t.style.color=i===n?'#a78bfa':'var(--text3)';}
+    }
+  };
+}
 </script>
 </body>
 </html>
