@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tejal Mugul — Intelligence Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#0A0E14; --panel:#10161F; --panel-2:#141C27; --grid:#1F2A38;
+    --teal:#3DDBC4; --amber:#FF9F45; --red:#FF6B5E; --text:#EAF2F5; --text-mute:#8A97A6;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; min-height:100vh; }
+  .wrap{max-width:1040px; margin:0 auto; padding:0 24px;}
+  a{color:var(--teal);}
+
+  /* ===== TOP NAV ===== */
+  .topnav{
+    position:sticky; top:0; z-index:100;
+    background:rgba(10,14,20,0.92); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--grid);
+  }
+  .topnav-inner{
+    max-width:1040px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .brand{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:15px; white-space:nowrap; }
+  .brand span{ color:var(--teal); }
+  .navtabs{ display:flex; gap:6px; flex-wrap:wrap; }
+  .navtab{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.03em;
+    background:transparent; color:var(--text-mute); border:1px solid var(--grid);
+    padding:7px 12px; border-radius:4px; cursor:pointer; transition:all .15s ease; white-space:nowrap;
+  }
+  .navtab:hover{ color:var(--text); border-color:var(--teal); }
+  .navtab.active{ background:rgba(61,219,196,0.12); border-color:var(--teal); color:var(--teal); }
+
+  /* ===== SECTIONS ===== */
+  .tool-section{ display:none; padding:36px 0 20px; }
+  .tool-section.active{ display:block; }
+
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--teal); margin-bottom:14px; }
+  h1{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:clamp(26px, 4.2vw, 42px); line-height:1.06; letter-spacing:-0.01em; }
+  h2{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:19px; }
+  .sub{ margin-top:14px; color:var(--text-mute); font-size:15px; max-width:660px; line-height:1.6; }
+
+  .disclosure{
+    margin-top:18px; font-size:12.5px; color:var(--text-mute); background:var(--panel-2);
+    border:1px solid var(--grid); border-left:3px solid var(--amber); padding:12px 14px; border-radius:4px; line-height:1.6;
+  }
+
+  .panel{ background:var(--panel); border:1px solid var(--grid); border-radius:6px; padding:26px; margin-top:20px; }
+  .panel-head{ display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:10px; margin-bottom:18px; }
+  .panel-title{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:17px; }
+  .panel-note{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--text-mute); }
+  .panel-desc{ font-size:13px; color:var(--text-mute); margin-bottom:18px; line-height:1.55; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; }
+  @media (max-width:720px){ .stat-row{grid-template-columns:1fr 1fr;} }
+  .stat-card{ background:var(--panel-2); border:1px solid var(--grid); border-radius:5px; padding:14px 16px; }
+  .stat-card .label{ font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.07em; text-transform:uppercase; color:var(--text-mute); margin-bottom:6px; }
+  .stat-card .value{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:20px; }
+  .stat-card .value.pos{ color:var(--teal); }
+  .stat-card .foot{ margin-top:3px; font-size:11px; color:var(--text-mute); }
+
+  canvas{max-height:340px;}
+  .caption{ margin-top:14px; font-size:12px; color:var(--text-mute); line-height:1.6; }
+  .sources{ margin-top:14px; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--text-mute); line-height:1.8; }
+
+  /* tabs (dashboard regions) */
+  .tabs{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px; }
+  .tab{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; background:transparent; color:var(--text-mute);
+    border:1px solid var(--grid); padding:8px 14px; border-radius:4px; cursor:pointer; transition:all .15s ease;
+  }
+  .tab:hover{ border-color:var(--teal); color:var(--text); }
+  .tab.active{ background:rgba(61,219,196,0.12); border-color:var(--teal); color:var(--teal); }
+
+  /* ticker */
+  .ticker-wrap{ background:var(--panel-2); border:1px solid var(--grid); border-radius:5px; overflow:hidden; white-space:nowrap; padding:9px 0; margin-top:18px; }
+  .ticker{ display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:0.02em; animation:scrollTicker 32s linear infinite; color:var(--text-mute); }
+  .ticker span{ margin:0 28px; }
+  .ticker b{ color:var(--teal); font-weight:600; }
+  .ticker .up{ color:var(--teal); } .ticker .down{ color:var(--red); }
+  @keyframes scrollTicker{ 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+  /* calculator */
+  .method-toggle{ display:flex; gap:8px; margin-bottom:22px; flex-wrap:wrap; }
+  .method-btn{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; background:transparent; color:var(--text-mute); border:1px solid var(--grid); padding:9px 16px; border-radius:4px; cursor:pointer; transition:all .15s ease; }
+  .method-btn.active{ background:rgba(61,219,196,0.12); border-color:var(--teal); color:var(--teal); }
+  .method-btn:hover{ color:var(--text); border-color:var(--teal); }
+  .scenario-row{ display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap; align-items:center; }
+  .scenario-btn{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; background:var(--panel-2); color:var(--text-mute); border:1px solid var(--grid); padding:6px 12px; border-radius:4px; cursor:pointer; }
+  .scenario-btn.active.cons{ border-color:var(--red); color:var(--red); background:rgba(255,107,94,0.1); }
+  .scenario-btn.active.base{ border-color:var(--teal); color:var(--teal); background:rgba(61,219,196,0.1); }
+  .scenario-btn.active.agg{ border-color:var(--amber); color:var(--amber); background:rgba(255,159,69,0.1); }
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:640px){ .grid2{grid-template-columns:1fr;} }
+  .field{ margin-bottom:16px; }
+  .field label{ display:block; font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; color:var(--text-mute); margin-bottom:7px; }
+  .field input[type="text"], .field input[type="number"]{ width:100%; background:var(--panel-2); border:1px solid var(--grid); border-radius:4px; color:var(--text); font-family:'IBM Plex Mono', monospace; font-size:14px; padding:10px 12px; }
+  .field input:focus{ outline:none; border-color:var(--teal); }
+  .slider-row{ display:flex; align-items:center; gap:12px; }
+  .slider-row input[type="range"]{ flex:1; accent-color:var(--teal); }
+  .slider-val{ font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--teal); min-width:52px; text-align:right; }
+  .funnel-row{ margin-bottom:14px; }
+  .funnel-label{ display:flex; justify-content:space-between; font-family:'IBM Plex Mono', monospace; font-size:12px; margin-bottom:6px; }
+  .funnel-label .name{ color:var(--text-mute); letter-spacing:0.05em; }
+  .funnel-label .val{ color:var(--text); font-weight:600; }
+  .bar-track{ background:var(--panel-2); border:1px solid var(--grid); border-radius:4px; height:34px; overflow:hidden; }
+  .bar-fill{ height:100%; border-radius:3px; transition:width .4s cubic-bezier(.4,0,.2,1); }
+  .bar-fill.tam{ background:linear-gradient(90deg, #1F5A54, #3DDBC4); }
+  .bar-fill.sam{ background:linear-gradient(90deg, #6b4f1f, #FF9F45); }
+  .bar-fill.som{ background:linear-gradient(90deg, #7a2e28, #FF6B5E); }
+  .narrative{ margin-top:22px; background:var(--panel-2); border-left:3px solid var(--teal); padding:16px 18px; font-size:13.5px; line-height:1.65; color:var(--text); }
+  .narrative b{ color:var(--teal); }
+  .methodology-note{ margin-top:22px; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--text-mute); line-height:1.8; }
+  .methodology-note b{ color:var(--text); }
+
+  /* teardown */
+  table{ width:100%; border-collapse:collapse; margin-top:6px; font-size:13px; }
+  th{ text-align:left; font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-mute); padding:8px 10px; border-bottom:1px solid var(--grid); }
+  td{ padding:10px 10px; border-bottom:1px solid var(--grid); color:var(--text); }
+  tr.highlight td{ background:rgba(61,219,196,0.06); }
+  .badge{ font-family:'IBM Plex Mono', monospace; font-size:10px; padding:2px 7px; border-radius:3px; }
+  .badge.tata{ background:rgba(61,219,196,0.15); color:var(--teal); border:1px solid rgba(61,219,196,0.4); }
+  .badge.rival{ background:rgba(255,159,69,0.12); color:var(--amber); border:1px solid rgba(255,159,69,0.35); }
+  .forces-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:640px){ .forces-grid{grid-template-columns:1fr;} }
+  .force{ background:var(--panel-2); border:1px solid var(--grid); border-radius:5px; padding:14px 16px; }
+  .force .fname{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; color:var(--amber); margin-bottom:6px; }
+  .force .flevel{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:14px; margin-bottom:6px; }
+  .force .fdesc{ font-size:12.5px; color:var(--text-mute); line-height:1.55; }
+  .whitespace-callout{ margin-top:6px; background:linear-gradient(135deg, rgba(61,219,196,0.08), rgba(255,159,69,0.05)); border:1px solid rgba(61,219,196,0.3); border-radius:5px; padding:18px 20px; }
+  .whitespace-callout .tag{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--teal); margin-bottom:8px; }
+  .whitespace-callout p{ font-size:13.5px; line-height:1.65; color:var(--text); }
+
+  /* case study */
+  .step-indicator{ display:flex; gap:8px; margin-bottom:22px; }
+  .step-dot{ flex:1; height:4px; border-radius:2px; background:var(--grid); }
+  .step-dot.done{ background:var(--teal); }
+  .step-dot.current{ background:var(--amber); }
+  .case-q{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:18px; margin-bottom:16px; }
+  .case-options{ display:flex; flex-direction:column; gap:10px; }
+  .case-option{
+    text-align:left; background:var(--panel-2); border:1px solid var(--grid); border-radius:5px;
+    padding:14px 16px; color:var(--text); font-family:'Inter', sans-serif; font-size:14px; cursor:pointer; transition:all .15s ease;
+  }
+  .case-option:hover{ border-color:var(--teal); }
+  .case-option.picked{ border-color:var(--teal); background:rgba(61,219,196,0.08); }
+  .case-option:disabled{ cursor:default; opacity:0.75; }
+  .reveal-panel{
+    margin-top:20px; background:var(--panel-2); border-left:3px solid var(--amber);
+    padding:16px 18px; border-radius:4px; font-size:13.5px; line-height:1.65; display:none;
+  }
+  .reveal-panel.show{ display:block; }
+  .reveal-panel .tag{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); margin-bottom:8px; }
+  .case-continue{
+    margin-top:16px; font-family:'IBM Plex Mono', monospace; font-size:12.5px;
+    background:rgba(61,219,196,0.12); border:1px solid var(--teal); color:var(--teal);
+    padding:10px 18px; border-radius:4px; cursor:pointer; display:none;
+  }
+  .case-continue.show{ display:inline-block; }
+
+  /* dossier scope (independent palette) */
+  .dossier-scope{
+    --ink:#0E1B2A; --paper:#F1ECDE; --paper-dim:#E4DDC8; --stamp:#A4402B; --steel:#5C7A93;
+    --gold:#C08A3E; --dtext:#1B2430; --dmute:#8A97A6;
+  }
+  .dossier-scope .cover{ border:1px solid rgba(241,236,222,0.25); border-radius:2px; padding:32px 28px 26px; position:relative; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); }
+  .dossier-scope .cover::before{ content:""; position:absolute; inset:8px; border:1px solid rgba(241,236,222,0.12); pointer-events:none; }
+  .dossier-scope .case-no{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.18em; color:var(--gold); text-transform:uppercase; margin-bottom:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+  .dossier-scope .role{ font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.08em; color:var(--steel); margin-top:10px; text-transform:uppercase; }
+  .dossier-scope .headline-stats{ margin-top:24px; padding-top:20px; border-top:1px dashed rgba(241,236,222,0.25); display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; }
+  .dossier-scope .dstat b{ display:block; font-family:'Fraunces', serif; font-size:24px; color:var(--gold); font-weight:600; }
+  .dossier-scope .dstat span{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.05em; color:rgba(241,236,222,0.55); text-transform:uppercase; }
+  .dossier-scope .dgrid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; margin-top:20px; }
+  @media (max-width:720px){ .dossier-scope .dgrid{grid-template-columns:1fr;} }
+  .dossier-scope .dfile{ background:var(--paper); color:var(--dtext); border-radius:2px; padding:22px 22px 20px; position:relative; cursor:pointer; overflow:hidden; box-shadow:0 1px 0 rgba(255,255,255,0.06) inset, 0 8px 24px rgba(0,0,0,0.25); transition:transform 0.25s ease, box-shadow 0.25s ease; }
+  .dossier-scope .dfile:hover{ transform:translateY(-3px); }
+  .dossier-scope .dfile-top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
+  .dossier-scope .file-no{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.1em; color:var(--steel); text-transform:uppercase; }
+  .dossier-scope .dstatus{ font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; padding:2px 7px; border:1px solid #5A6472; color:#5A6472; transition:all 0.2s ease; }
+  .dossier-scope .dfile.open .dstatus{ color:#2E6E4F; border-color:#2E6E4F; }
+  .dossier-scope .skill-name{ font-family:'Fraunces', serif; font-weight:600; font-size:19px; line-height:1.15; margin-bottom:12px; }
+  .dossier-scope .impact-zone{ position:relative; min-height:58px; }
+  .dossier-scope .redaction{ position:absolute; inset:0; background:var(--dtext); background-image:repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 6px, transparent 6px 12px); display:flex; align-items:center; padding:0 12px; font-family:'IBM Plex Mono', monospace; font-size:11px; color:rgba(241,236,222,0.35); letter-spacing:0.06em; transform-origin:left center; transition:transform 0.5s cubic-bezier(.7,0,.3,1); z-index:2; }
+  .dossier-scope .dfile.open .redaction{ transform:scaleX(0); }
+  .dossier-scope .impact-text{ font-size:14px; line-height:1.5; color:var(--dtext); }
+  .dossier-scope .dstamp{ position:absolute; right:-6px; top:-4px; font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:12px; letter-spacing:0.12em; color:var(--stamp); border:2px solid var(--stamp); padding:3px 8px; transform:rotate(8deg) scale(0); opacity:0; transition:transform 0.35s cubic-bezier(.34,1.56,.64,1) 0.25s, opacity 0.2s ease 0.25s; pointer-events:none; }
+  .dossier-scope .dfile.open .dstamp{ transform:rotate(8deg) scale(1); opacity:1; }
+  .dossier-scope .tap-hint{ margin-top:12px; font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--steel); }
+  .dossier-scope .dfile.open .tap-hint{ display:none; }
+
+  /* footer */
+  .sitefooter{ margin-top:48px; padding:24px; border-top:1px solid var(--grid); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--text-mute); max-width:1040px; margin-left:auto; margin-right:auto; }
+  .sitefooter a{ color:var(--teal); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="brand">TEJAL MUGUL <span>· Intelligence Portfolio</span></div>
+    <div class="navtabs" id="navtabs">
+      <button class="navtab active" data-target="overview">Overview</button>
+      <button class="navtab" data-target="dossier">Impact Dossier</button>
+      <button class="navtab" data-target="dashboard">Market Dashboard</button>
+      <button class="navtab" data-target="calculator">Sizing Calculator</button>
+      <button class="navtab" data-target="teardown">CI Teardown</button>
+      <button class="navtab" data-target="casestudy">Case Study</button>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ===================== OVERVIEW ===================== -->
+  <section class="tool-section active" id="tool-overview">
+    <div class="eyebrow">Working Demonstrations, Not Descriptions</div>
+    <h1>Five things I built to show the work</h1>
+    <p class="sub">Not five reskins of the same resume — five different ways of proving the same claim: competitive intelligence, market sizing, and pricing strategy, done live rather than described. Click a tab above, or a card below.</p>
+
+    <div class="dgrid" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:26px;">
+      <div class="panel" style="cursor:pointer; margin-top:0;" onclick="showTool('dossier')">
+        <div class="panel-note" style="color:var(--teal);">TRACK RECORD</div>
+        <h2 style="margin-top:8px;">Impact Dossier</h2>
+        <p class="panel-desc" style="margin-top:8px; margin-bottom:0;">Eight real engagements, sealed until you click. $400K+ in Fortune 500 work.</p>
+      </div>
+      <div class="panel" style="cursor:pointer; margin-top:0;" onclick="showTool('dashboard')">
+        <div class="panel-note" style="color:var(--teal);">LIVE BUILD</div>
+        <h2 style="margin-top:8px;">Global EV Market Intelligence</h2>
+        <p class="panel-desc" style="margin-top:8px; margin-bottom:0;">A working dashboard on sourced 2025 EV pricing &amp; adoption data.</p>
+      </div>
+      <div class="panel" style="cursor:pointer; margin-top:0;" onclick="showTool('calculator')">
+        <div class="panel-note" style="color:var(--teal);">LIVE BUILD</div>
+        <h2 style="margin-top:8px;">TAM · SAM · SOM Calculator</h2>
+        <p class="panel-desc" style="margin-top:8px; margin-bottom:0;">Type in any market, watch the real sizing methodology run.</p>
+      </div>
+      <div class="panel" style="cursor:pointer; margin-top:0;" onclick="showTool('teardown')">
+        <div class="panel-note" style="color:var(--teal);">CLIENT-STYLE DELIVERABLE</div>
+        <h2 style="margin-top:8px;">CI Teardown: Tata Motors</h2>
+        <p class="panel-desc" style="margin-top:8px; margin-bottom:0;">Positioning, pricing signals, and whitespace on a real public company.</p>
+      </div>
+    </div>
+    <div class="panel" style="cursor:pointer;" onclick="showTool('casestudy')">
+      <div class="panel-note" style="color:var(--teal);">INTERACTIVE</div>
+      <h2 style="margin-top:8px;">Case Study: India Market Entry</h2>
+      <p class="panel-desc" style="margin-top:8px; margin-bottom:0;">Make the calls at each decision point, then see how I actually approached the real engagement.</p>
+    </div>
+  </section>
+
+  <!-- ===================== DOSSIER ===================== -->
+  <section class="tool-section" id="tool-dossier">
+    <div class="dossier-scope">
+      <div class="eyebrow">Track Record</div>
+      <div class="cover">
+        <div class="case-no">
+          <span>Ref. TM / CI-STRAT / 2026</span>
+          <span>Classification: For Hiring Review Only</span>
+        </div>
+        <h1>Impact Dossier</h1>
+        <div class="role">Competitive Intelligence &amp; Strategy Consulting · Business Analysis</div>
+        <div class="headline-stats">
+          <div class="dstat"><b>$400K+</b><span>Consulting Impact</span></div>
+          <div class="dstat"><b>Fortune 500</b><span>Client Trust</span></div>
+          <div class="dstat"><b>5</b><span>Sectors, 5 Regions</span></div>
+        </div>
+      </div>
+      <p class="sub">Click any file below to declassify the result behind the skill.</p>
+      <div class="dgrid" id="dossierGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===================== DASHBOARD ===================== -->
+  <section class="tool-section" id="tool-dashboard">
+    <div class="eyebrow">Live Intelligence Build — Pricing &amp; Adoption</div>
+    <h1>Global EV Market Intelligence</h1>
+    <p class="sub">A working dashboard, not a slide about one — sourced figures, regional cuts, and an OEM-level competitive read.</p>
+    <div class="ticker-wrap"><div class="ticker" id="ticker"></div></div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">EV Share of New Car Sales — by Region (2025)</div>
+        <div class="panel-note">Source: IEA Global EV Outlook 2026 · CAAM · SMMT · Ember</div>
+      </div>
+      <div class="tabs" id="regionTabs"></div>
+      <div class="stat-row" id="dashStatRow"></div>
+      <canvas id="regionChart"></canvas>
+      <p class="caption" id="regionCaption"></p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">Global OEM Volume Leaders — 2025</div>
+        <div class="panel-note">Source: BYD &amp; Tesla company reports</div>
+      </div>
+      <canvas id="oemChart"></canvas>
+      <p class="caption">Note: BYD includes all NEVs (BEV+PHEV); Tesla is BEV deliveries only — not like-for-like. "Other OEMs" is derived (20.7M total less BYD and Tesla).</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Pricing Signal</div>
+      <p class="caption" style="font-size:13px; color:var(--text); margin-top:10px;">Battery-electric average pricing fell through 2024–25 on lower battery costs — in China, roughly two-thirds of EVs sold at or below comparable combustion prices, even before incentives. That convergence is the biggest driver behind emerging-market EV share overtaking several advanced economies in 2025.</p>
+      <p class="sources">Sources: IEA Global EV Outlook 2026 · Ember · Benchmark Mineral Intelligence · Visual Capitalist (IEA/Ember) · Kelley Blue Book · ACEA</p>
+    </div>
+  </section>
+
+  <!-- ===================== CALCULATOR ===================== -->
+  <section class="tool-section" id="tool-calculator">
+    <div class="eyebrow">Interactive Sizing Tool</div>
+    <h1>TAM · SAM · SOM Calculator</h1>
+    <p class="sub">Choose top-down or bottom-up and this runs the same market-sizing logic I'd build for a client. <em style="color:var(--text-mute); font-style:normal;">Preloaded with the India furniture rental market — the category behind my 6-city Go/No-Go market entry engagement.</em></p>
+
+    <div class="panel">
+      <div class="panel-title">1. Define the market</div>
+      <p class="panel-desc">Name the industry and geography, then choose a method — the two should roughly triangulate if assumptions are sound.</p>
+      <div class="grid2">
+        <div class="field"><label>Industry / Product</label><input type="text" id="industry" value="Furniture Rental & Subscription" /></div>
+        <div class="field"><label>Target Geography</label><input type="text" id="geography" value="India — 6 metro cities" /></div>
+      </div>
+      <div class="method-toggle">
+        <button class="method-btn active" data-method="topdown">Top-Down</button>
+        <button class="method-btn" data-method="bottomup">Bottom-Up</button>
+      </div>
+      <div class="scenario-row">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-mute);">SCENARIO:</span>
+        <button class="scenario-btn active cons" data-scenario="0.6">Conservative</button>
+        <button class="scenario-btn" data-scenario="1.0">Base</button>
+        <button class="scenario-btn" data-scenario="1.5">Aggressive</button>
+      </div>
+      <div id="inputsTopdown">
+        <div class="grid2">
+          <div class="field"><label>Total Market Value — TAM ($M)</label><input type="number" id="td_tam" value="4500" /></div>
+          <div class="field"><label>3-Year Market CAGR (%)</label><input type="number" id="td_cagr" value="18" /></div>
+        </div>
+        <div class="field"><label>Serviceable % of TAM</label>
+          <div class="slider-row"><input type="range" id="td_serviceable" min="1" max="100" value="35" /><span class="slider-val" id="td_serviceable_val">35%</span></div>
+        </div>
+        <div class="field"><label>Obtainable % of SAM</label>
+          <div class="slider-row"><input type="range" id="td_obtainable" min="0.5" max="30" value="4" step="0.5" /><span class="slider-val" id="td_obtainable_val">4%</span></div>
+        </div>
+      </div>
+      <div id="inputsBottomup" style="display:none;">
+        <div class="grid2">
+          <div class="field"><label>Total Customer Universe (#)</label><input type="number" id="bu_universe" value="18000" /></div>
+          <div class="field"><label>Reachable Customers via GTM (#)</label><input type="number" id="bu_reachable" value="4200" /></div>
+        </div>
+        <div class="grid2">
+          <div class="field"><label>Avg. Annual Revenue per Customer ($)</label><input type="number" id="bu_arpc" value="18000" /></div>
+          <div class="field"><label>3-Year Customer CAGR (%)</label><input type="number" id="bu_cagr" value="22" /></div>
+        </div>
+        <div class="field"><label>Realistic Penetration of Reachable Base (%)</label>
+          <div class="slider-row"><input type="range" id="bu_penetration" min="0.5" max="40" value="8" step="0.5" /><span class="slider-val" id="bu_penetration_val">8%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">2. The funnel</div>
+      <p class="panel-desc">TAM narrows to SAM narrows to SOM — each step driven by an assumption above.</p>
+      <div id="funnel"></div>
+      <div class="stat-row" id="calcStatRow"></div>
+      <div class="narrative" id="calcNarrative"></div>
+    </div>
+
+    <div class="methodology-note">
+      <b>Frameworks applied:</b> Top-Down &amp; Bottom-Up sizing · CAGR forecasting · Scenario &amp; sensitivity analysis.<br><br>
+      <b>Note on defaults:</b> India furniture rental market sizing varies widely by research firm ($1.5B–$7B depending on scope/year) — the preloaded TAM is a working first-pass estimate. Overwrite any field with your own researched numbers.
+    </div>
+  </section>
+
+  <!-- ===================== TEARDOWN ===================== -->
+  <section class="tool-section" id="tool-teardown">
+    <div class="eyebrow">Competitive Intelligence — Client-Style Deliverable</div>
+    <h1>Tata Motors: Defending the India EV Lead</h1>
+    <p class="sub">A full teardown of one real, public company — positioning, pricing signals, and whitespace.</p>
+    <div class="disclosure">Independent analysis from public reporting (news, dealer/analyst coverage, listed spec/price aggregators) as of July 2026 — not confidential or client work, and not affiliated with or endorsed by Tata Motors.</div>
+
+    <div class="panel">
+      <div class="panel-head"><div class="panel-title">Company Snapshot</div><div class="panel-note">As of Jul 2026</div></div>
+      <div class="stat-row">
+        <div class="stat-card"><div class="label">PV Market Share</div><div class="value">13–14%</div><div class="foot">target 18–20% by FY30</div></div>
+        <div class="stat-card"><div class="label">EV Share Target</div><div class="value">40–45%</div><div class="foot">medium-term, defending lead</div></div>
+        <div class="stat-card"><div class="label">EV Capex</div><div class="value">₹16–18K Cr</div><div class="foot">through FY30</div></div>
+        <div class="stat-card"><div class="label">EV EBITDA</div><div class="value pos">Breakeven</div><div class="foot">ahead of FY26 target</div></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head"><div class="panel-title">Pricing Signal Map — India Electric SUV Segment</div><div class="panel-note">Ex-showroom, ₹ Lakh</div></div>
+      <p class="panel-desc">Where each competitor's starting price lands tells you where the segment is clustering — and where it isn't.</p>
+      <canvas id="pricingChart"></canvas>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Competitive Set</div>
+      <table><thead><tr><th>Model</th><th>Maker</th><th>Starting Price</th><th>Read</th></tr></thead><tbody id="compTable"></tbody></table>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Whitespace</div>
+      <div class="whitespace-callout">
+        <div class="tag">The gap worth watching</div>
+        <p>The ₹17–19 lakh mid-size electric SUV band has gone from Tata-led to the most contested shelf in the market — Curvv EV, BE 6, Creta Electric, and MG ZS EV all start within roughly ₹1.5 lakh of each other. Tata's response is to leapfrog upward with the Sierra.ev into the ₹20–30 lakh premium band rather than fight on price in the middle. Two open questions worth a client conversation: does stepping up in price cede the mid-size battleground to Mahindra and Hyundai, and does the entry-level stronghold (Nexon EV, Punch EV, Tiago EV) hold enough volume to fund the premium push if it takes longer than planned to pay off.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Porter's Five Forces — India EV Passenger Vehicles</div>
+      <div class="forces-grid" style="margin-top:14px;">
+        <div class="force"><div class="fname">Rivalry</div><div class="flevel">High &amp; rising</div><div class="fdesc">Mahindra, Hyundai, MG, and Maruti have all launched competing mid-size EV SUVs within months of each other.</div></div>
+        <div class="force"><div class="fname">New Entrants</div><div class="flevel">Moderate</div><div class="fdesc">Capital intensity and charging-ecosystem needs are real barriers, but global entrants keep testing the market.</div></div>
+        <div class="force"><div class="fname">Buyer Power</div><div class="flevel">Rising</div><div class="fdesc">Price transparency and near-identical specs push buyers to shop on ₹/km of range, not brand loyalty.</div></div>
+        <div class="force"><div class="fname">Supplier Power</div><div class="flevel">Moderate</div><div class="fdesc">Battery sourcing remains concentrated; localization is a direct response to this pressure.</div></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Strategic Read</div>
+      <div class="narrative">Tata's move upmarket with the Sierra.ev is the right call <b>if</b> the entry segment holds — but "if" is doing real work in that sentence. The more useful number isn't the 40–45% target, it's how much of the EV-share erosion came from the mid-size band specifically versus entry-level. A client in this seat should ask for a cohort breakdown by price band before signing off on the premium bet.</div>
+      <p class="sources">Sources: Autocar Professional · Business Standard · Whalesbook · CarWale · CarDekho — compiled July 2026.</p>
+    </div>
+  </section>
+
+  <!-- ===================== CASE STUDY ===================== -->
+  <section class="tool-section" id="tool-casestudy">
+    <div class="eyebrow">Interactive Case</div>
+    <h1>Should They Enter India's Furniture Rental Market?</h1>
+    <p class="sub">Make the call at each decision point. Then see how I actually approached this real market entry engagement — city-by-city, not a single yes/no.</p>
+
+    <div class="panel">
+      <p style="font-size:13.5px; line-height:1.65; color:var(--text-mute);">
+        <b style="color:var(--text);">The brief:</b> A global retail client is considering a furniture-rental subscription launch in India and wants a Go/No-Go recommendation, backed by competitive and demand research across Delhi NCR, Mumbai, Bengaluru, Pune, Hyderabad, and Chennai. You're the lead analyst.
+      </p>
+    </div>
+
+    <div class="panel">
+      <div class="step-indicator" id="caseStepIndicator"></div>
+      <div id="caseStepContent"></div>
+    </div>
+  </section>
+
+</div>
+
+<div class="sitefooter">
+  <span>Built by Tejal Mugul — five demonstrations, not descriptions.</span>
+  <span>
+    <a href="https://tejal10mugul-gif.github.io/tejal-portfolio/">Portfolio</a> ·
+    <a href="https://tejal10mugul-gif.github.io/tejal-portfolio/case-studies/">Case Studies</a> ·
+    <a href="https://www.linkedin.com/in/tejal10mugul">LinkedIn</a> ·
+    <a href="mailto:tejal10mugul@gmail.com">tejal10mugul@gmail.com</a>
+  </span>
+</div>
+
+<script>
+/* ============ NAV CONTROLLER ============ */
+const lazyInit = { dashboard:false, teardown:false };
+function showTool(name){
+  document.querySelectorAll('.tool-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('tool-' + name).classList.add('active');
+  document.querySelectorAll('.navtab').forEach(t => t.classList.toggle('active', t.dataset.target === name));
+  if(name === 'dashboard' && !lazyInit.dashboard){ lazyInit.dashboard = true; window.initDashboard(); }
+  if(name === 'teardown' && !lazyInit.teardown){ lazyInit.teardown = true; window.initTeardown(); }
+  window.scrollTo({top:0, behavior:'instant'});
+}
+document.querySelectorAll('.navtab').forEach(btn=>{
+  btn.addEventListener('click', ()=> showTool(btn.dataset.target));
+});
+</script>
+
+<script>
+/* ============ DOSSIER (auto-run) ============ */
+(function(){
+  const files = [
+    { no:"CI-01", skill:"Competitive Intelligence", impact:"Authored 400+ company intelligence profiles and benchmarking reports (~16/month), directly informing C-suite strategy at ABB, Honda, IBM, Siemens, and BASF." },
+    { no:"CI-02", skill:"Proposal & RFP Strategy", impact:"Spearheaded 20+ RFPs for clients including IKEA and Adani Wilmar — engagements valued at approximately USD 400K." },
+    { no:"CI-03", skill:"Market Entry Due Diligence", impact:"Benchmarked pricing and demand across 6 Indian cities, delivering a Go/No-Go market entry framework for a global retail client's rental furniture segment." },
+    { no:"CI-04", skill:"Pricing & Dashboard Intelligence", impact:"Built Power BI and Excel dashboards tracking pricing intelligence, M&A activity, and supply chain signals across 10+ client accounts." },
+    { no:"CI-05", skill:"Growth Strategy", impact:"Mapped supply chain gaps and regulatory landscape for a leading FMCG conglomerate — findings shaped its 2-year regional expansion roadmap." },
+    { no:"CI-06", skill:"Brand & SKU Pricing Analysis", impact:"Assessed multi-brand health and SKU-level competitive pricing across global automotive and industrial OEMs, informing product and pricing strategy." },
+    { no:"CI-07", skill:"Client Delivery & Trust", impact:"Ranked top 3 of 10 consultants for proposal-to-engagement conversion; built a repeat-client base of 20+ with 100% on-time delivery." },
+    { no:"CI-08", skill:"Consumer Insights Research", impact:"Directed cross-geography qualitative and quantitative research on purchase drivers, shaping product positioning for a leading automotive OEM." }
+  ];
+  const grid = document.getElementById('dossierGrid');
+  files.forEach(f => {
+    const card = document.createElement('div');
+    card.className = 'dfile';
+    card.tabIndex = 0;
+    card.setAttribute('role','button');
+    card.innerHTML = `
+      <div class="dfile-top"><span class="file-no">FILE ${f.no}</span><span class="dstatus">Sealed</span></div>
+      <div class="skill-name">${f.skill}</div>
+      <div class="impact-zone">
+        <div class="dstamp">Verified</div>
+        <div class="impact-text">${f.impact}</div>
+        <div class="redaction">████ CLASSIFIED — CLICK TO DECLASSIFY ████</div>
+      </div>
+      <div class="tap-hint">Click to declassify →</div>
+    `;
+    const toggle = () => {
+      const opening = !card.classList.contains('open');
+      card.classList.toggle('open');
+      card.querySelector('.dstatus').textContent = opening ? 'Declassified' : 'Sealed';
+    };
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+    grid.appendChild(card);
+  });
+})();
+</script>
+
+<script>
+/* ============ DASHBOARD (lazy init on first tab open) ============ */
+(function(){
+  const regions = {
+    Global:   { share:25, units:"20.7M", yoy:20, note:"One in four cars sold worldwide in 2025 was electric — the fastest 12 months of adoption on record." },
+    China:    { share:53, units:"16.49M", yoy:21, note:"China alone drove more than half of the world's EV sales growth in 2025; NEVs reached 47.9% of its total vehicle market." },
+    Europe:   { share:28, units:"4.2M", yoy:30, note:"A step-change in EU CO2 standards reversed two years of stagnation — UK BEV share hit 23.4%, Germany registrations rose 41%." },
+    "United States": { share:10, units:"1.6M", yoy:10, note:"Growth continued but unevenly — a Q3 tax-credit expiry pulled sales forward, then demand cooled into Q4." },
+    "Southeast Asia": { share:20, units:"0.5M+", yoy:105, note:"Sales more than doubled year-on-year, led by Vietnam, Indonesia and Thailand on strong incentives and Chinese import share." },
+    "Latin America": { share:12, units:"n/a", yoy:49, note:"Growth outpaced every advanced market — over 85% of units sold were from Chinese brands." }
+  };
+  let activeRegion = "Global";
+  let regionChart, oemChart;
+
+  window.initDashboard = function(){
+    renderTabs(); renderStats(); renderChart();
+    new Chart(document.getElementById('oemChart'), {
+      type:'bar',
+      data:{ labels:['BYD (NEV)','Tesla (BEV)','All other OEMs (derived)'],
+        datasets:[{ data:[4.6,1.64,14.46], backgroundColor:['#3DDBC4','#FF9F45','#2A3444'], borderRadius:4, maxBarThickness:60 }] },
+      options:{ indexAxis:'y', responsive:true,
+        plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:(ctx)=>ctx.parsed.x+'M units, 2025' } } },
+        scales:{ x:{ ticks:{ color:'#8A97A6', callback:(v)=>v+'M' }, grid:{ color:'#1F2A38' } }, y:{ ticks:{ color:'#EAF2F5', font:{family:'IBM Plex Mono', size:12} }, grid:{display:false} } } }
+    });
+    const items = [
+      `<span><b>GLOBAL</b> 20.7M EVs sold in 2025 <span class="up">▲20% YoY</span></span>`,
+      `<span><b>CHINA</b> 53% of new car sales electric <span class="up">▲21% YoY</span></span>`,
+      `<span><b>EUROPE</b> 4.2M units, 28% share <span class="up">▲30% YoY</span></span>`,
+      `<span><b>US</b> 1.6M units, 10% share <span class="up">▲10% YoY</span></span>`,
+      `<span><b>BYD</b> 4.6M NEVs sold globally, 2025</span>`,
+      `<span><b>TESLA</b> 1.64M BEV deliveries <span class="down">▼8.6% YoY</span></span>`,
+      `<span><b>SE ASIA</b> sales more than doubled <span class="up">▲105% YoY</span></span>`,
+      `<span><b>PRICING</b> avg. BEV price fell through 2024–25 on battery-cost declines</span>`
+    ];
+    document.getElementById('ticker').innerHTML = items.join('') + items.join('');
+  };
+
+  function renderTabs(){
+    const tabsEl = document.getElementById('regionTabs');
+    tabsEl.innerHTML = '';
+    Object.keys(regions).forEach(r => {
+      const btn = document.createElement('button');
+      btn.className = 'tab' + (r === activeRegion ? ' active' : '');
+      btn.textContent = r;
+      btn.onclick = () => { activeRegion = r; renderTabs(); renderStats(); renderChart(); };
+      tabsEl.appendChild(btn);
+    });
+  }
+  function renderStats(){
+    const d = regions[activeRegion];
+    document.getElementById('dashStatRow').innerHTML = `
+      <div class="stat-card"><div class="label">EV Share of New Sales</div><div class="value">${d.share}%</div><div class="foot">of new car sales, 2025</div></div>
+      <div class="stat-card"><div class="label">Units Sold</div><div class="value">${d.units}</div><div class="foot">passenger EVs, 2025</div></div>
+      <div class="stat-card"><div class="label">YoY Growth</div><div class="value pos">+${d.yoy}%</div><div class="foot">vs. 2024</div></div>
+    `;
+    document.getElementById('regionCaption').textContent = d.note;
+  }
+  function renderChart(){
+    const labels = Object.keys(regions);
+    const data = labels.map(r => regions[r].share);
+    const colors = labels.map(r => r === activeRegion ? '#3DDBC4' : '#243040');
+    if(regionChart) regionChart.destroy();
+    regionChart = new Chart(document.getElementById('regionChart'), {
+      type:'bar',
+      data:{ labels, datasets:[{ data, backgroundColor:colors, borderRadius:4, maxBarThickness:46 }] },
+      options:{ responsive:true,
+        plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:(ctx)=>ctx.parsed.y+'% of new car sales' } } },
+        scales:{ y:{ beginAtZero:true, max:60, ticks:{ color:'#8A97A6', callback:(v)=>v+'%' }, grid:{ color:'#1F2A38' } },
+                 x:{ ticks:{ color:'#8A97A6', font:{family:'IBM Plex Mono', size:11} }, grid:{display:false} } },
+        onClick:(evt, els)=>{ if(els.length){ activeRegion = labels[els[0].index]; renderTabs(); renderStats(); renderChart(); } } }
+    });
+  }
+})();
+</script>
+
+<script>
+/* ============ CALCULATOR (auto-run) ============ */
+(function(){
+  let method = 'topdown';
+  let scenario = 0.6;
+  const $ = id => document.getElementById(id);
+
+  function fmt(n){ if(n >= 1000) return '$' + (n/1000).toFixed(2) + 'B'; if(n >= 1) return '$' + n.toFixed(1) + 'M'; return '$' + (n*1000).toFixed(0) + 'K'; }
+  function fmtPct(n){ return n.toFixed(1) + '%'; }
+  function scenarioLabel(){ return scenario === 0.6 ? 'conservative' : scenario === 1.0 ? 'base' : 'aggressive'; }
+  function project(val, cagr){ return val * Math.pow(1 + cagr/100, 3); }
+
+  document.querySelectorAll('.method-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.method-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      method = btn.dataset.method;
+      $('inputsTopdown').style.display = method === 'topdown' ? 'block' : 'none';
+      $('inputsBottomup').style.display = method === 'bottomup' ? 'block' : 'none';
+      compute();
+    });
+  });
+  document.querySelectorAll('.scenario-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.scenario-btn').forEach(b=>b.classList.remove('active','cons','base','agg'));
+      scenario = parseFloat(btn.dataset.scenario);
+      if(scenario === 0.6){ btn.classList.add('active','cons'); } else if(scenario === 1.0){ btn.classList.add('active','base'); } else { btn.classList.add('active','agg'); }
+      compute();
+    });
+  });
+  ['td_serviceable','td_obtainable'].forEach(id=>{
+    $(id).addEventListener('input', ()=>{ $(id+'_val').textContent = (id==='td_obtainable' ? parseFloat($(id).value).toFixed(1) : $(id).value) + '%'; compute(); });
+  });
+  $('bu_penetration').addEventListener('input', ()=>{ $('bu_penetration_val').textContent = parseFloat($('bu_penetration').value).toFixed(1) + '%'; compute(); });
+  ['td_tam','td_cagr','bu_universe','bu_reachable','bu_arpc','bu_cagr','industry','geography'].forEach(id=>{ $(id).addEventListener('input', compute); });
+
+  function compute(){
+    let tam, sam, som, cagr, industry, geography;
+    industry = $('industry').value || 'this market';
+    geography = $('geography').value || 'the target geography';
+    if(method === 'topdown'){
+      tam = parseFloat($('td_tam').value) || 0;
+      const serviceablePct = parseFloat($('td_serviceable').value) || 0;
+      const obtainablePct = (parseFloat($('td_obtainable').value) || 0) * scenario;
+      cagr = parseFloat($('td_cagr').value) || 0;
+      sam = tam * (serviceablePct/100);
+      som = sam * (obtainablePct/100);
+      renderFunnel(tam, sam, som); renderCalcStats(tam, sam, som, cagr);
+      renderNarrative(`Starting from a top-down <b>${fmt(tam)}</b> market for <b>${industry}</b>, roughly <b>${fmtPct(serviceablePct)}</b> is realistically serviceable in <b>${geography}</b> once you filter for regulatory fit, localization, and channel reach — putting SAM at <b>${fmt(sam)}</b>. Assuming a first-capture rate of <b>${fmtPct(obtainablePct)}</b> against typical competitive intensity in year one (<b>${scenarioLabel()}</b> scenario), SOM lands at <b>${fmt(som)}</b> — growing to roughly <b>${fmt(project(som, cagr))}</b> by year three at a ${cagr}% CAGR.`);
+    } else {
+      const universe = parseFloat($('bu_universe').value) || 0;
+      const reachable = parseFloat($('bu_reachable').value) || 0;
+      const arpc = parseFloat($('bu_arpc').value) || 0;
+      const penetrationPct = (parseFloat($('bu_penetration').value) || 0) * scenario;
+      cagr = parseFloat($('bu_cagr').value) || 0;
+      tam = (universe * arpc) / 1e6; sam = (reachable * arpc) / 1e6; som = sam * (penetrationPct/100);
+      renderFunnel(tam, sam, som); renderCalcStats(tam, sam, som, cagr);
+      renderNarrative(`Built bottom-up: <b>${universe.toLocaleString()}</b> total potential customers for <b>${industry}</b> in <b>${geography}</b> at an average <b>$${arpc.toLocaleString()}</b>/year implies a <b>${fmt(tam)}</b> ceiling. Of that, <b>${reachable.toLocaleString()}</b> are realistically reachable through your go-to-market motion — a <b>${fmt(sam)}</b> serviceable base. At a <b>${fmtPct(penetrationPct)}</b> penetration rate (<b>${scenarioLabel()}</b> scenario), year-one SOM is <b>${fmt(som)}</b>, compounding to roughly <b>${fmt(project(som, cagr))}</b> by year three as the reachable base grows at ${cagr}% CAGR.<br><br>Sanity check: if this bottom-up SOM exceeds what a top-down estimate would suggest, the reachable-customer or penetration assumption is likely too aggressive — this is exactly the triangulation step a client deliverable would show.`);
+    }
+  }
+  function renderFunnel(tam, sam, som){
+    const maxW = Math.max(tam, 1);
+    const samW = Math.max((sam/maxW)*100, 6), somW = Math.max((som/maxW)*100, 3);
+    $('funnel').innerHTML = `
+      <div class="funnel-row"><div class="funnel-label"><span class="name">TAM — Total Addressable Market</span><span class="val">${fmt(tam)}</span></div><div class="bar-track"><div class="bar-fill tam" style="width:100%"></div></div></div>
+      <div class="funnel-row"><div class="funnel-label"><span class="name">SAM — Serviceable Addressable Market</span><span class="val">${fmt(sam)}</span></div><div class="bar-track"><div class="bar-fill sam" style="width:${samW}%"></div></div></div>
+      <div class="funnel-row"><div class="funnel-label"><span class="name">SOM — Serviceable Obtainable Market</span><span class="val">${fmt(som)}</span></div><div class="bar-track"><div class="bar-fill som" style="width:${somW}%"></div></div></div>
+    `;
+  }
+  function renderCalcStats(tam, sam, som, cagr){
+    $('calcStatRow').innerHTML = `
+      <div class="stat-card"><div class="label">TAM</div><div class="value">${fmt(tam)}</div></div>
+      <div class="stat-card"><div class="label">SAM</div><div class="value">${fmt(sam)}</div></div>
+      <div class="stat-card"><div class="label">SOM (Yr 1)</div><div class="value">${fmt(som)}</div></div>
+      <div class="stat-card"><div class="label">SOM (Yr 3, ${cagr}% CAGR)</div><div class="value">${fmt(project(som, cagr))}</div></div>
+    `;
+  }
+  function renderNarrative(html){ $('calcNarrative').innerHTML = html; }
+  compute();
+})();
+</script>
+
+<script>
+/* ============ TEARDOWN (table auto-run, chart lazy on tab open) ============ */
+(function(){
+  const models = [
+    { name:"Tata Nexon EV", maker:"Tata", price:12.49, tata:true, read:"Entry-level anchor — Tata's defended stronghold, cheapest in the set." },
+    { name:"Tata Curvv EV", maker:"Tata", price:16.99, tata:true, read:"Mid-size SUV, now boxed in by three rivals within ₹2L." },
+    { name:"Hyundai Creta Electric", maker:"Hyundai", price:17.02, tata:false, read:"Undercuts Curvv's top trims; strongest brand-recognition rival." },
+    { name:"Mahindra BE 6", maker:"Mahindra", price:18.90, tata:false, read:"Longest range in the set (up to 682km) — competing on performance, not price." },
+    { name:"MG ZS EV", maker:"MG Motor", price:18.98, tata:false, read:"Highest starting price in the mid-size band — competing on features/import cachet." },
+    { name:"Tata Sierra.ev", maker:"Tata", price:22.5, tata:true, read:"New premium play (est. ₹20–30L) — Tata's move to escape the crowded middle." }
+  ];
+  const tbody = document.getElementById('compTable');
+  models.forEach(m => {
+    const tr = document.createElement('tr');
+    if(m.tata) tr.className = 'highlight';
+    tr.innerHTML = `<td>${m.name}</td><td><span class="badge ${m.tata?'tata':'rival'}">${m.maker}</span></td><td>₹${m.price.toFixed(2)}L${m.name.includes('Sierra')?' (est.)':''}</td><td style="color:var(--text-mute); font-size:12.5px;">${m.read}</td>`;
+    tbody.appendChild(tr);
+  });
+
+  window.initTeardown = function(){
+    new Chart(document.getElementById('pricingChart'), {
+      type:'bar',
+      data:{ labels:models.map(m=>m.name), datasets:[{ data:models.map(m=>m.price), backgroundColor:models.map(m=>m.tata?'#3DDBC4':'#2A3444'), borderRadius:4, maxBarThickness:46 }] },
+      options:{ responsive:true,
+        plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:(ctx)=>'₹'+ctx.parsed.y+'L starting price' } } },
+        scales:{ y:{ beginAtZero:true, max:25, ticks:{ color:'#8A97A6', callback:(v)=>'₹'+v+'L' }, grid:{ color:'#1F2A38' } },
+                 x:{ ticks:{ color:'#8A97A6', font:{family:'IBM Plex Mono', size:10} }, grid:{display:false} } } }
+    });
+  };
+})();
+</script>
+
+<script>
+/* ============ CASE STUDY (auto-run) ============ */
+(function(){
+  const steps = [
+    {
+      q:"Where do you start the analysis?",
+      options:[
+        { label:"Size the national market top-down, then narrow to cities", matches:false },
+        { label:"Benchmark pricing & demand city-by-city, then roll up", matches:true },
+        { label:"Run customer surveys on rental intent first", matches:false }
+      ],
+      reveal:"I started city-by-city — Delhi NCR, Mumbai, Bengaluru, Pune, Hyderabad, and Chennai — benchmarking competitor pricing and demand signals in each before rolling anything up nationally. A national top-down number would have averaged away exactly what mattered: co-living density, young-professional concentration, and existing rental penetration vary enormously city to city. Stated-intent surveys were tempting but risky — in India, stated rental intent consistently overstates actual paid conversion, so I anchored on revealed competitive and pricing data instead."
+    },
+    {
+      q:"Which signal should carry the most weight in the Go/No-Go call?",
+      options:[
+        { label:"Price sensitivity vs. buying outright", matches:false },
+        { label:"Existing competitor density / market saturation", matches:true },
+        { label:"Regulatory and logistics ease", matches:false }
+      ],
+      reveal:"Competitor density carried the most weight. This is a subscription, asset-heavy model — once a city gets saturated, unit economics break fast because you're competing on delivery/logistics cost, not just price. Regulatory ease mattered but was a lower bar to clear almost everywhere we looked. Price sensitivity turned out weaker than expected — the research showed renters were optimizing for convenience and flexibility, not just cost versus ownership."
+    },
+    {
+      q:"What's the final call?",
+      options:[
+        { label:"Go — enter all 6 cities simultaneously", matches:false },
+        { label:"No-Go — market isn't ready", matches:false },
+        { label:"Phased Go — enter select cities first", matches:true }
+      ],
+      reveal:"Delivered a phased Go: prioritize entry in the cities with the strongest demand concentration and lowest saturation, and hold on the most contested metros until the model proves out. A binary Go/No-Go across a market this size ignores how different the city-level economics actually are — the framework itself was built to support a staged decision, not a single yes/no."
+    }
+  ];
+  let current = 0;
+  const content = document.getElementById('caseStepContent');
+
+  function renderIndicator(){
+    const el = document.getElementById('caseStepIndicator');
+    el.innerHTML = '';
+    for(let i=0; i<steps.length; i++){
+      const dot = document.createElement('div');
+      dot.className = 'step-dot' + (i < current ? ' done' : i === current ? ' current' : '');
+      el.appendChild(dot);
+    }
+  }
+
+  function renderStep(){
+    renderIndicator();
+    if(current >= steps.length){
+      content.innerHTML = `
+        <div class="case-q">What this case shows</div>
+        <p style="font-size:13.5px; line-height:1.7; color:var(--text);">The real work in market entry due diligence isn't landing on Go or No-Go — it's building a framework granular enough that the answer can be "go, but here first." That's the deliverable a client actually uses to sequence capital, not just a slide with a green checkmark.</p>
+        <button class="case-continue show" id="caseRestart">Start over</button>
+      `;
+      document.getElementById('caseRestart').addEventListener('click', ()=>{ current = 0; renderStep(); });
+      return;
+    }
+    const s = steps[current];
+    content.innerHTML = `
+      <div class="case-q">${s.q}</div>
+      <div class="case-options" id="caseOptions"></div>
+      <div class="reveal-panel" id="caseReveal"><div class="tag">Here's how I actually approached it</div><div id="caseRevealText"></div></div>
+      <button class="case-continue" id="caseNext">Continue →</button>
+    `;
+    const optsEl = document.getElementById('caseOptions');
+    s.options.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'case-option';
+      btn.textContent = opt.label;
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#caseOptions .case-option').forEach(b => { b.disabled = true; b.classList.remove('picked'); });
+        btn.classList.add('picked');
+        document.getElementById('caseRevealText').textContent = s.reveal;
+        document.getElementById('caseReveal').classList.add('show');
+        document.getElementById('caseNext').classList.add('show');
+      });
+      optsEl.appendChild(btn);
+    });
+    document.getElementById('caseNext').addEventListener('click', () => { current++; renderStep(); });
+  }
+  renderStep();
+})();
+</script>
+
+</body>
+</html>
